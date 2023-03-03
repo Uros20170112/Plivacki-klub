@@ -148,7 +148,7 @@ public class PromenaPaketa extends AbstractObject {
     /**
      * Vraca vrednost primarnog kljuca
      *
-     * @return String pretplataId
+     * @return String id
      */
     @Override
     public String vratiVrednostPK() {

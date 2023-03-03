@@ -129,7 +129,7 @@ public class Paket extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Paket i vraca je
      *
      * @param rs
-     * @return lista objekata paket
+     * @return lista objekata Paket
      * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override

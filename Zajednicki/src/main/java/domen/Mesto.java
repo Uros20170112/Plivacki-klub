@@ -31,6 +31,7 @@ public class Mesto extends AbstractObject {
         this.naziv = naziv;
         this.ptt = ptt;
     }
+
     /**
      * Poredi dva objekta Mesto i utvrdjuje da li su isti
      *
@@ -58,6 +59,7 @@ public class Mesto extends AbstractObject {
         }
         return true;
     }
+
     /**
      * Vraca String sa bitnim informacijama o mestu
      *
@@ -67,49 +69,62 @@ public class Mesto extends AbstractObject {
     public String toString() {
         return ptt + " " + naziv;
     }
-/**
- * Vraca id mesta
- * @return String mestoid
- */
+
+    /**
+     * Vraca id mesta
+     *
+     * @return String mestoid
+     */
     public String getMestoid() {
         return mestoid;
     }
-/**
- * Postavlja vednost za id mesta
- * @param mestoid 
- */
+
+    /**
+     * Postavlja vednost za id mesta
+     *
+     * @param mestoid
+     */
     public void setMestoid(String mestoid) {
         this.mestoid = mestoid;
     }
-/**
- * Vraca naziv mesta
- * @return String naziv
- */
+
+    /**
+     * Vraca naziv mesta
+     *
+     * @return String naziv
+     */
     public String getNaziv() {
         return naziv;
     }
-/**
- * Postavlja vrednost za naziv mesta
- * @param naziv 
- */
+
+    /**
+     * Postavlja vrednost za naziv mesta
+     *
+     * @param naziv
+     */
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
-/**
- * Vraca ptt mesta
- * @return String ptt
- */
+
+    /**
+     * Vraca ptt mesta
+     *
+     * @return String ptt
+     */
     public String getPtt() {
         return ptt;
     }
-/**
- * Postavlja vrednost za ptt mesta
- * @param ptt 
- */
+
+    /**
+     * Postavlja vrednost za ptt mesta
+     *
+     * @param ptt
+     */
     public void setPtt(String ptt) {
         this.ptt = ptt;
     }
-   /**
+
+    /**
      *
      * @return vraca naziv tabele u bazi za mesto kako bi mogao da se napravi
      * upit
@@ -118,6 +133,7 @@ public class Mesto extends AbstractObject {
     public String vratiImeTabele() {
         return "mesto";
     }
+
     /**
      *
      * @return vraca parametre iz tabele
@@ -126,6 +142,7 @@ public class Mesto extends AbstractObject {
     public String vratiParametre() {
         return null;
     }
+
     /**
      *
      * @return vraca ime primarnog kljuca
@@ -134,6 +151,7 @@ public class Mesto extends AbstractObject {
     public String vratiPK() {
         return "mestoId";
     }
+
     /**
      * Vraca vrednost primarnog kljuca
      *
@@ -143,6 +161,7 @@ public class Mesto extends AbstractObject {
     public String vratiVrednostPK() {
         return mestoid;
     }
+
     /**
      *
      * @return vraca slozen primarni kljuc
@@ -151,6 +170,7 @@ public class Mesto extends AbstractObject {
     public String vratiSlozenPK() {
         return null;
     }
+
     /**
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Mesto i vraca je
      *
@@ -175,6 +195,7 @@ public class Mesto extends AbstractObject {
 
         return mesta;
     }
+
     /**
      *
      * @return vraca formu za pravljenje SQL upita za update
@@ -183,6 +204,7 @@ public class Mesto extends AbstractObject {
     public String vratiUpdate() {
         return null;
     }
+
     /**
      * Postavlja vrednost primarnog kljuca
      *
@@ -190,7 +212,7 @@ public class Mesto extends AbstractObject {
      */
     @Override
     public void postaviVrednostPK(String pk) {
-        this.mestoid=pk;
+        this.mestoid = pk;
     }
-    
+
 }

@@ -34,81 +34,102 @@ public class Pretplata extends AbstractObject {
         this.datum = datum;
         this.clan = clan;
         this.paket = paket;
-        this.vaziDo=vaziDo;
+        this.vaziDo = vaziDo;
     }
 
     public Pretplata() {
     }
-/**
- * Vraca id pretplate
- * @return String pretplataId
- */
+
+    /**
+     * Vraca id pretplate
+     *
+     * @return String pretplataId
+     */
     public String getPretplata() {
         return pretplataId;
     }
-/**
- * Postavlja vrednost za id pretplate
- * @param pretplata 
- */
+
+    /**
+     * Postavlja vrednost za id pretplate
+     *
+     * @param pretplata
+     */
     public void setPretplata(String pretplata) {
         this.pretplataId = pretplata;
     }
-/**
- * Vraca datum pretplate
- * @return Date datum
- */
+
+    /**
+     * Vraca datum pretplate
+     *
+     * @return Date datum
+     */
     public Date getDatum() {
         return datum;
     }
-/**
- * Postavlja vrednost za datum pretplate
- * @param datum 
- */
+
+    /**
+     * Postavlja vrednost za datum pretplate
+     *
+     * @param datum
+     */
     public void setDatum(Date datum) {
         this.datum = datum;
     }
-/**
- * Vraca clana koji pripada pretplati
- * @return Clan clan
- */
+
+    /**
+     * Vraca clana koji pripada pretplati
+     *
+     * @return Clan clan
+     */
     public Clan getClan() {
         return clan;
     }
-/**
- * Postavlja vrednost za clana
- * @param clan 
- */
+
+    /**
+     * Postavlja vrednost za clana
+     *
+     * @param clan
+     */
     public void setClan(Clan clan) {
         this.clan = clan;
     }
-/**
- * Vraca paket koji pripada pretplati
- * @return Paket paket
- */
+
+    /**
+     * Vraca paket koji pripada pretplati
+     *
+     * @return Paket paket
+     */
     public Paket getPaket() {
         return paket;
     }
-/**
- * Postavlja vrednost za datum vezenja paketa
- * @param vaziDo 
- */
+
+    /**
+     * Postavlja vrednost za datum vezenja paketa
+     *
+     * @param vaziDo
+     */
     public void setVaziDo(Date vaziDo) {
         this.vaziDo = vaziDo;
     }
-/**
- * Vraca datum vazenja paketa
- * @return Date vaziDo
- */
+
+    /**
+     * Vraca datum vazenja paketa
+     *
+     * @return Date vaziDo
+     */
     public Date getVaziDo() {
         return vaziDo;
     }
-/**
- * Postavlja vrednost paketa za pretplatu
- * @param paket 
- */
+
+    /**
+     * Postavlja vrednost paketa za pretplatu
+     *
+     * @param paket
+     */
     public void setPaket(Paket paket) {
         this.paket = paket;
     }
+
     /**
      *
      * @return vraca naziv tabele u bazi za clana kako bi mogao da se napravi
@@ -118,6 +139,7 @@ public class Pretplata extends AbstractObject {
     public String vratiImeTabele() {
         return "pretplata";
     }
+
     /**
      *
      * @return vraca parametre iz tabele
@@ -126,8 +148,9 @@ public class Pretplata extends AbstractObject {
     public String vratiParametre() {
         Date datumSQL = new java.sql.Date(getDatum().getTime());
         Date datumDoSQL = new java.sql.Date(getVaziDo().getTime());
-        return String.format("'%s', '%s', '%s', '%s', '%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(),datumDoSQL);
+        return String.format("'%s', '%s', '%s', '%s', '%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(), datumDoSQL);
     }
+
     /**
      *
      * @return vraca ime primarnog kljuca
@@ -136,6 +159,7 @@ public class Pretplata extends AbstractObject {
     public String vratiPK() {
         return "pretplataId";
     }
+
     /**
      * Vraca vrednost primarnog kljuca
      *
@@ -145,6 +169,7 @@ public class Pretplata extends AbstractObject {
     public String vratiVrednostPK() {
         return pretplataId;
     }
+
     /**
      *
      * @return vraca slozen primarni kljuc
@@ -153,8 +178,10 @@ public class Pretplata extends AbstractObject {
     public String vratiSlozenPK() {
         return null;
     }
+
     /**
-     * Prima ResultSet(tabelu) i pretvara je u listu objekata Pretplata i vraca je
+     * Prima ResultSet(tabelu) i pretvara je u listu objekata Pretplata i vraca
+     * je
      *
      * @param rs
      * @return lista objekata Pretplata
@@ -173,7 +200,7 @@ public class Pretplata extends AbstractObject {
                 Date VAZIDO = rs.getDate("vaziDo");
                 Pretplata p = new Pretplata(PRETPLATAID,
                         DATUM, new Clan(clanId, null, null, null, null, null, null),
-                        new Paket(paketId, null, null),VAZIDO);
+                        new Paket(paketId, null, null), VAZIDO);
 
                 pretplate.add(p);
             }
@@ -182,6 +209,7 @@ public class Pretplata extends AbstractObject {
         }
         return pretplate;
     }
+
     /**
      *
      * @return vraca formu za pravljenje SQL upita za update
@@ -190,8 +218,9 @@ public class Pretplata extends AbstractObject {
     public String vratiUpdate() {
         Date datumSQL = new java.sql.Date(getDatum().getTime());
         Date datumDoSQL = new java.sql.Date(getVaziDo().getTime());
-        return String.format("pretplataId='%s',datum='%s',clanId='%s',,paketId='%s', vaziDo='%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(),datumDoSQL);
+        return String.format("pretplataId='%s',datum='%s',clanId='%s',,paketId='%s', vaziDo='%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(), datumDoSQL);
     }
+
     /**
      * Postavlja vrednost primarnog kljuca
      *
