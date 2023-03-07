@@ -116,6 +116,9 @@ public class Korisnik extends AbstractObject {
 
     @Override
     public String toString() {
+        if (ime == null) {
+            throw new NullPointerException("Nijedna od vrednosti za toString() ne sme biti null");
+        }
         return ime; //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -124,6 +127,12 @@ public class Korisnik extends AbstractObject {
     }
 
     public void setIme(String ime) {
+        if(ime == null){
+            throw new NullPointerException("ime korisnika ne sme biti null");
+        }
+        if(ime.length() < 2){
+            throw new RuntimeException("ime korisnika ne sme biti krace od 2 karaktera");
+        }
         this.ime = ime;
     }
 
@@ -132,6 +141,12 @@ public class Korisnik extends AbstractObject {
     }
 
     public void setEmail(String email) {
+        if(email == null){
+            throw new NullPointerException("email ne sme biti null");
+        }
+        if(!email.contains("@")){
+            throw new RuntimeException("email mora sadrzati karakter '@'");
+        }
         this.email = email;
     }
 
@@ -140,6 +155,20 @@ public class Korisnik extends AbstractObject {
     }
 
     public void setPassword(String password) {
+        if(password == null){
+            throw new NullPointerException("password ne sme biti null");
+        }
+        char[] pass = password.toCharArray();
+        boolean digit = false;
+        for (char c : pass) {
+            if(Character.isDigit(c))
+                digit = true;
+                continue;
+        }
+        if(digit == false && password.length()<7) {
+            throw new IllegalArgumentException("password mora da sardzi barem jedna broj i mora da sadrzi "
+                    + "barem 7 karaktera ");
+        }
         this.password = password;
     }
 
@@ -148,6 +177,12 @@ public class Korisnik extends AbstractObject {
     }
 
     public void setUsername(String username) {
+        if(username == null){
+            throw new NullPointerException("username korisnika ne sme biti null");
+        }
+        if(username.length() < 5){
+            throw new RuntimeException("username korisnika ne sme biti krace od 5 karaktera");
+        }
         this.username = username;
     }
 
@@ -156,6 +191,12 @@ public class Korisnik extends AbstractObject {
     }
 
     public void setStatusKorisnika(String statusKorisnika) {
+        if(statusKorisnika == null){
+            throw new NullPointerException("status korisnika ne sme biti null");
+        }
+        if(!(statusKorisnika.equals("offline") || statusKorisnika.equals("online"))){
+            throw new RuntimeException("status ne sme biti drugaciji od online ili offline ");
+        }
         this.statusKorisnika = statusKorisnika;
     }
     
