@@ -52,6 +52,9 @@ public class Mesto extends AbstractObject {
 
     @Override
     public String toString() {
+        if (ptt == null || naziv == null) {
+            throw new NullPointerException("Nijedna od vrednosti za toString() ne sme biti null");
+        }
         return ptt + " " + naziv;
     }
 
