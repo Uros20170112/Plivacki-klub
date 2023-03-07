@@ -12,8 +12,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-import java.util.regex.Pattern;
-
 /**
  * Klasa koja predstavlja clana plivackog kluba i koja nasledjuje apstraktnu
  * klasu AbstractObject i implementira njene metode.

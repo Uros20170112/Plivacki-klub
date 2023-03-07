@@ -8,6 +8,7 @@ package domen;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -47,6 +48,12 @@ public class Termin extends AbstractObject {
     }
 
     public void setSmena(String smena) {
+        if (smena == null) {
+            throw new NullPointerException("smena ne sme da bude null");
+        }
+        if (!Pattern.matches("^[0-2][0-3]:[0-5][0-9]-[0-2][0-3]:[0-5][0-9]$", smena)) {
+            throw new IllegalArgumentException("nije dobro unesena smena");
+        }
         this.smena = smena;
     }
 
@@ -55,6 +62,13 @@ public class Termin extends AbstractObject {
     }
 
     public void setDan(String dan) {
+        if(dan == null) {
+            throw new NullPointerException("dan ne sme da bude null");
+        }
+        if (!(dan == "Ponedeljak" || dan == "Utorak" || dan == "Sreda" || dan == "Cetvrtak"
+                || dan == "Petak" || dan == "Subota" || dan == "Nedelja")) {
+            throw new IllegalArgumentException("nije unesen dobar dan");
+        }
         this.dan = dan;
     }
 
@@ -63,6 +77,9 @@ public class Termin extends AbstractObject {
     }
 
     public void setPaket(Paket paket) {
+        if(paket == null) {
+            throw new NullPointerException("paket ne sme da bude null");
+        }
         this.paket = paket;
     }
 
@@ -71,6 +88,12 @@ public class Termin extends AbstractObject {
     }
 
     public void setId(String id) {
+        if(id == null){
+            throw new NullPointerException("id ne sme biti null");
+        }
+        if( id.equals("0") || id.contains("-")){
+            throw new RuntimeException("id ne sme biti nula, niti negativan broj");
+        }
         this.id = id;
     }
 
@@ -79,6 +102,9 @@ public class Termin extends AbstractObject {
     }
 
     public void setTrener(Trener trener) {
+        if(trener == null) {
+            throw new NullPointerException("trener ne sme da bude null");
+        }
         this.trener = trener;
     }
 
