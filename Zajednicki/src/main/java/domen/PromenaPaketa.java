@@ -47,6 +47,9 @@ public class PromenaPaketa extends AbstractObject {
     }
 
     public void setDatumOdabira(Date datumOdabira) {
+        if(datumOdabira == null) {
+            throw new NullPointerException("datum ne sme biti null");
+        }
         this.datumOdabira = datumOdabira;
     }
 
@@ -55,6 +58,9 @@ public class PromenaPaketa extends AbstractObject {
     }
 
     public void setClan(Clan clan) {
+        if (clan == null) {
+            throw new NullPointerException("clan ne sme biti null");
+        }
         this.clan = clan;
     }
 
@@ -63,6 +69,9 @@ public class PromenaPaketa extends AbstractObject {
     }
 
     public void setPaket(Paket paket) {
+        if (paket == null) {
+            throw new NullPointerException("paket ne sme biti null");
+        }
         this.paket = paket;
     }
 
