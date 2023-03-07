@@ -28,7 +28,7 @@ public class Pretplata extends AbstractObject {
         this.datum = datum;
         this.clan = clan;
         this.paket = paket;
-        this.vaziDo=vaziDo;
+        this.vaziDo = vaziDo;
     }
 
     public Pretplata() {
@@ -38,8 +38,14 @@ public class Pretplata extends AbstractObject {
         return pretplataId;
     }
 
-    public void setPretplata(String pretplata) {
-        this.pretplataId = pretplata;
+    public void setPretplata(String pretplataId) {
+        if (pretplataId == null) {
+            throw new NullPointerException("id pretplate ne sme biti null");
+        }
+        if (pretplataId.equals("0") || pretplataId.contains("-")) {
+            throw new RuntimeException("id pretplate ne sme biti nula, niti negativan broj");
+        }
+        this.pretplataId = pretplataId;
     }
 
     public Date getDatum() {
@@ -47,6 +53,12 @@ public class Pretplata extends AbstractObject {
     }
 
     public void setDatum(Date datum) {
+        if (datum == null) {
+            throw new NullPointerException("datum ne sme biti null");
+        }
+        if (datum.before(new Date())) {
+            throw new RuntimeException("datum ne sme biti pre danasnjeg datuma");
+        }
         this.datum = datum;
     }
 
@@ -55,6 +67,9 @@ public class Pretplata extends AbstractObject {
     }
 
     public void setClan(Clan clan) {
+        if (clan == null) {
+            throw new NullPointerException("clan ne sme biti null");
+        }
         this.clan = clan;
     }
 
@@ -63,6 +78,15 @@ public class Pretplata extends AbstractObject {
     }
 
     public void setVaziDo(Date vaziDo) {
+        if (vaziDo == null) {
+            throw new NullPointerException("vaziDo ne sme biti null");
+        }
+        if (vaziDo.before(new Date())) {
+            throw new RuntimeException("vaziDo ne sme biti pre danasnjeg datuma");
+        }
+        if (vaziDo.before(datum)) {
+            throw new RuntimeException("vaziDo ne sme biti pre datuma prijave");
+        }
         this.vaziDo = vaziDo;
     }
 
@@ -71,6 +95,9 @@ public class Pretplata extends AbstractObject {
     }
 
     public void setPaket(Paket paket) {
+        if (paket == null) {
+            throw new NullPointerException("paket ne sme biti null");
+        }
         this.paket = paket;
     }
 
@@ -83,7 +110,7 @@ public class Pretplata extends AbstractObject {
     public String vratiParametre() {
         Date datumSQL = new java.sql.Date(getDatum().getTime());
         Date datumDoSQL = new java.sql.Date(getVaziDo().getTime());
-        return String.format("'%s', '%s', '%s', '%s', '%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(),datumDoSQL);
+        return String.format("'%s', '%s', '%s', '%s', '%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(), datumDoSQL);
     }
 
     @Override
@@ -114,7 +141,7 @@ public class Pretplata extends AbstractObject {
                 Date VAZIDO = rs.getDate("vaziDo");
                 Pretplata p = new Pretplata(PRETPLATAID,
                         DATUM, new Clan(clanId, null, null, null, null, null, null),
-                        new Paket(paketId, null, null),VAZIDO);
+                        new Paket(paketId, null, null), VAZIDO);
 
                 pretplate.add(p);
             }
@@ -128,7 +155,7 @@ public class Pretplata extends AbstractObject {
     public String vratiUpdate() {
         Date datumSQL = new java.sql.Date(getDatum().getTime());
         Date datumDoSQL = new java.sql.Date(getVaziDo().getTime());
-        return String.format("pretplataId='%s',datum='%s',clanId='%s',,paketId='%s', vaziDo='%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(),datumDoSQL);
+        return String.format("pretplataId='%s',datum='%s',clanId='%s',,paketId='%s', vaziDo='%s'", pretplataId, datumSQL, clan.getClanId(), paket.getPaketId(), datumDoSQL);
     }
 
     @Override
