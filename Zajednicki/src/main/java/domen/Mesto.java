@@ -60,6 +60,12 @@ public class Mesto extends AbstractObject {
     }
 
     public void setMestoid(String mestoid) {
+        if(mestoid == null){
+            throw new NullPointerException("id mesta ne sme biti null");
+        }
+        if( mestoid.equals("0") || mestoid.contains("-")){
+            throw new RuntimeException("id mesta ne sme biti nula, niti negativan broj");
+        }
         this.mestoid = mestoid;
     }
 
@@ -68,6 +74,12 @@ public class Mesto extends AbstractObject {
     }
 
     public void setNaziv(String naziv) {
+        if(naziv == null){
+            throw new NullPointerException("naziv mesta ne sme biti null");
+        }
+        if(naziv.length() < 2){
+            throw new RuntimeException("naziv mesta ne sme biti krace od 2 karaktera");
+        }
         this.naziv = naziv;
     }
 
@@ -76,6 +88,17 @@ public class Mesto extends AbstractObject {
     }
 
     public void setPtt(String ptt) {
+        if(ptt == null){
+            throw new NullPointerException("ptt mesta ne sme biti null");
+        }
+        char[] digit = ptt.toCharArray();
+        for (char c : digit) {
+            if(!Character.isDigit(c))
+                throw new IllegalArgumentException("ptt mora da sadrzi samo brojeve");
+        }
+        if(ptt.length() < 2){
+            throw new RuntimeException("ptt ne sme biti krace od 2 karaktera");
+        }
         this.ptt = ptt;
     }
 
