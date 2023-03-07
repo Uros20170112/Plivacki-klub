@@ -38,6 +38,12 @@ public class Trener extends AbstractObject{
     }
 
     public void setTrenerId(String trenerId) {
+        if(trenerId == null){
+            throw new NullPointerException("trener Id ne sme biti null");
+        }
+        if( trenerId.equals("0") || trenerId.contains("-")){
+            throw new RuntimeException("trener Id ne sme biti nula, niti negativan broj");
+        }
         this.trenerId = trenerId;
     }
 
@@ -46,6 +52,12 @@ public class Trener extends AbstractObject{
     }
 
     public void setIme(String ime) {
+        if(ime == null){
+            throw new NullPointerException("ime trenera ne sme biti null");
+        }
+        if(ime.length() < 2){
+            throw new RuntimeException("ime trenera ne sme biti krace od 2 karaktera");
+        }
         this.ime = ime;
     }
 
@@ -54,6 +66,12 @@ public class Trener extends AbstractObject{
     }
 
     public void setPrezime(String prezime) {
+        if(prezime == null){
+            throw new NullPointerException("prezime trenera ne sme biti null");
+        }
+        if(prezime.length() < 2){
+            throw new RuntimeException("prezime trenera ne sme biti krace od 2 karaktera");
+        }
         this.prezime = prezime;
     }
 
@@ -62,6 +80,12 @@ public class Trener extends AbstractObject{
     }
 
     public void setTipTrenera(String tipTrenera) {
+        if(tipTrenera == null){
+            throw new NullPointerException("tip trenera ne sme biti null");
+        }
+        if(tipTrenera.length() < 2){
+            throw new RuntimeException("tip trenera ne sme biti krace od 2 karaktera");
+        }
         this.tipTrenera = tipTrenera;
     }
 
