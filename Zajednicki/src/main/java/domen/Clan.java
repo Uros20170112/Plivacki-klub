@@ -62,6 +62,9 @@ public class Clan extends AbstractObject {
         if(clanId == null){
             throw new NullPointerException("id clana ne sme biti null");
         }
+        if(clanId.equals("")) {
+            throw new NullPointerException("id ne sme biti przan String");
+        }
         if( clanId.equals("0") || clanId.contains("-")){
             throw new RuntimeException("id clana ne sme biti nula, niti negativan broj");
         }
