@@ -345,6 +345,7 @@ public class Clan extends AbstractObject {
         if (ime == null || prezime == null) {
             throw new NullPointerException("Nijedna od vrednosti za toString() ne sme biti null");
         }
+
         return ime + " " + prezime; //To change body of generated methods, choose Tools | Templates.
     }
 

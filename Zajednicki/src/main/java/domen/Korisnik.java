@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Apstraktna klasa koju nasledjuje svaka domenska klasa i implementira njene
+ * metode u zavisnosti od same baze i zahtevanih sistemskih operacija.
  *
  * @author kompic
  */
@@ -24,7 +26,7 @@ public class Korisnik extends AbstractObject {
     private String password;
     private String username;
     private String statusKorisnika = "offline";
-    
+
     public Korisnik(String ime, String email, String password, String username) {
         this.ime = ime;
         this.email = email;
@@ -35,6 +37,17 @@ public class Korisnik extends AbstractObject {
     public Korisnik() {
     }
 
+    /**
+     * Poredi dva objekta Korisnik i utvrdjuje da li su isti
+     *
+     * @param obj
+     * @return
+     * <ul>
+     * <li>true ako su oba objekta klase Korisnik i imaju isti username i
+     * password
+     * <li>false u svakom drugom slucaju
+     * </ul>
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -56,64 +69,107 @@ public class Korisnik extends AbstractObject {
         return true;
     }
 
+    /**
+     *
+     * @return vraca naziv tabele u bazi za korisnika kako bi mogao da se
+     * napravi upit
+     */
     @Override
     public String vratiImeTabele() {
         return "korisnik";
     }
 
+    /**
+     *
+     * @return vraca parametre iz tabele
+     */
     @Override
     public String vratiParametre() {
         return String.format("'%s', '%s', '%s', '%s'", ime, email, password, username);
 
     }
 
+    /**
+     *
+     * @return vraca ime primarnog kljuca
+     */
     @Override
     public String vratiPK() {
         return null;
     }
 
+    /**
+     * Vraca vrednost primarnog kljuca
+     *
+     * @return String ime, email, username, password
+     */
     @Override
     public String vratiVrednostPK() {
-        return ime+", " + email + "," + username + ", " + password;
+        return ime + ", " + email + "," + username + ", " + password;
     }
 
+    /**
+     *
+     * @return vraca slozen primarni kljuc
+     */
     @Override
     public String vratiSlozenPK() {
-        return String.format("username='%s' AND email='%s'",username, email); //To change body of generated methods, choose Tools | Templates.
+        return String.format("username='%s' AND email='%s'", username, email); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     *
+     * @return vraca formu za pravljenje SQL upita za update
+     */
     @Override
     public String vratiUpdate() {
-        return String.format("ime='%s',email='%s',password='%s',username='%s'",email,password, ime, username); //To change body of generated methods, choose Tools | Templates.
+        return String.format("ime='%s',email='%s',password='%s',username='%s'", email, password, ime, username); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Prima ResultSet(tabelu) i pretvara je u listu objekata Korisnik i vraca
+     * je
+     *
+     * @param rs
+     * @return lista objekata Korisnik
+     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
+     */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
-         List<AbstractObject> korisnici = new ArrayList<>();
+        List<AbstractObject> korisnici = new ArrayList<>();
         try {
-        while(rs.next()){
+            while (rs.next()) {
                 String ime = rs.getString("ime");
                 String email = rs.getString("email");
                 String username = rs.getString("username");
                 String password = rs.getString("password");
-                
+
                 Korisnik k = new Korisnik(ime, email, password, username);
                 korisnici.add(k);
-        }
-        
+            }
+
         } catch (SQLException ex) {
-                Logger.getLogger(Korisnik.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Korisnik.class.getName()).log(Level.SEVERE, null, ex);
         }
         return korisnici;//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    
 
     }
 
+    /**
+     * Postavlja vrednost primarnog kljuca
+     *
+     * @param pk
+     */
     @Override
     public void postaviVrednostPK(String pk) {
-        
+
     }
 
+    /**
+     * Vraca String sa bitnim informacijama o korisniku
+     *
+     * @return ime korinsika
+     */
     @Override
     public String toString() {
         if (ime == null) {
@@ -122,10 +178,20 @@ public class Korisnik extends AbstractObject {
         return ime; //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Vraca ime korisnika
+     *
+     * @return String ime
+     */
     public String getIme() {
         return ime;
     }
 
+    /**
+     * Postavlja vrednost ime korisnik
+     *
+     * @param ime
+     */
     public void setIme(String ime) {
         if(ime == null){
             throw new NullPointerException("ime korisnika ne sme biti null");
@@ -136,10 +202,20 @@ public class Korisnik extends AbstractObject {
         this.ime = ime;
     }
 
+    /**
+     * Vraca email korisnika
+     *
+     * @return String email
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Postavlja vrednost email korisnika
+     *
+     * @param email
+     */
     public void setEmail(String email) {
         if(email == null){
             throw new NullPointerException("email ne sme biti null");
@@ -150,10 +226,20 @@ public class Korisnik extends AbstractObject {
         this.email = email;
     }
 
+    /**
+     * Vraca sifru korisnika
+     *
+     * @return String password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * Postavlja vrednost sifra korisnika
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         if(password == null){
             throw new NullPointerException("password ne sme biti null");
@@ -172,10 +258,20 @@ public class Korisnik extends AbstractObject {
         this.password = password;
     }
 
+    /**
+     * Vraca korisnikcko ime korisnika
+     *
+     * @return String username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Postavlja vrednost korisnickog imena
+     *
+     * @param username
+     */
     public void setUsername(String username) {
         if(username == null){
             throw new NullPointerException("username korisnika ne sme biti null");
@@ -186,10 +282,20 @@ public class Korisnik extends AbstractObject {
         this.username = username;
     }
 
+    /**
+     * Vraca status korisnika
+     *
+     * @return String statusKorisnika
+     */
     public String getStatusKorisnika() {
         return statusKorisnika;
     }
 
+    /**
+     * Postavlja status korisnika
+     *
+     * @param statusKorisnika
+     */
     public void setStatusKorisnika(String statusKorisnika) {
         if(statusKorisnika == null){
             throw new NullPointerException("status korisnika ne sme biti null");
@@ -199,5 +305,5 @@ public class Korisnik extends AbstractObject {
         }
         this.statusKorisnika = statusKorisnika;
     }
-    
+
 }
