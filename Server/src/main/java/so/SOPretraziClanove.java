@@ -59,7 +59,7 @@ public class SOPretraziClanove extends AbstractSO {
     private void ucitajMesta() throws ServerskiException {
         for (AbstractObject abs : sviClanovi) {
             Clan cl = (Clan) abs;
-            cl.setMesto((Mesto) dbb.vratiObjekatPoKljucu(new Mesto(),cl.getMesto().getMestoid()));
+            cl.setMesto((Mesto) dbb.vratiObjekatPoKljucu(new Mesto(),cl.getMesto().getMestoId()));
         }
     }
 

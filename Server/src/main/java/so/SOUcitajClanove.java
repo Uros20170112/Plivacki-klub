@@ -32,7 +32,7 @@ public class SOUcitajClanove extends AbstractSO {
     private void ucitajMesta() throws ServerskiException {
         for (AbstractObject abs : listaClanova) {
             Clan cl = (Clan) abs;
-            String mestoID = cl.getMesto().getMestoid();
+            String mestoID = cl.getMesto().getMestoId();
             Mesto m = (Mesto) dbb.vratiObjekatPoKljucu(new Mesto(), mestoID);
             cl.setMesto(m);
         }
