@@ -16,10 +16,10 @@ import org.junit.gen5.api.BeforeEach;
  *
  * @author kompic
  */
-public class MestoTest {
-    Mesto m;
+public class PaketTest {
+    Paket p;
 
-    public MestoTest() {
+    public PaketTest() {
     }
     
     @BeforeAll
@@ -32,80 +32,79 @@ public class MestoTest {
 
     @BeforeEach
     public void setUp() {
-        m = new Mesto();
+        p = new Paket();
     }
 
     @AfterEach
     public void tearDown() {
-        m = null;
+        p = null;
     }
 
     @Test
-    public void testSetMestoId() {
-        m.setMestoId("1");
+    public void testSetPaketId() {
+        p.setPaketId("1");
 
-        assertEquals("1", m.getMestoId());
+        assertEquals("1", p.getPaketId());
     }
 
     @Test
-    public void testSetMestoIdNull() {
+    public void testSetPaketIdNull() {
         assertThrows(java.lang.NullPointerException.class,
-                () -> m.setMestoId(null));
+                () -> p.setPaketId(null));
     }
 
     @Test
-    public void testSetMestoIdPrazanString() {
+    public void testSetPaketIdPrazanString() {
         assertThrows(java.lang.NullPointerException.class,
-                () -> m.setMestoId(""));
+                () -> p.setPaketId(""));
     }
 
     @Test
-    public void testSetMestoIdNulaIliManje() {
+    public void testSetPaketIdNulaIliManje() {
         assertThrows(java.lang.RuntimeException.class,
-                () -> m.setMestoId("0"));
+                () -> p.setPaketId("0"));
     }
         @Test
     public void testSetNaziv() {
-        m.setNaziv("Beograd");
+        p.setNaziv("Rekreativno plivanje");
 
-        assertEquals("Beograd", m.getNaziv());
+        assertEquals("Rekreativno plivanje", p.getNaziv());
     }
 
     @Test
     public void testSetNazivNull() {
         assertThrows(java.lang.NullPointerException.class,
-                () -> m.setNaziv(null));
+                () -> p.setNaziv(null));
     }
 
     @Test
     public void testSetNazivManjeOdDva() {
         assertThrows(java.lang.RuntimeException.class,
-                () -> m.setNaziv("B"));
+                () -> p.setNaziv("R"));
     }
         @Test
-    public void testSetPtt() {
-        m.setPtt("11000");
+    public void testSetCena() {
+        p.setCena("11000");
 
-        assertEquals("11000", m.getPtt());
+        assertEquals("11000", p.getCena());
     }
 
     @Test
-    public void testSetPttNull() {
+    public void testSetCenaNull() {
         assertThrows(java.lang.NullPointerException.class,
-                () -> m.setPtt(null));
+                () -> p.setCena(null));
     }
     
     @Test
-    public void testSetPttNijeBroj() {
+    public void testSetCenaNijeBroj() {
         assertThrows(java.lang.IllegalArgumentException.class,
-                () -> m.setPtt("1100a"));
+                () -> p.setCena("1100a"));
     }
 
     @Test
-    public void testSetPttManjeOdDva() {
+    public void testSetCenaManjeOdNule() {
         assertThrows(java.lang.RuntimeException.class,
-                () -> m.setPtt("1"));
+                () -> p.setPaketId("-1"));
     }
-    
     
 }

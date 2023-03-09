@@ -32,6 +32,7 @@ public class Paket extends AbstractObject {
 
     public Paket() {
     }
+
     /**
      * Vraca String sa bitnim informacijama o paketu
      *
@@ -41,48 +42,85 @@ public class Paket extends AbstractObject {
     public String toString() {
         return naziv + " - " + cena + " RSD";
     }
-/**
- * Vraca id paketa
- * @return String paketId
- */
+
+    /**
+     * Vraca id paketa
+     *
+     * @return String paketId
+     */
     public String getPaketId() {
         return paketId;
     }
-/**
- * Postavlja vrednost id paketa
- * @param paketId 
- */
+
+    /**
+     * Postavlja vrednost id paketa
+     *
+     * @param paketId
+     */
     public void setPaketId(String paketId) {
+        if (paketId == null) {
+            throw new NullPointerException("id mesta ne sme biti null");
+        }
+        if (paketId.equals("0") || paketId.contains("-")) {
+            throw new RuntimeException("id mesta ne sme biti nula, niti negativan broj");
+        }
         this.paketId = paketId;
     }
-/**
- * Vraca naziv paketa
- * @return String naziv
- */
+
+    /**
+     * Vraca naziv paketa
+     *
+     * @return String naziv
+     */
     public String getNaziv() {
         return naziv;
     }
-/**
- * Postavlja vrednost za naziv paketa
- * @param naziv 
- */
+
+    /**
+     * Postavlja vrednost za naziv paketa
+     *
+     * @param naziv
+     */
     public void setNaziv(String naziv) {
+        if (naziv == null) {
+            throw new NullPointerException("naziv mesta ne sme biti null");
+        }
+        if (naziv.length() < 2) {
+            throw new RuntimeException("naziv mesta ne sme biti krace od 2 karaktera");
+        }
         this.naziv = naziv;
     }
-/**
- * Vraca cenu paketa
- * @return String cena
- */
+
+    /**
+     * Vraca cenu paketa
+     *
+     * @return String cena
+     */
     public String getCena() {
         return cena;
     }
-/**
- * Postavlja vrednost za cenu paketa
- * @param cena 
- */
+
+    /**
+     * Postavlja vrednost za cenu paketa
+     *
+     * @param cena
+     */
     public void setCena(String cena) {
+        if (cena == null) {
+            throw new NullPointerException("cena mesta ne sme biti null");
+        }
+        char[] digit = cena.toCharArray();
+        for (char c : digit) {
+            if (!Character.isDigit(c)) {
+                throw new IllegalArgumentException("cena mora da sadrzi samo brojeve");
+            }
+        }
+        if (paketId.contains("-")) {
+            throw new RuntimeException("cena ne sme biti nula, niti negativan broj");
+        }
         this.cena = cena;
     }
+
     /**
      *
      * @return vraca naziv tabele u bazi za clana kako bi mogao da se napravi
@@ -92,6 +130,7 @@ public class Paket extends AbstractObject {
     public String vratiImeTabele() {
         return "paket";
     }
+
     /**
      *
      * @return vraca parametre iz tabele
@@ -100,6 +139,7 @@ public class Paket extends AbstractObject {
     public String vratiParametre() {
         return String.format("'%s', '%s', '%s'", paketId, naziv, cena);
     }
+
     /**
      *
      * @return vraca ime primarnog kljuca
@@ -108,6 +148,7 @@ public class Paket extends AbstractObject {
     public String vratiPK() {
         return "paketId";
     }
+
     /**
      * Vraca vrednost primarnog kljuca
      *
@@ -117,6 +158,7 @@ public class Paket extends AbstractObject {
     public String vratiVrednostPK() {
         return paketId;
     }
+
     /**
      *
      * @return vraca slozen primarni kljuc
@@ -125,6 +167,7 @@ public class Paket extends AbstractObject {
     public String vratiSlozenPK() {
         return null;
     }
+
     /**
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Paket i vraca je
      *
@@ -150,6 +193,7 @@ public class Paket extends AbstractObject {
         }
         return paketi;
     }
+
     /**
      *
      * @return vraca formu za pravljenje SQL upita za update
@@ -158,6 +202,7 @@ public class Paket extends AbstractObject {
     public String vratiUpdate() {
         return String.format("paketId='%s',naziv='%s',cena='%s'", paketId, naziv, cena);
     }
+
     /**
      * Postavlja vrednost primarnog kljuca
      *
@@ -167,6 +212,7 @@ public class Paket extends AbstractObject {
     public void postaviVrednostPK(String pk) {
         this.paketId = pk;
     }
+
     /**
      * Poredi dva objekta Paket i utvrdjuje da li su isti
      *
@@ -194,19 +240,23 @@ public class Paket extends AbstractObject {
         }
         return true;
     }
-/**
- * Vraca listu termina koji se nalaze u paketu
- * @return List<Termin> termini
- */
+
+    /**
+     * Vraca listu termina koji se nalaze u paketu
+     *
+     * @return List<Termin> termini
+     */
     public List<Termin> getTermini() {
         return termini;
     }
-/**
- * Postavlja vrednost za listu termini
- * @param termini 
- */
+
+    /**
+     * Postavlja vrednost za listu termini
+     *
+     * @param termini
+     */
     public void setTermini(List<Termin> termini) {
         this.termini = termini;
     }
-    
+
 }

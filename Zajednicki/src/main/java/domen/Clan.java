@@ -231,7 +231,7 @@ public class Clan extends AbstractObject {
      */
     @Override
     public String vratiParametre() {
-        return String.format("%s, '%s', '%s', '%s', '%s', '%s', '%s'", clanId, ime, prezime, email, adresa, telefon, mesto.getMestoid());
+        return String.format("%s, '%s', '%s', '%s', '%s', '%s', '%s'", clanId, ime, prezime, email, adresa, telefon, mesto.getMestoId());
     }
 
     /**
@@ -297,7 +297,7 @@ public class Clan extends AbstractObject {
      */
     @Override
     public String vratiUpdate() {
-        return String.format("clanId=%s,ime='%s',prezime='%s',email='%s',adresa='%s',telefon='%s',mestoId='%s'", clanId, ime, prezime, email, adresa, telefon, mesto.getMestoid());
+        return String.format("clanId=%s,ime='%s',prezime='%s',email='%s',adresa='%s',telefon='%s',mestoId='%s'", clanId, ime, prezime, email, adresa, telefon, mesto.getMestoId());
     }
 
     /**

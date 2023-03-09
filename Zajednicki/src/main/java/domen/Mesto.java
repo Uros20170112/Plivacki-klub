@@ -19,15 +19,15 @@ import java.util.logging.Logger;
  */
 public class Mesto extends AbstractObject {
 
-    private String mestoid;
+    private String mestoId;
     private String naziv;
     private String ptt;
 
     public Mesto() {
     }
 
-    public Mesto(String mestoid, String naziv, String ptt) {
-        this.mestoid = mestoid;
+    public Mesto(String mestoId, String naziv, String ptt) {
+        this.mestoId = mestoId;
         this.naziv = naziv;
         this.ptt = ptt;
     }
@@ -54,7 +54,7 @@ public class Mesto extends AbstractObject {
             return false;
         }
         final Mesto other = (Mesto) obj;
-        if (!Objects.equals(this.mestoid, other.mestoid)) {
+        if (!Objects.equals(this.mestoId, other.mestoId)) {
             return false;
         }
         return true;
@@ -78,23 +78,23 @@ public class Mesto extends AbstractObject {
      *
      * @return String mestoid
      */
-    public String getMestoid() {
-        return mestoid;
+    public String getMestoId() {
+        return mestoId;
     }
 
     /**
      * Postavlja vednost za id mesta
      *
-     * @param mestoid
+     * @param mestoId
      */
-    public void setMestoid(String mestoid) {
-        if(mestoid == null){
+    public void setMestoId(String mestoId) {
+        if(mestoId == null){
             throw new NullPointerException("id mesta ne sme biti null");
         }
-        if( mestoid.equals("0") || mestoid.contains("-")){
+        if( mestoId.equals("0") || mestoId.contains("-")){
             throw new RuntimeException("id mesta ne sme biti nula, niti negativan broj");
         }
-        this.mestoid = mestoid;
+        this.mestoId = mestoId;
     }
 
     /**
@@ -185,7 +185,7 @@ public class Mesto extends AbstractObject {
      */
     @Override
     public String vratiVrednostPK() {
-        return mestoid;
+        return mestoId;
     }
 
     /**
@@ -238,7 +238,7 @@ public class Mesto extends AbstractObject {
      */
     @Override
     public void postaviVrednostPK(String pk) {
-        this.mestoid = pk;
+        this.mestoId = pk;
     }
 
 }
