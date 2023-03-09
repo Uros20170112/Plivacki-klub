@@ -133,6 +133,7 @@ public class ClanTest {
                 () -> c.setEmail(null));
     }
 
+    @Test
     public void testSetEmailNemaLudoA() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> c.setEmail("peragmail.com"));
