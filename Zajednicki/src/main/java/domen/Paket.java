@@ -61,6 +61,9 @@ public class Paket extends AbstractObject {
         if (paketId == null) {
             throw new NullPointerException("id mesta ne sme biti null");
         }
+        if (paketId.equals("")) {
+            throw new IllegalArgumentException("id mesta ne sme biti prazan string");
+        }
         if (paketId.equals("0") || paketId.contains("-")) {
             throw new RuntimeException("id mesta ne sme biti nula, niti negativan broj");
         }
@@ -115,8 +118,8 @@ public class Paket extends AbstractObject {
                 throw new IllegalArgumentException("cena mora da sadrzi samo brojeve");
             }
         }
-        if (paketId.contains("-")) {
-            throw new RuntimeException("cena ne sme biti nula, niti negativan broj");
+        if (cena.contains("-")) {
+            throw new RuntimeException("cena ne sme biti negativan broj");
         }
         this.cena = cena;
     }

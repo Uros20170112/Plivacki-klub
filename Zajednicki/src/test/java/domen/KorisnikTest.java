@@ -4,7 +4,9 @@
  */
 package domen;
 
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.gen5.api.Assertions.assertThrows;
 
@@ -15,6 +17,15 @@ import static org.junit.gen5.api.Assertions.assertThrows;
 public class KorisnikTest {
 
     Korisnik k;
+    @Before
+    public void setUp() {
+        k = new Korisnik();
+    }
+
+    @After
+    public void tearDown() {
+        k = null;
+    }
 
     @Test
     public void testSetIme() {
@@ -58,7 +69,7 @@ public class KorisnikTest {
     public void testSetPassword() {
         k.setPassword("peraperic1");
 
-        assertEquals("peraperic1", k.getEmail());
+        assertEquals("peraperic1", k.getPassword());
     }
 
     @Test
@@ -69,13 +80,13 @@ public class KorisnikTest {
 
     @Test
     public void testSetPasswordManjeOdSedam() {
-        assertThrows(java.lang.IllegalArgumentException.class,
+        assertThrows(java.lang.RuntimeException.class,
                 () -> k.setEmail("pera"));
     }
 
     @Test
     public void testSetPasswordNemaBroja() {
-        assertThrows(java.lang.IllegalArgumentException.class,
+        assertThrows(java.lang.RuntimeException.class,
                 () -> k.setEmail("peraperic"));
     }
     

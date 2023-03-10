@@ -45,7 +45,7 @@ public class Pretplata extends AbstractObject {
      *
      * @return String pretplataId
      */
-    public String getPretplata() {
+    public String getPretplataId() {
         return pretplataId;
     }
 
@@ -54,8 +54,17 @@ public class Pretplata extends AbstractObject {
      *
      * @param pretplata
      */
-    public void setPretplata(String pretplata) {
-        this.pretplataId = pretplata;
+    public void setPretplataId(String pretplataId) {
+        if (pretplataId == null) {
+            throw new NullPointerException("id pretplate ne sme biti null");
+        }
+        if (pretplataId.equals("")) {
+            throw new IllegalArgumentException("id pretplate ne sme biti prazan string");
+        }
+        if (pretplataId.equals("0") || pretplataId.contains("-")) {
+            throw new RuntimeException("id pretplate ne sme biti nula, niti negativan broj");
+        }
+        this.pretplataId = pretplataId;
     }
 
     /**

@@ -91,6 +91,9 @@ public class Mesto extends AbstractObject {
         if(mestoId == null){
             throw new NullPointerException("id mesta ne sme biti null");
         }
+        if(mestoId.equals("")){
+            throw new IllegalArgumentException("id mesta ne sme biti prazan string");
+        }
         if( mestoId.equals("0") || mestoId.contains("-")){
             throw new RuntimeException("id mesta ne sme biti nula, niti negativan broj");
         }

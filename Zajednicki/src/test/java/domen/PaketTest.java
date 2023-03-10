@@ -4,38 +4,29 @@
  */
 package domen;
 
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.gen5.api.AfterAll;
-import org.junit.gen5.api.AfterEach;
 import static org.junit.gen5.api.Assertions.assertThrows;
-import org.junit.gen5.api.BeforeAll;
-import org.junit.gen5.api.BeforeEach;
 
 /**
  *
  * @author kompic
  */
 public class PaketTest {
+
     Paket p;
 
     public PaketTest() {
     }
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
 
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
+    @Before
     public void setUp() {
         p = new Paket();
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         p = null;
     }
@@ -55,7 +46,7 @@ public class PaketTest {
 
     @Test
     public void testSetPaketIdPrazanString() {
-        assertThrows(java.lang.NullPointerException.class,
+        assertThrows(java.lang.IllegalArgumentException.class,
                 () -> p.setPaketId(""));
     }
 
@@ -64,7 +55,8 @@ public class PaketTest {
         assertThrows(java.lang.RuntimeException.class,
                 () -> p.setPaketId("0"));
     }
-        @Test
+
+    @Test
     public void testSetNaziv() {
         p.setNaziv("Rekreativno plivanje");
 
@@ -82,11 +74,12 @@ public class PaketTest {
         assertThrows(java.lang.RuntimeException.class,
                 () -> p.setNaziv("R"));
     }
-        @Test
-    public void testSetCena() {
-        p.setCena("11000");
 
-        assertEquals("11000", p.getCena());
+    @Test
+    public void testSetCena() {
+        p.setCena("1000");
+
+        assertEquals("1000", p.getCena());
     }
 
     @Test
@@ -94,7 +87,7 @@ public class PaketTest {
         assertThrows(java.lang.NullPointerException.class,
                 () -> p.setCena(null));
     }
-    
+
     @Test
     public void testSetCenaNijeBroj() {
         assertThrows(java.lang.IllegalArgumentException.class,
@@ -106,5 +99,5 @@ public class PaketTest {
         assertThrows(java.lang.RuntimeException.class,
                 () -> p.setPaketId("-1"));
     }
-    
+
 }

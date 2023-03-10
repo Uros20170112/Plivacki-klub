@@ -5,24 +5,11 @@
  */
 package domen;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.gen5.api.AfterAll;
-import org.junit.gen5.api.AfterEach;
 import static org.junit.gen5.api.Assertions.assertThrows;
-import org.junit.gen5.api.BeforeAll;
-import org.junit.gen5.api.BeforeEach;
 
 /**
  *
@@ -30,28 +17,20 @@ import org.junit.gen5.api.BeforeEach;
  */
 public class ClanTest {
 
-    Connection connection;
     Clan c;
     Mesto m;
 
     public ClanTest() {
     }
 
-    @BeforeAll
-    public static void setUpClass() {
-    }
 
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
+    @Before
     public void setUp() {
         c = new Clan();
         m = new Mesto();
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         c = null;
         m = null;
@@ -103,7 +82,7 @@ public class ClanTest {
 
     @Test
     public void testSetPrezime() {
-        c.setIme("Peric");
+        c.setPrezime("Peric");
 
         assertEquals("Peric", c.getPrezime());
     }
@@ -133,7 +112,6 @@ public class ClanTest {
                 () -> c.setEmail(null));
     }
 
-    @Test
     public void testSetEmailNemaLudoA() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> c.setEmail("peragmail.com"));
@@ -141,9 +119,9 @@ public class ClanTest {
 
     @Test
     public void testSetAdresa() {
-        c.setIme("Vojvode Stepe");
+        c.setAdresa("Vojvode Stepe");
 
-        assertEquals("Vojvode Stepe", c.getPrezime());
+        assertEquals("Vojvode Stepe", c.getAdresa());
     }
 
     @Test

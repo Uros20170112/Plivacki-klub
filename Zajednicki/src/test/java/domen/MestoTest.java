@@ -4,7 +4,9 @@
  */
 package domen;
 
+import org.junit.After;
 import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.gen5.api.AfterAll;
 import org.junit.gen5.api.AfterEach;
@@ -30,12 +32,12 @@ public class MestoTest {
     public static void tearDownClass() {
     }
 
-    @BeforeEach
+    @Before
     public void setUp() {
         m = new Mesto();
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         m = null;
     }
@@ -55,7 +57,7 @@ public class MestoTest {
 
     @Test
     public void testSetMestoIdPrazanString() {
-        assertThrows(java.lang.NullPointerException.class,
+        assertThrows(java.lang.IllegalArgumentException.class,
                 () -> m.setMestoId(""));
     }
 

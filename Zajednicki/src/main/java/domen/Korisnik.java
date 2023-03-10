@@ -252,7 +252,7 @@ public class Korisnik extends AbstractObject {
                 continue;
         }
         if(digit == false && password.length()<7) {
-            throw new IllegalArgumentException("password mora da sardzi barem jedna broj i mora da sadrzi "
+            throw new RuntimeException("password mora da sardzi barem jedna broj i mora da sadrzi "
                     + "barem 7 karaktera ");
         }
         this.password = password;
