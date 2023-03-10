@@ -17,6 +17,7 @@ import static org.junit.gen5.api.Assertions.assertThrows;
 public class KorisnikTest {
 
     Korisnik k;
+
     @Before
     public void setUp() {
         k = new Korisnik();
@@ -89,7 +90,7 @@ public class KorisnikTest {
         assertThrows(java.lang.RuntimeException.class,
                 () -> k.setEmail("peraperic"));
     }
-    
+
     @Test
     public void testSetUsername() {
         k.setUsername("Peric");

@@ -73,7 +73,7 @@ public class PromenaPaketa extends AbstractObject {
      * @param datumOdabira
      */
     public void setDatumOdabira(Date datumOdabira) {
-        if(datumOdabira == null) {
+        if (datumOdabira == null) {
             throw new NullPointerException("datum ne sme biti null");
         }
         this.datumOdabira = datumOdabira;
@@ -231,6 +231,23 @@ public class PromenaPaketa extends AbstractObject {
     @Override
     public void postaviVrednostPK(String pk) {
         this.id = pk;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        if (id == null) {
+            throw new NullPointerException("id ne sme biti null");
+        }
+        if (id.equals("")) {
+            throw new IllegalArgumentException("id ne sme biti prazan string");
+        }
+        if (id.equals("0") || id.contains("-")) {
+            throw new RuntimeException("id ne sme biti nula, niti negativan broj");
+        }
+        this.id = id;
     }
 
 }

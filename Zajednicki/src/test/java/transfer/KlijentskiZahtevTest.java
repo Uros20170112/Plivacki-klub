@@ -4,13 +4,11 @@
  */
 package transfer;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.gen5.api.AfterAll;
-import org.junit.gen5.api.AfterEach;
 import static org.junit.gen5.api.Assertions.assertEquals;
 import static org.junit.gen5.api.Assertions.assertThrows;
-import org.junit.gen5.api.BeforeAll;
-import org.junit.gen5.api.BeforeEach;
 
 /**
  *
@@ -23,20 +21,12 @@ public class KlijentskiZahtevTest {
     public KlijentskiZahtevTest() {
     }
 
-    @BeforeAll
-    public static void setUpClass() {
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-    }
-
-    @BeforeEach
+    @Before
     public void setUp() {
         kz = new KlijentskiZahtev();
     }
 
-    @AfterEach
+    @After
     public void tearDown() {
         kz = null;
     }

@@ -19,6 +19,9 @@ public class KlijentskiZahtev implements Serializable{
     }
 
     public void setOperacija(int operacija) {
+        if(operacija < 0) {
+            throw new RuntimeException();
+        }
         this.operacija = operacija;
     }
 

@@ -16,8 +16,9 @@ import static org.junit.gen5.api.Assertions.assertThrows;
  * @author kompic
  */
 public class PretplataTest {
+
     Pretplata p;
-    
+
     public PretplataTest() {
     }
 
@@ -32,8 +33,8 @@ public class PretplataTest {
     public void tearDown() {
         p = null;
     }
-    
-     @Test
+
+    @Test
     public void testSetPretplataId() {
         p.setPretplataId("1");
 
@@ -57,36 +58,40 @@ public class PretplataTest {
         assertThrows(java.lang.RuntimeException.class,
                 () -> p.setPretplataId("0"));
     }
+
     @Test
     public void testSetDatum() {
         assertEquals(new Date(), p.getDatum());
     }
+
     @Test
     public void testSetDatumNull() {
         assertThrows(java.lang.NullPointerException.class, () -> p.setDatum(null));
     }
+
     @Test
     public void testSetDatumPreDanas() {
-        long prevDay = System.currentTimeMillis() - 1000*60*60*24;
+        long prevDay = System.currentTimeMillis() - 1000 * 60 * 60 * 24;
         Date prev = new Date(prevDay);
         assertThrows(java.lang.RuntimeException.class, () -> p.setDatum(prev));
     }
+
     @Test
     public void testSetVaziDoNull() {
         assertThrows(java.lang.NullPointerException.class, () -> p.setVaziDo(null));
     }
+
     @Test
     public void testSetVaziDoPreDanas() {
-        long prevDay = System.currentTimeMillis() - 1000*60*60*24;
+        long prevDay = System.currentTimeMillis() - 1000 * 60 * 60 * 24;
         Date prev = new Date(prevDay);
         assertThrows(java.lang.RuntimeException.class, () -> p.setVaziDo(prev));
     }
+
     public void testSetVaziDoPreDatum() {
-        long prevDay = System.currentTimeMillis() - 1000*60*60*24;
+        long prevDay = System.currentTimeMillis() - 1000 * 60 * 60 * 24;
         Date prev = new Date(prevDay);
         assertThrows(java.lang.RuntimeException.class, () -> p.setVaziDo(prev));
     }
-    
-    
-    
+
 }

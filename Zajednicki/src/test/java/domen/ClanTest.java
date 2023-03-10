@@ -23,7 +23,6 @@ public class ClanTest {
     public ClanTest() {
     }
 
-
     @Before
     public void setUp() {
         c = new Clan();
