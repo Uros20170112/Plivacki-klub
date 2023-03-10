@@ -147,6 +147,9 @@ public class Termin extends AbstractObject {
         if(id == null){
             throw new NullPointerException("id ne sme biti null");
         }
+        if(id.equals("")) {
+            throw new IllegalArgumentException();
+        }
         if( id.equals("0") || id.contains("-")){
             throw new RuntimeException("id ne sme biti nula, niti negativan broj");
         }
