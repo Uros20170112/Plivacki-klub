@@ -84,7 +84,6 @@ public class PretplataTest {
     public void testSetVaziDoPreDatum() {
         long prevDay = System.currentTimeMillis() - 1000*60*60*24;
         Date prev = new Date(prevDay);
-        p.setDatum(new Date());
         assertThrows(java.lang.RuntimeException.class, () -> p.setVaziDo(prev));
     }
     
