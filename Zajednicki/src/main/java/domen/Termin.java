@@ -98,7 +98,7 @@ public class Termin extends AbstractObject {
      * @param dan
      */
     public void setDan(String dan) {
-        if(dan == null) {
+        if (dan == null) {
             throw new NullPointerException("dan ne sme da bude null");
         }
         if (!(dan == "Ponedeljak" || dan == "Utorak" || dan == "Sreda" || dan == "Cetvrtak"
@@ -123,7 +123,7 @@ public class Termin extends AbstractObject {
      * @param paket
      */
     public void setPaket(Paket paket) {
-        if(paket == null) {
+        if (paket == null) {
             throw new NullPointerException("paket ne sme da bude null");
         }
         this.paket = paket;
@@ -144,13 +144,13 @@ public class Termin extends AbstractObject {
      * @param id
      */
     public void setId(String id) {
-        if(id == null){
+        if (id == null) {
             throw new NullPointerException("id ne sme biti null");
         }
-        if(id.equals("")) {
+        if (id.equals("")) {
             throw new IllegalArgumentException();
         }
-        if( id.equals("0") || id.contains("-")){
+        if (id.equals("0") || id.contains("-")) {
             throw new RuntimeException("id ne sme biti nula, niti negativan broj");
         }
         this.id = id;
@@ -171,7 +171,7 @@ public class Termin extends AbstractObject {
      * @param trener
      */
     public void setTrener(Trener trener) {
-        if(trener == null) {
+        if (trener == null) {
             throw new NullPointerException("trener ne sme da bude null");
         }
         this.trener = trener;

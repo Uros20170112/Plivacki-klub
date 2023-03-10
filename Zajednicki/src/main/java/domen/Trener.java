@@ -52,6 +52,9 @@ public class Trener extends AbstractObject {
         if(trenerId == null){
             throw new NullPointerException("trener Id ne sme biti null");
         }
+        if (trenerId.equals("")) {
+            throw new IllegalArgumentException();
+        }
         if( trenerId.equals("0") || trenerId.contains("-")){
             throw new RuntimeException("trener Id ne sme biti nula, niti negativan broj");
         }

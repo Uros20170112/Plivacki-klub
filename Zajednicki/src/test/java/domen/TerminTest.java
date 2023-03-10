@@ -16,12 +16,12 @@ import static org.junit.gen5.api.Assertions.assertThrows;
  * @author kompic
  */
 public class TerminTest {
-    
+
     Termin t;
     Paket p;
     Trener tr;
-    
-     @Before
+
+    @Before
     public void setUp() {
         t = new Termin();
         p = new Paket();
@@ -37,7 +37,7 @@ public class TerminTest {
 
     public TerminTest() {
     }
-    
+
     @Test
     public void testSetTerminId() {
         t.setId("1");
@@ -62,7 +62,7 @@ public class TerminTest {
         assertThrows(java.lang.RuntimeException.class,
                 () -> t.setId("0"));
     }
-    
+
     @Test
     public void testSetPaket() {
         Paket p1 = new Paket();
@@ -78,6 +78,7 @@ public class TerminTest {
     public void testSetPaketNull() {
         assertThrows(java.lang.NullPointerException.class, () -> t.setPaket(null));
     }
+
     @Test
     public void testSetTrener() {
         Trener tr1 = new Trener();
@@ -94,5 +95,38 @@ public class TerminTest {
         assertThrows(java.lang.NullPointerException.class, () -> t.setTrener(null));
     }
 
-    
+    @Test
+    public void testSetSmena() {
+        t.setSmena("12:00-13:00");
+
+        assertEquals("12:00-13:00", t.getSmena());
+    }
+
+    @Test
+    public void testSetSmenaNull() {
+        assertThrows(java.lang.NullPointerException.class, () -> t.setSmena(null));
+    }
+
+    @Test
+    public void testSetSmenaPogresno() {
+        assertThrows(java.lang.IllegalArgumentException.class, () -> t.setSmena("1"));
+    }
+
+    @Test
+    public void testSetDan() {
+        t.setDan("Ponedeljak");
+
+        assertEquals("Ponedeljak", t.getDan());
+    }
+
+    @Test
+    public void testSetDanNull() {
+        assertThrows(java.lang.NullPointerException.class, () -> t.setDan(null));
+    }
+
+    @Test
+    public void testSetDanPogresno() {
+        assertThrows(java.lang.IllegalArgumentException.class, () -> t.setDan("1"));
+    }
+
 }
