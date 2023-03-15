@@ -14,18 +14,14 @@ import exception.ServerskiException;
  */
 public class SOObrisiKorisnika extends AbstractSO {
 
-    private AbstractObject korisnik;
-
-    public SOObrisiKorisnika(AbstractObject korisnik) {
-        this.korisnik = korisnik;
+    @Override
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        dbb.delete(ao);
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        dbb.obrisiObjekat(korisnik);
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public AbstractObject getKorisnik() {
-        return korisnik;
-    }
 }

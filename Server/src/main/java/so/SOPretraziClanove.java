@@ -23,8 +23,8 @@ public class SOPretraziClanove extends AbstractSO {
     private List<AbstractObject> listaNadjenih = new ArrayList<>();
     
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        sviClanovi = dbb.vratiSveObjekte(new Clan());
+    protected void execute() throws ServerskiException {
+        sviClanovi = dbb.select(new Clan());
         ucitajMesta();
         for (AbstractObject clanIzBaze : sviClanovi) {
             Clan clb = (Clan) clanIzBaze;
@@ -59,7 +59,7 @@ public class SOPretraziClanove extends AbstractSO {
     private void ucitajMesta() throws ServerskiException {
         for (AbstractObject abs : sviClanovi) {
             Clan cl = (Clan) abs;
-            cl.setMesto((Mesto) dbb.vratiObjekatPoKljucu(new Mesto(),cl.getMesto().getMestoId()));
+            cl.setMesto((Mesto) dbb.selectWithPK(new Mesto(),cl.getMesto().getMestoId()));
         }
     }
 

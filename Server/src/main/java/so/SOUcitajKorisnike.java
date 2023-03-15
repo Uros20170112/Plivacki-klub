@@ -14,19 +14,22 @@ import java.util.List;
  *
  * @author kompic
  */
-public class SOUcitajKorisnike extends AbstractSO{
+public class SOUcitajKorisnike extends AbstractSO {
 
-    private List<AbstractObject> lista;
-    
+    private List<Korisnik> lista;
+
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        lista = dbb.vratiSveObjekte(new Korisnik());
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        lista = (List<Korisnik>) (Korisnik) dbb.select(new Korisnik());
     }
 
-    public List<AbstractObject> getLista() {
+    public List<Korisnik> getLista() {
         return lista;
     }
-    
-    
-    
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

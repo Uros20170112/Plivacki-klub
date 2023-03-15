@@ -7,12 +7,16 @@ package db;
 
 import domen.AbstractObject;
 import exception.ServerskiException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,72 +26,84 @@ import java.util.logging.Logger;
  */
 public class DBBroker {
 
-    private Connection konekcija;
+    private Connection connection;
+    private static DBBroker instance;
 
-    public DBBroker() {
+    private DBBroker() {
     }
 
-    public void uspostaviKonekciju() throws ServerskiException {
+    public static DBBroker getInstance() {
+        if (instance == null) {
+            instance = new DBBroker();
+        }
+        return instance;
+    }
+
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public void connect() throws ServerskiException, FileNotFoundException, IOException {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/plivaliste";
-            String user = "root";
-            String password = "";
-            konekcija = DriverManager.getConnection(url, user, password);
-            konekcija.setAutoCommit(false);
-        } catch (ClassNotFoundException ex) {
-            throw new ServerskiException("Drajver nije pronadjen!");
+            Properties properties = new Properties();
+            properties.load(new FileInputStream("dbconfig.properties"));
+            String url = properties.getProperty("url");
+            url.replaceAll("[^a-zA-Z0-9/:]", "");
+            String username = properties.getProperty("username");
+            String password = properties.getProperty("password");
+            connection = DriverManager.getConnection(url, username, password);
+            connection.setAutoCommit(false);
         } catch (SQLException ex) {
             throw new ServerskiException("Konekcija na bazu nije uspela!");
         }
     }
 
-    public void raskiniKonekciju() throws ServerskiException {
+    public void disconnect() throws ServerskiException {
         try {
-            konekcija.close();
+            connection.close();
         } catch (SQLException ex) {
             throw new ServerskiException("Raskidanje konekcije nije uspelo!");
         }
     }
 
-    public void potvrdiTransakciju() throws ServerskiException {
+    public void commit() throws ServerskiException {
         try {
-            konekcija.commit();
+            connection.commit();
         } catch (SQLException ex) {
             throw new ServerskiException("Commit nije uspeo!");
         }
     }
 
-    public void ponistiTransakciju() {
+    public void rollback() {
         try {
-            konekcija.rollback();
+            connection.rollback();
         } catch (SQLException ex) {
             System.out.println("Rollback nije uspeo!");
         }
     }
 
-    public List<AbstractObject> vratiSveObjekte(AbstractObject o) throws ServerskiException {
+    public List<AbstractObject> select(AbstractObject o) throws ServerskiException {
         try {
             String upit = "SELECT * FROM " + o.vratiImeTabele();
-            Statement s = konekcija.createStatement();
+            Statement s = connection.createStatement();
             ResultSet rs = s.executeQuery(upit);
             List<AbstractObject> listaObjekata = o.RSuTabelu(rs);
             s.close();
-            System.out.println("Upit:\n"+upit);
+            System.out.println("Upit:\n" + upit);
             return listaObjekata;
         } catch (SQLException ex) {
             throw new ServerskiException("Server ne moze da prikaze podatke o " + o.getClass().getName() + ".");
         }
     }
 
-    public AbstractObject sacuvajObjekat(AbstractObject o) throws ServerskiException {
+    public AbstractObject insert(AbstractObject o) throws ServerskiException {
         try {
 
             String tipUpita = "INSERT";
             String upit = String.format("INSERT INTO %s VALUES (%s)", o.vratiImeTabele(), o.vratiParametre());
 
-            System.out.println("Upit:\n"+upit);
-            Statement s = konekcija.createStatement();
+            System.out.println("Upit:\n" + upit);
+            Statement s = connection.createStatement();
             s.executeUpdate(upit);
             ResultSet rs = s.executeQuery("SELECT LAST_INSERT_ID() as last_id from " + o.vratiImeTabele());
             while (rs.next()) {
@@ -105,18 +121,18 @@ public class DBBroker {
         return null;
     }
 
-    public AbstractObject vratiObjekatPoKljucu(AbstractObject o, String ID) throws ServerskiException {
+    public AbstractObject selectWithPK(AbstractObject o, String ID) throws ServerskiException {
         String upit;
         if (o.vratiPK() != null) {
             upit = "SELECT * FROM " + o.vratiImeTabele() + " WHERE " + o.vratiPK() + "=" + ID;
         } else {
             upit = "SELECT * FROM " + o.vratiImeTabele() + " WHERE " + o.vratiSlozenPK();
         }
-        try (Statement s = konekcija.createStatement();) {
+        try ( Statement s = connection.createStatement();) {
             ResultSet rs = s.executeQuery(upit);
             List<AbstractObject> listaObjekata = o.RSuTabelu(rs);
             s.close();
-            System.out.println("Upit:\n"+upit);
+            System.out.println("Upit:\n" + upit);
             return listaObjekata.get(0);
         } catch (SQLException ex) {
             Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
@@ -124,7 +140,7 @@ public class DBBroker {
         }
     }
 
-    public AbstractObject obrisiObjekat(AbstractObject o) throws ServerskiException {
+    public AbstractObject delete(AbstractObject o) throws ServerskiException {
         try {
             String upit = "";
             if (o.vratiPK() != null) {
@@ -133,10 +149,10 @@ public class DBBroker {
                 upit = String.format("DELETE FROM %s WHERE %s", o.vratiImeTabele(), o.vratiSlozenPK());
 
             }
-            Statement s = konekcija.createStatement();
-            System.out.println("Upit:\n"+upit);
+            Statement s = connection.createStatement();
+            System.out.println("Upit:\n" + upit);
             s.executeUpdate(upit);
-            potvrdiTransakciju();
+            commit();
             s.close();
         } catch (SQLException ex) {
             Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
@@ -145,7 +161,7 @@ public class DBBroker {
         return o;
     }
 
-    public AbstractObject azurirajObjekat(AbstractObject o) throws ServerskiException {
+    public AbstractObject update(AbstractObject o) throws ServerskiException {
         try {
             String upit;
             if (o.vratiPK() != null) {
@@ -153,8 +169,8 @@ public class DBBroker {
             } else {
                 upit = String.format("UPDATE %s SET %s WHERE %s", o.vratiImeTabele(), o.vratiUpdate(), o.vratiSlozenPK());
             }
-            System.out.println("Upit:\n"+upit);
-            Statement s = konekcija.createStatement();
+            System.out.println("Upit:\n" + upit);
+            Statement s = connection.createStatement();
             s.executeUpdate(upit);
             s.close();
             return o;

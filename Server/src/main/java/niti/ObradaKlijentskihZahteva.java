@@ -8,8 +8,10 @@ package niti;
 import domen.AbstractObject;
 import domen.Clan;
 import domen.Korisnik;
+import domen.Mesto;
 import domen.Paket;
 import domen.Pretplata;
+import domen.PromenaPaketa;
 import domen.Trener;
 import exception.ServerskiException;
 import java.io.IOException;
@@ -65,19 +67,19 @@ public class ObradaKlijentskihZahteva extends Thread {
                             Kontroler.getInstance().izlogujKorisnika(kor);
                             break;
                         case Operacije.UCITAJ_CLANOVE:
-                            List<AbstractObject> clanovi = Kontroler.getInstance().ucitajClanove();
+                            List<Clan> clanovi = Kontroler.getInstance().ucitajClanove();
                             so.setPodaci(clanovi);
                             break;
                         case Operacije.UCITAJ_MESTA:
-                            List<AbstractObject> mesta = Kontroler.getInstance().ucitajMesta();
+                            List<Mesto> mesta = Kontroler.getInstance().ucitajMesta();
                             so.setPodaci(mesta);
                             break;
                         case Operacije.UCITAJ_PROMENE_PAKETA:
-                            List<AbstractObject> istorije = Kontroler.getInstance().ucitajPromenePaketa();
+                            List<PromenaPaketa> istorije = Kontroler.getInstance().ucitajPromenePaketa();
                             so.setPodaci(istorije);
                             break;
                         case Operacije.UCITAJ_PAKETE:
-                            List<AbstractObject> paketi = Kontroler.getInstance().ucitajPakete();
+                            List<Paket> paketi = Kontroler.getInstance().ucitajPakete();
                             so.setPodaci(paketi);
                             break;
                         case Operacije.ZAPAMTI_CLANA:
@@ -121,7 +123,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                             so.setPodaci(pretplata);
                             break;
                         case Operacije.UCITAJ_PRETPLATE:
-                            List<AbstractObject> pretplate = Kontroler.getInstance().vratiSvePretplate();
+                            List<Pretplata> pretplate = Kontroler.getInstance().vratiSvePretplate();
                             so.setPodaci(pretplate);
                             break;
                         case Operacije.PRETRAZI_PRETPLATE:
@@ -130,7 +132,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                             so.setPodaci(listaNadjenihPretplata);
                             break;
                         case Operacije.VRATI_TRENERE:
-                            ArrayList<AbstractObject> treneri = Kontroler.getInstance().vratiTrenere();
+                            ArrayList<Trener> treneri = Kontroler.getInstance().vratiTrenere();
                             so.setPodaci(treneri);
                             break;
                         case Operacije.ZAPAMTI_TRENERA:

@@ -18,7 +18,7 @@ public class SOIzlogujKorisnika extends AbstractSO {
     private AbstractObject korisnik;
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
+    protected void execute() throws ServerskiException {
         int indeks = Kontroler.getInstance().getListaAktivnihKorisnika().indexOf(korisnik);
         if (indeks != -1) {
             Kontroler.getInstance().getListaAktivnihKorisnika().remove(indeks);
@@ -31,6 +31,11 @@ public class SOIzlogujKorisnika extends AbstractSO {
 
     public void setKorisnik(AbstractObject korisnik) {
         this.korisnik = korisnik;
+    }
+
+    @Override
+    protected void validate() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

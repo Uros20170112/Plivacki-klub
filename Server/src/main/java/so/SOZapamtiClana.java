@@ -17,6 +17,10 @@ public class SOZapamtiClana extends AbstractSO {
     
     private AbstractObject clan;
     private AbstractObject istorijatPaketa;
+
+    public SOZapamtiClana() {
+    }
+    
     
     public SOZapamtiClana(List<Object> parametri) {
         this.clan = (AbstractObject) parametri.get(0);
@@ -24,9 +28,9 @@ public class SOZapamtiClana extends AbstractSO {
     }
   
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-            dbb.sacuvajObjekat(clan);
-            dbb.sacuvajObjekat(istorijatPaketa);
+    protected void execute() throws ServerskiException {
+            dbb.insert(clan);
+            dbb.insert(istorijatPaketa);
     }
 
     public AbstractObject getClan() {

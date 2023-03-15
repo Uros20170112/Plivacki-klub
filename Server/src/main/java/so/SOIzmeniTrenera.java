@@ -21,8 +21,8 @@ public class SOIzmeniTrenera extends AbstractSO{
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        dbb.azurirajObjekat(trener);
+    protected void execute() throws ServerskiException {
+        dbb.update(trener);
     }
 
     public AbstractObject getTrener() {

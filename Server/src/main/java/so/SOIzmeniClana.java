@@ -22,19 +22,21 @@ public class SOIzmeniClana extends AbstractSO {
     private AbstractObject istorijatPaketa;
     PromenaPaketa istorijatP;
     List<AbstractObject> izBaze;
+    
 
     public SOIzmeniClana(List<Object> parametri) {
+        super();
         this.clan = (AbstractObject) parametri.get(0);
         this.istorijatPaketa = (AbstractObject) parametri.get(1);
         this.istorijatP = (PromenaPaketa) parametri.get(1);
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
+    protected void execute() throws ServerskiException {
         
-        dbb.azurirajObjekat(clan);
-        izBaze = dbb.vratiSveObjekte(new PromenaPaketa());
-        ucatijaClanovePakete();
+        dbb.update(clan);
+        izBaze = dbb.select(new PromenaPaketa());
+        ucatijClanovePakete();
         
         if(daLiMenjam()){
             deaktiviraj();
@@ -47,11 +49,11 @@ public class SOIzmeniClana extends AbstractSO {
         return clan;
     }
 
-    private void ucatijaClanovePakete() throws ServerskiException {
+    private void ucatijClanovePakete() throws ServerskiException {
          for (AbstractObject abs : izBaze) {
                 PromenaPaketa ip = (PromenaPaketa) abs;
-                ip.setClan((Clan) dbb.vratiObjekatPoKljucu(new Clan(), ip.getClan().getClanId()));
-                ip.setPaket((Paket) dbb.vratiObjekatPoKljucu(new Paket(), ip.getPaket().getPaketId()));
+                ip.setClan((Clan) dbb.selectWithPK(new Clan(), ip.getClan().getClanId()));
+                ip.setPaket((Paket) dbb.selectWithPK(new Paket(), ip.getPaket().getPaketId()));
         }
     }
 
@@ -74,13 +76,13 @@ public class SOIzmeniClana extends AbstractSO {
                     && !ip.getPaket().equals(istorijatP.getPaket())
                     && ip.isAktivan() == true){
                   ip.setAktivan(false);
-                  dbb.azurirajObjekat(ip);
+                  dbb.update(ip);
             }
         }
     }
 
     private void dodaj() throws ServerskiException {
-        dbb.sacuvajObjekat(istorijatPaketa);
+        dbb.insert(istorijatPaketa);
     }
     
 }

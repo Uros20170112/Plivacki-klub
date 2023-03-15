@@ -22,8 +22,8 @@ public class SOPretraziPakete extends AbstractSO {
     private List<AbstractObject> listaNadjenih = new ArrayList<>();
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        List<AbstractObject> sviPaketi = dbb.vratiSveObjekte(new Paket());
+    protected void execute() throws ServerskiException {
+        List<AbstractObject> sviPaketi = dbb.select(new Paket());
         for (AbstractObject abs : sviPaketi) {
             Paket pak = (Paket) abs;
             if (pak.getNaziv().contains(pretraga) || pak.getCena().contains(pretraga)) {
@@ -50,7 +50,7 @@ public class SOPretraziPakete extends AbstractSO {
     }
 
     private void ucitajTermine() throws ServerskiException {
-        List<AbstractObject> termini = dbb.vratiSveObjekte(new Termin());
+        List<AbstractObject> termini = dbb.select(new Termin());
         for (AbstractObject AbstractObject : listaNadjenih) {
             Paket p = (Paket) AbstractObject;
             List<Termin> terminiPaketa = new ArrayList<>();

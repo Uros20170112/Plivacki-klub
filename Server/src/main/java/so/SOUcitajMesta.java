@@ -15,16 +15,21 @@ import java.util.List;
  * @author kompic
  */
 public class SOUcitajMesta extends AbstractSO {
-    
-    private List<AbstractObject> listaMesta;
+
+    private List<Mesto> listaMesta;
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        listaMesta = dbb.vratiSveObjekte(new Mesto());
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        listaMesta = (List<Mesto>) (Mesto) dbb.select(new Mesto());
     }
 
-    public List<AbstractObject> getListaMesta() {
+    public List<Mesto> getListaMesta() {
         return listaMesta;
     }
-    
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

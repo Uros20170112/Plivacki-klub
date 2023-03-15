@@ -20,8 +20,8 @@ public class SOZapamtiPretplatu extends AbstractSO {
         this.pretplata = pretplata;
     }
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-            dbb.sacuvajObjekat(pretplata);
+    protected void execute() throws ServerskiException {
+            dbb.insert(pretplata);
     }
     public AbstractObject getPretplata() {
         return pretplata;

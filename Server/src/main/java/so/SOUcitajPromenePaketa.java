@@ -18,26 +18,30 @@ import java.util.List;
  */
 public class SOUcitajPromenePaketa extends AbstractSO {
 
-    private List<AbstractObject> listaIstorijatPaketa;
+    private List<PromenaPaketa> listaIstorijatPaketa;
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        listaIstorijatPaketa = dbb.vratiSveObjekte(new PromenaPaketa());
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        listaIstorijatPaketa = (List<PromenaPaketa>) (PromenaPaketa) dbb.select(new PromenaPaketa());
         ucitajClanovePakete();
     }
 
-    public List<AbstractObject> getListaIstorijatPaketa() {
+    public List<PromenaPaketa> getListaIstorijatPaketa() {
         return listaIstorijatPaketa;
     }
 
     public void ucitajClanovePakete() throws ServerskiException {
         for (AbstractObject abs : listaIstorijatPaketa) {
             PromenaPaketa ip = (PromenaPaketa) abs;
-            Paket p = (Paket) dbb.vratiObjekatPoKljucu(new Paket(), ip.getPaket().getPaketId());
-            Clan c = (Clan) dbb.vratiObjekatPoKljucu(new Clan(), ip.getClan().getClanId());
+            Paket p = (Paket) dbb.selectWithPK(new Paket(), ip.getPaket().getPaketId());
+            Clan c = (Clan) dbb.selectWithPK(new Clan(), ip.getClan().getClanId());
             ip.setClan(c);
             ip.setPaket(p);
         }
     }
 
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

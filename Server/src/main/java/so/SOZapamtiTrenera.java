@@ -21,8 +21,8 @@ public class SOZapamtiTrenera extends AbstractSO{
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        dbb.sacuvajObjekat(trener);
+    protected void execute() throws ServerskiException {
+        dbb.insert(trener);
     }
 
     public AbstractObject getTrener() {

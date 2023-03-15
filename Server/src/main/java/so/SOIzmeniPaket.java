@@ -23,19 +23,19 @@ public class SOIzmeniPaket extends AbstractSO {
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
+    protected void execute() throws ServerskiException {
         Paket p = (Paket) paket;
-        dbb.azurirajObjekat(p);
+        dbb.update(p);
         for (Termin termin : p.getTermini()) {
             switch (termin.getStanje()) {
                 case "nov":
-                    dbb.sacuvajObjekat(termin);
+                    dbb.insert(termin);
                     break;
                 case "izmenjen":
-                    dbb.azurirajObjekat(termin);
+                    dbb.update(termin);
                     break;
                 case "obrisan":
-                    dbb.obrisiObjekat(termin);
+                    dbb.delete(termin);
                     break;
                 default:
                     

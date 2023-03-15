@@ -18,20 +18,20 @@ import java.util.List;
  */
 public class SOUcitajPakete extends AbstractSO {
 
-    private List<AbstractObject> paketi;
+    private List<Paket> paketi;
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        paketi = dbb.vratiSveObjekte(new Paket());
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        paketi = (List<Paket>) (Paket) dbb.select(new Paket());
         ucitajTermine();
     }
 
-    public List<AbstractObject> getPaketi() {
+    public List<Paket> getPaketi() {
         return paketi;
     }
 
     private void ucitajTermine() throws ServerskiException {
-        List<AbstractObject> termini = dbb.vratiSveObjekte(new Termin());
+        List<AbstractObject> termini = dbb.select(new Termin());
         for (AbstractObject AbstractObject : paketi) {
             Paket p = (Paket) AbstractObject;
             List<Termin> terminiPaketa = new ArrayList<>();
@@ -44,6 +44,11 @@ public class SOUcitajPakete extends AbstractSO {
             }
             p.setTermini(terminiPaketa);
         }
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

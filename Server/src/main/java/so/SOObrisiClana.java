@@ -14,18 +14,13 @@ import exception.ServerskiException;
  */
 public class SOObrisiClana extends AbstractSO {
 
-    private AbstractObject clan;
-
-    public SOObrisiClana(AbstractObject clan) {
-        this.clan = clan;
+    @Override
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        dbb.delete(ao);
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        clan = dbb.obrisiObjekat(clan);
-    }
-
-    public AbstractObject getClan() {
-        return clan;
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

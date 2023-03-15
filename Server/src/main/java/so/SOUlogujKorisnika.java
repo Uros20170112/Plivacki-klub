@@ -22,8 +22,8 @@ public class SOUlogujKorisnika extends AbstractSO{
 
     
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        List<AbstractObject> listaKorisnika = dbb.vratiSveObjekte(new Korisnik());
+    protected void execute() throws ServerskiException {
+        List<AbstractObject> listaKorisnika = dbb.select(new Korisnik());
         Korisnik unetiKorisnik = (Korisnik) unetiParametri;
         for (AbstractObject AbstractObject : listaKorisnika) {
             Korisnik izBaze = (Korisnik) AbstractObject;
@@ -55,6 +55,11 @@ public class SOUlogujKorisnika extends AbstractSO{
 
     public void setUlogovanKorisnik(AbstractObject ulogovanKorisnik) {
         this.ulogovanKorisnik = ulogovanKorisnik;
+    }
+
+    @Override
+    protected void validate() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

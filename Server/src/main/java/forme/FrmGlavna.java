@@ -216,6 +216,8 @@ public class FrmGlavna extends javax.swing.JFrame {
                 } catch (ServerskiException ex) {
                     JOptionPane.showMessageDialog(rootPane, "Došlo je do greške kod brisanja korisnika " + k.getIme() + ". Korisnik nije obrisan.", "Greška", JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } else {
@@ -307,7 +309,7 @@ public class FrmGlavna extends javax.swing.JFrame {
     public void srediTabelu() {
         try {
             mtk = new ModelTabeleKorisnici(new ArrayList<Korisnik>());
-            List<AbstractObject> korisniciBaza = new ArrayList<>();
+            List<Korisnik> korisniciBaza = new ArrayList<>();
             korisniciBaza = Kontroler.getInstance().vratiListuKorisnika();
             for (AbstractObject AbstractObject : korisniciBaza) {
                 Korisnik k = (Korisnik) AbstractObject;
@@ -316,6 +318,8 @@ public class FrmGlavna extends javax.swing.JFrame {
             tblKorisnici.setModel(mtk);
         } catch (ServerskiException ex) {
             JOptionPane.showMessageDialog(this, "Došlo je do greške kod učitavanja podataka o korisnicima!", "Greška", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -332,6 +336,8 @@ public class FrmGlavna extends javax.swing.JFrame {
             srediTabelu();
             System.out.println("Osvezio korisnike");
         } catch (ServerskiException ex) {
+            Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

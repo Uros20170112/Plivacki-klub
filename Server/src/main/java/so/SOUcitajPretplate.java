@@ -18,24 +18,29 @@ import java.util.List;
  */
 public class SOUcitajPretplate extends AbstractSO {
 
-    private List<AbstractObject> pretplate;
+    private List<Pretplata> pretplate;
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        pretplate = dbb.vratiSveObjekte(new Pretplata());
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        pretplate = (List<Pretplata>) (Pretplata) dbb.select(new Pretplata());
         ucitajClanovePakete();
     }
 
-    public List<AbstractObject> getPretplate() {
+    public List<Pretplata> getPretplate() {
         return pretplate;
     }
 
     private void ucitajClanovePakete() throws ServerskiException {
         for (AbstractObject abs : pretplate) {
             Pretplata ip = (Pretplata) abs;
-            ip.setClan((Clan) dbb.vratiObjekatPoKljucu(new Clan(), ip.getClan().getClanId()));
-            ip.setPaket((Paket) dbb.vratiObjekatPoKljucu(new Paket(), ip.getPaket().getPaketId()));
+            ip.setClan((Clan) dbb.selectWithPK(new Clan(), ip.getClan().getClanId()));
+            ip.setPaket((Paket) dbb.selectWithPK(new Paket(), ip.getPaket().getPaketId()));
         }
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

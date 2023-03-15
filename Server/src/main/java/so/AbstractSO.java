@@ -6,7 +6,10 @@
 package so;
 
 import db.DBBroker;
+import domen.AbstractObject;
 import exception.ServerskiException;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -16,28 +19,37 @@ public abstract class AbstractSO {
 
     protected DBBroker dbb;
 
-    public AbstractSO() {
-        this.dbb = new DBBroker();
+    synchronized public void templateExecute(AbstractObject ao) throws Exception {
+        try {
+            connect();
+            validate(ao);
+            execute(ao);
+            commit();
+            disconnect();
+        } catch (Exception ex) {
+            rollback();
+            throw ex;
+        }
+    }
+    
+    protected abstract void validate(AbstractObject ao) throws Exception;
+
+    public void commit() throws SQLException {
+        DBBroker.getInstance().getConnection().commit();
     }
 
-    synchronized public void izvrsiOperaciju() throws ServerskiException {
-        otvoriKonekciju();
-        izvrsiKonkretnuOperaciju();
-        potvrdiTransakciju();
-        zatvoriKonekciju();
+    private void rollback() throws SQLException {
+        DBBroker.getInstance().getConnection().rollback();
     }
 
-    private void potvrdiTransakciju() throws ServerskiException {
-        dbb.potvrdiTransakciju();
+    private void disconnect() throws ServerskiException {
+        dbb.disconnect();
     }
 
-    private void zatvoriKonekciju() throws ServerskiException {
-        dbb.raskiniKonekciju();
+    private void connect() throws ServerskiException, IOException {
+        dbb.connect();
     }
 
-    private void otvoriKonekciju() throws ServerskiException {
-        dbb.uspostaviKonekciju();
-    }
+    protected abstract void execute(AbstractObject ao) throws ServerskiException;
 
-    protected abstract void izvrsiKonkretnuOperaciju() throws ServerskiException;
 }

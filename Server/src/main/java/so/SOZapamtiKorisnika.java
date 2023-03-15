@@ -20,8 +20,8 @@ public class SOZapamtiKorisnika extends AbstractSO{
         this.korisnik = korisnik;
     }
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-            dbb.sacuvajObjekat(korisnik);
+    protected void execute() throws ServerskiException {
+            dbb.insert(korisnik);
     }
     public AbstractObject getKorisnik() {
         return korisnik;

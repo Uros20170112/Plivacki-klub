@@ -22,8 +22,8 @@ public class SOZapamtiPaket extends AbstractSO {
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        dbb.sacuvajObjekat(paket);
+    protected void execute() throws ServerskiException {
+        dbb.insert(paket);
         Paket pa = (Paket) paket;
         for (Termin ter : pa.getTermini()) {
             zapamtiTermin(ter);
@@ -35,7 +35,7 @@ public class SOZapamtiPaket extends AbstractSO {
     }
 
     private void zapamtiTermin(Termin t) throws ServerskiException {
-        dbb.sacuvajObjekat(t);
+        dbb.insert(t);
     }
 
 }

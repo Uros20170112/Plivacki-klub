@@ -160,6 +160,8 @@ public class FrmDodajKorisnika extends javax.swing.JFrame {
         } catch (ServerskiException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Greška", JOptionPane.ERROR_MESSAGE);
             Logger.getLogger(FrmDodajKorisnika.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmDodajKorisnika.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -219,24 +221,29 @@ public class FrmDodajKorisnika extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private Korisnik kreirajKorisnika(String ime, String email, String username, String password) throws ServerskiException {
-        Korisnik k = new Korisnik();
-        if (ime.length() == 0 || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
-            throw new ServerskiException("Sva polja su obavezna!");
-        }
-
-        List<AbstractObject> korisnici = Kontroler.getInstance().vratiListuKorisnika();
-        
-        for (AbstractObject korisnik : korisnici) {
-            Korisnik a = (Korisnik) korisnik;
-            if (a.getUsername().equalsIgnoreCase(username) || a.getEmail().equalsIgnoreCase(email)) {
-                throw new ServerskiException("U bazi već postoji korisnik sa takvim korisničkim imenom ili e-mail adresom.");
+        try {
+            Korisnik k = new Korisnik();
+            if (ime.length() == 0 || email.isEmpty() || username.isEmpty() || password.isEmpty()) {
+                throw new ServerskiException("Sva polja su obavezna!");
             }
+            
+            List<Korisnik> korisnici = Kontroler.getInstance().vratiListuKorisnika();
+            
+            for (AbstractObject korisnik : korisnici) {
+                Korisnik a = (Korisnik) korisnik;
+                if (a.getUsername().equalsIgnoreCase(username) || a.getEmail().equalsIgnoreCase(email)) {
+                    throw new ServerskiException("U bazi već postoji korisnik sa takvim korisničkim imenom ili e-mail adresom.");
+                }
+            }
+            k.setIme(ime);
+            k.setEmail(email);
+            k.setPassword(password);
+            k.setUsername(username);
+            return k;
+        } catch (Exception ex) {
+            Logger.getLogger(FrmDodajKorisnika.class.getName()).log(Level.SEVERE, null, ex);
         }
-        k.setIme(ime);
-        k.setEmail(email);
-        k.setPassword(password);
-        k.setUsername(username);
-        return k;
+        return null;
     }
 
     private void ugasiFormu() {

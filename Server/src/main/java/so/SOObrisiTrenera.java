@@ -12,19 +12,16 @@ import exception.ServerskiException;
  *
  * @author kompic
  */
-public class SOObrisiTrenera extends AbstractSO{
-    private AbstractObject trener;
+public class SOObrisiTrenera extends AbstractSO {
 
-    public SOObrisiTrenera(AbstractObject trener) {
-        this.trener = trener;
+    @Override
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        dbb.delete(ao);
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        dbb.obrisiObjekat(trener);
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public AbstractObject getTrener() {
-        return trener;
-    }
 }

@@ -28,12 +28,12 @@ public class SOPretraziPretplate extends AbstractSO {
     }
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        List<AbstractObject> svePretplate = dbb.vratiSveObjekte(new Pretplata());
+    protected void execute() throws ServerskiException {
+        List<AbstractObject> svePretplate = dbb.select(new Pretplata());
         for (AbstractObject AbstractObject : svePretplate) {
             Pretplata p = (Pretplata) AbstractObject;
             if (p.getPaket().equals(paket)) {
-                p.setClan((Clan) dbb.vratiObjekatPoKljucu(new Clan(), p.getClan().getClanId()));
+                p.setClan((Clan) dbb.selectWithPK(new Clan(), p.getClan().getClanId()));
                 p.setPaket((Paket) paket);
                 pretplate.add(p);
             }

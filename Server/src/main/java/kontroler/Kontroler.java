@@ -8,11 +8,15 @@ package kontroler;
 import domen.AbstractObject;
 import domen.Clan;
 import domen.Korisnik;
+import domen.Mesto;
 import domen.Paket;
+import domen.Pretplata;
+import domen.PromenaPaketa;
 import domen.Trener;
-import exception.ServerskiException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import so.*;
 
 /**
@@ -36,10 +40,10 @@ public class Kontroler {
         return instance;
     }
 
-    public AbstractObject ulogujKorisnika(Korisnik k) throws ServerskiException {
+    public AbstractObject ulogujKorisnika(Korisnik k) throws Exception {
         SOUlogujKorisnika sok = new SOUlogujKorisnika();
         sok.setUnetiParametri(k);
-        sok.izvrsiOperaciju();
+        sok.templateExecute();
         AbstractObject ulogovan = sok.getUlogovanKorisnik();
 //        listaAktivnihKorisnika.add(ulogovan);
         return ulogovan;
@@ -49,45 +53,50 @@ public class Kontroler {
         return listaAktivnihKorisnika;
     }
 
-    public List<AbstractObject> vratiListuKorisnika() throws ServerskiException {
-        SOUcitajKorisnike soul = new SOUcitajKorisnike();
-        soul.izvrsiOperaciju();
-        return soul.getLista();
+    public List<Korisnik> vratiListuKorisnika() {
+        try {
+            SOUcitajKorisnike soul = new SOUcitajKorisnike();
+            soul.templateExecute(new Korisnik());
+            return soul.getLista();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public void izlogujKorisnika(AbstractObject korisnik) throws ServerskiException {
+    public void izlogujKorisnika(AbstractObject korisnik) throws Exception {
         SOIzlogujKorisnika soik = new SOIzlogujKorisnika();
         soik.setKorisnik(korisnik);
-        soik.izvrsiOperaciju();
+        soik.templateExecute();
     }
 
-    public List<AbstractObject> pretraziPakete(String string) throws ServerskiException {
+    public List<AbstractObject> pretraziPakete(String string) throws Exception {
         SOPretraziPakete soplj = new SOPretraziPakete();
         soplj.setPretraga(string);
-        soplj.izvrsiOperaciju();
+        soplj.templateExecute();
         return soplj.getListaNadjenih();
     }
 
-    public List<AbstractObject> pretraziClanove(String pretr) throws ServerskiException {
+    public List<AbstractObject> pretraziClanove(String pretr) throws Exception {
         SOPretraziClanove soppp = new SOPretraziClanove();
         soppp.setPretraga(pretr);
-        soppp.izvrsiOperaciju();
+        soppp.templateExecute();
         return soppp.getListaNadjenih();
     }
 
-    public AbstractObject sacuvajKorisnika(Korisnik k) throws ServerskiException {
+    public AbstractObject sacuvajKorisnika(Korisnik k) throws Exception {
         SOZapamtiKorisnika sozk = new SOZapamtiKorisnika(k);
-        sozk.izvrsiOperaciju();
+        sozk.templateExecute();
         return sozk.getKorisnik();
     }
 
-    public void obrisiKorisnika(Korisnik k) throws ServerskiException {
-        SOObrisiKorisnika sook = new SOObrisiKorisnika(k);
-        sook.izvrsiOperaciju();
+    public void obrisiKorisnika(Korisnik k) throws Exception {
+        SOObrisiKorisnika sook = new SOObrisiKorisnika();
+        sook.templateExecute(k);
         listaAktivnihKorisnika.remove(k);
     }
 
-    public void azurirajKorisnike() throws ServerskiException {
+    public void azurirajKorisnike() throws Exception {
         List<AbstractObject> izBaze = vratiListuKorisnika();
         for (AbstractObject AbstractObject : izBaze) {
             Korisnik k = (Korisnik) AbstractObject;
@@ -99,99 +108,128 @@ public class Kontroler {
         listaAktivnihKorisnika = izBaze;
     }
 
-    public List<AbstractObject> ucitajMesta() throws ServerskiException {
-        SOUcitajMesta sovm = new SOUcitajMesta();
-        sovm.izvrsiOperaciju();
-        return sovm.getListaMesta();
+    public List<Mesto> ucitajMesta() {
+        try {
+            SOUcitajMesta sovm = new SOUcitajMesta();
+            sovm.templateExecute(new Mesto());
+            return sovm.getListaMesta();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public List<AbstractObject> ucitajClanove() throws ServerskiException {
-        SOUcitajClanove sovlc = new SOUcitajClanove();
-        sovlc.izvrsiOperaciju();
-        return sovlc.getListaClanova();
+    public List<Clan> ucitajClanove() {
+        try {
+            SOUcitajClanove sovlc = new SOUcitajClanove();
+            sovlc.templateExecute(new Clan());
+            return sovlc.getListaClanova();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public List<AbstractObject> ucitajPromenePaketa() throws ServerskiException {
-        SOUcitajPromenePaketa sovlc = new SOUcitajPromenePaketa();
-        sovlc.izvrsiOperaciju();
-        return sovlc.getListaIstorijatPaketa();
+    public List<PromenaPaketa> ucitajPromenePaketa() {
+        try {
+            SOUcitajPromenePaketa sovlc = new SOUcitajPromenePaketa();
+            sovlc.templateExecute(new PromenaPaketa());
+            return sovlc.getListaIstorijatPaketa();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
     }
 
-    public List<AbstractObject> ucitajPakete() throws ServerskiException {
-        SOUcitajPakete sovlc = new SOUcitajPakete();
-        sovlc.izvrsiOperaciju();
-        return sovlc.getPaketi();
+    public List<Paket> ucitajPakete() {
+        try {
+            SOUcitajPakete sovlc = new SOUcitajPakete();
+            sovlc.templateExecute(new Paket());
+            return sovlc.getPaketi();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public AbstractObject zapamtiClana(List<Object> parametri) throws ServerskiException {
+    public AbstractObject zapamtiClana(List<Object> parametri) throws Exception {
         SOZapamtiClana som = new SOZapamtiClana(parametri);
-        som.izvrsiOperaciju();
+        som.templateExecute();
         return som.getClan();
     }
 
-    public AbstractObject izmeniClana(List<Object> lista) throws ServerskiException {
+    public AbstractObject izmeniClana(List<Object> lista) throws Exception {
         SOIzmeniClana soic = new SOIzmeniClana(lista);
-        soic.izvrsiOperaciju();
+        soic.templateExecute();
         return soic.getClan();
     }
 
-    public AbstractObject obrisiClana(Clan zaBrisanje) throws ServerskiException {
-        SOObrisiClana som = new SOObrisiClana(zaBrisanje);
-        som.izvrsiOperaciju();
-        return som.getClan();
+    public void obrisiClana(Clan zaBrisanje) throws Exception {
+        SOObrisiClana som = new SOObrisiClana();
+        som.templateExecute(zaBrisanje);
     }
 
-    public AbstractObject zapamtiPaket(Paket p) throws ServerskiException {
+    public AbstractObject zapamtiPaket(Paket p) throws Exception {
         SOZapamtiPaket som = new SOZapamtiPaket(p);
-        som.izvrsiOperaciju();
+        som.templateExecute();
         return som.getPaket();
     }
 
-    public AbstractObject azurirajPaket(Paket p) throws ServerskiException {
+    public AbstractObject azurirajPaket(Paket p) throws Exception {
         SOIzmeniPaket soip = new SOIzmeniPaket(p);
-        soip.izvrsiOperaciju();
+        soip.templateExecute();
         return soip.getPaket();
     }
 
-    public List<AbstractObject> vratiSvePretplate() throws ServerskiException {
-        SOUcitajPretplate soup = new SOUcitajPretplate();
-        soup.izvrsiOperaciju();
-        return soup.getPretplate();
+    public List<Pretplata> vratiSvePretplate(){
+        try {
+            SOUcitajPretplate soup = new SOUcitajPretplate();
+            soup.templateExecute(new Pretplata());
+            return soup.getPretplate();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public AbstractObject zapamtiPretplatu(AbstractObject pretplata) throws ServerskiException {
+    public AbstractObject zapamtiPretplatu(AbstractObject pretplata) throws Exception {
         SOZapamtiPretplatu sozp = new SOZapamtiPretplatu(pretplata);
-        sozp.izvrsiOperaciju();
+        sozp.templateExecute();
         return sozp.getPretplata();
     }
 
-    public List<AbstractObject> pretraziPretplate(Paket pak) throws ServerskiException {
+    public List<AbstractObject> pretraziPretplate(Paket pak) throws Exception {
         SOPretraziPretplate sopp = new SOPretraziPretplate(pak);
-        sopp.izvrsiOperaciju();
+        sopp.templateExecute();
         return sopp.getPretplate();
     }
 
-    public ArrayList<AbstractObject> vratiTrenere() throws ServerskiException {
-        SOUcitajTrenere sout = new SOUcitajTrenere();
-        sout.izvrsiOperaciju();
-        return (ArrayList<AbstractObject>) sout.getLista();
+    public List<Trener> vratiTrenere() {
+        try {
+            SOUcitajTrenere sout = new SOUcitajTrenere();
+            sout.templateExecute(new Trener());
+            return sout.getLista();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public Trener zapamtiTrenera(Trener t) throws ServerskiException {
+    public Trener zapamtiTrenera(Trener t) throws Exception {
         SOZapamtiTrenera sozt = new SOZapamtiTrenera(t);
-        sozt.izvrsiOperaciju();
+        sozt.templateExecute();
         return (Trener) sozt.getTrener();
     }
 
-    public Trener izmeniTrenera(Trener tr) throws ServerskiException {
+    public Trener izmeniTrenera(Trener tr) throws Exception {
         SOIzmeniTrenera soit = new SOIzmeniTrenera(tr);
-        soit.izvrsiOperaciju();
+        soit.templateExecute();
         return (Trener) soit.getTrener();
     }
 
-    public AbstractObject obrisiTrenera(Trener brisiTrenera) throws ServerskiException {
-        SOObrisiTrenera soot = new SOObrisiTrenera(brisiTrenera);
-        soot.izvrsiOperaciju();
-        return soot.getTrener();
+    public void obrisiTrenera(Trener brisiTrenera) throws Exception {
+        SOObrisiTrenera soot = new SOObrisiTrenera();
+        soot.templateExecute(brisiTrenera);
     }
 }

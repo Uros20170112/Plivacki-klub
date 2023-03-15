@@ -17,15 +17,15 @@ import java.util.List;
  */
 public class SOUcitajClanove extends AbstractSO {
 
-    private List<AbstractObject> listaClanova;
+    private List<Clan> listaClanova;
 
     @Override
-    protected void izvrsiKonkretnuOperaciju() throws ServerskiException {
-        listaClanova = dbb.vratiSveObjekte(new Clan());
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        listaClanova = (List<Clan>) (Clan)dbb.select(new Clan());
         ucitajMesta();
     }
 
-    public List<AbstractObject> getListaClanova() {
+    public List<Clan> getListaClanova() {
         return listaClanova;
     }
 
@@ -33,9 +33,14 @@ public class SOUcitajClanove extends AbstractSO {
         for (AbstractObject abs : listaClanova) {
             Clan cl = (Clan) abs;
             String mestoID = cl.getMesto().getMestoId();
-            Mesto m = (Mesto) dbb.vratiObjekatPoKljucu(new Mesto(), mestoID);
+            Mesto m = (Mesto) dbb.selectWithPK(new Mesto(), mestoID);
             cl.setMesto(m);
         }
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
