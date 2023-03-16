@@ -94,10 +94,15 @@ public class Kontroler {
         return null;
     }
 
-    public AbstractObject sacuvajKorisnika(Korisnik k) throws Exception {
-        SOZapamtiKorisnika sozk = new SOZapamtiKorisnika(k);
-        sozk.templateExecute();
-        return sozk.getKorisnik();
+    public AbstractObject sacuvajKorisnika(Korisnik k){
+        try {
+            SOZapamtiKorisnika sozk = new SOZapamtiKorisnika(k);
+            sozk.templateExecute(k);
+            return sozk.getKorisnik();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public void obrisiKorisnika(Korisnik k) throws Exception {
@@ -163,10 +168,15 @@ public class Kontroler {
         return null;
     }
 
-    public AbstractObject zapamtiClana(List<Object> parametri) throws Exception {
-        SOZapamtiClana som = new SOZapamtiClana(parametri);
-        som.templateExecute();
-        return som.getClan();
+    public AbstractObject zapamtiClana(List<Object> parametri) {
+        try {
+            SOZapamtiClana som = new SOZapamtiClana(parametri);
+            som.templateExecute(new Clan());
+            return som.getClan();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public AbstractObject izmeniClana(List<Object> lista) throws Exception {
@@ -180,10 +190,15 @@ public class Kontroler {
         som.templateExecute(zaBrisanje);
     }
 
-    public AbstractObject zapamtiPaket(Paket p) throws Exception {
-        SOZapamtiPaket som = new SOZapamtiPaket(p);
-        som.templateExecute();
-        return som.getPaket();
+    public AbstractObject zapamtiPaket(Paket p) {
+        try {
+            SOZapamtiPaket som = new SOZapamtiPaket(p);
+            som.templateExecute(p);
+            return som.getPaket();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public AbstractObject azurirajPaket(Paket p) throws Exception {
@@ -203,10 +218,15 @@ public class Kontroler {
         return null;
     }
 
-    public AbstractObject zapamtiPretplatu(AbstractObject pretplata) throws Exception {
-        SOZapamtiPretplatu sozp = new SOZapamtiPretplatu(pretplata);
-        sozp.templateExecute();
-        return sozp.getPretplata();
+    public AbstractObject zapamtiPretplatu(AbstractObject pretplata) {
+        try {
+            SOZapamtiPretplatu sozp = new SOZapamtiPretplatu(pretplata);
+            sozp.templateExecute(pretplata);
+            return sozp.getPretplata();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public List<AbstractObject> pretraziPretplate(Paket pak) {
@@ -231,10 +251,15 @@ public class Kontroler {
         return null;
     }
 
-    public Trener zapamtiTrenera(Trener t) throws Exception {
-        SOZapamtiTrenera sozt = new SOZapamtiTrenera(t);
-        sozt.templateExecute();
-        return (Trener) sozt.getTrener();
+    public Trener zapamtiTrenera(Trener t) {
+        try {
+            SOZapamtiTrenera sozt = new SOZapamtiTrenera(t);
+            sozt.templateExecute(t);
+            return (Trener) sozt.getTrener();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public Trener izmeniTrenera(Trener tr) throws Exception {

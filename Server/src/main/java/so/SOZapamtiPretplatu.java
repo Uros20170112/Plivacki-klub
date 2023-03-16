@@ -20,11 +20,16 @@ public class SOZapamtiPretplatu extends AbstractSO {
         this.pretplata = pretplata;
     }
     @Override
-    protected void execute() throws ServerskiException {
+    protected void execute(AbstractObject ao) throws ServerskiException {
             dbb.insert(pretplata);
     }
     public AbstractObject getPretplata() {
         return pretplata;
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

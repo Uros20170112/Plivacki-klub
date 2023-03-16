@@ -130,7 +130,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                             so.setPodaci(listaNadjenihPretplata);
                             break;
                         case Operacije.VRATI_TRENERE:
-                            ArrayList<Trener> treneri = Kontroler.getInstance().vratiTrenere();
+                            ArrayList<Trener> treneri = (ArrayList<Trener>) Kontroler.getInstance().vratiTrenere();
                             so.setPodaci(treneri);
                             break;
                         case Operacije.ZAPAMTI_TRENERA:
@@ -166,6 +166,8 @@ public class ObradaKlijentskihZahteva extends Thread {
             } catch (IOException ex1) {
                 Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex1);
             } catch (ServerskiException ex1) {
+                Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex1);
+            } catch (Exception ex1) {
                 Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex1);
             }
         } catch (IOException | ClassNotFoundException ex) {

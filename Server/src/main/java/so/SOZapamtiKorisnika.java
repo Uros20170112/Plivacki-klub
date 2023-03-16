@@ -12,18 +12,25 @@ import exception.ServerskiException;
  *
  * @author kompic
  */
-public class SOZapamtiKorisnika extends AbstractSO{
-        
+public class SOZapamtiKorisnika extends AbstractSO {
+
     private AbstractObject korisnik;
 
     public SOZapamtiKorisnika(AbstractObject korisnik) {
         this.korisnik = korisnik;
     }
+
     @Override
-    protected void execute() throws ServerskiException {
-            dbb.insert(korisnik);
+    protected void execute(AbstractObject ao) throws ServerskiException {
+        dbb.insert(korisnik);
     }
+
     public AbstractObject getKorisnik() {
         return korisnik;
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
