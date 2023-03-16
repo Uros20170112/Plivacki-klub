@@ -15,32 +15,32 @@ import kontroler.Kontroler;
  *
  * @author kompic
  */
-public class SOUlogujKorisnika extends AbstractSO{
+public class SOUlogujKorisnika extends AbstractSO {
 
     private AbstractObject unetiParametri;
     private AbstractObject ulogovanKorisnik;
 
-    
     @Override
-    protected void execute() throws ServerskiException {
+    protected void execute(AbstractObject ao) throws ServerskiException {
         List<AbstractObject> listaKorisnika = dbb.select(new Korisnik());
         Korisnik unetiKorisnik = (Korisnik) unetiParametri;
         for (AbstractObject AbstractObject : listaKorisnika) {
             Korisnik izBaze = (Korisnik) AbstractObject;
-            if(izBaze.equals(unetiKorisnik)){
+            if (izBaze.equals(unetiKorisnik)) {
                 ulogovanKorisnik = izBaze;
-                List<AbstractObject> aktivni = Kontroler.getInstance().getListaAktivnihKorisnika();
-                if(aktivni.contains(ulogovanKorisnik))
+                List<Korisnik> aktivni = Kontroler.getInstance().getListaAktivnihKorisnika();
+                if (aktivni.contains(ulogovanKorisnik)) {
                     throw new ServerskiException("Korisnik je vec ulogovan!");
-                else
-                    Kontroler.getInstance().getListaAktivnihKorisnika().add(ulogovanKorisnik);
+                } else {
+                    Kontroler.getInstance().getListaAktivnihKorisnika().add((Korisnik) ulogovanKorisnik);
+                }
                 System.out.println("Ubacio korisnika u listu ulogovanih.");
                 return;
             }
         }
         throw new ServerskiException("Nije pronadjen korisnik!");
     }
-    
+
     public AbstractObject getUnetiParametri() {
         return unetiParametri;
     }
@@ -58,8 +58,8 @@ public class SOUlogujKorisnika extends AbstractSO{
     }
 
     @Override
-    protected void validate() throws Exception {
+    protected void validate(AbstractObject ao) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

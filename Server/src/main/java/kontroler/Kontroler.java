@@ -27,7 +27,7 @@ public class Kontroler {
 
     private static Kontroler instance;
 
-    private List<AbstractObject> listaAktivnihKorisnika;
+    private List<Korisnik> listaAktivnihKorisnika;
 
     private Kontroler() {
         listaAktivnihKorisnika = new ArrayList<>();
@@ -40,16 +40,20 @@ public class Kontroler {
         return instance;
     }
 
-    public AbstractObject ulogujKorisnika(Korisnik k) throws Exception {
-        SOUlogujKorisnika sok = new SOUlogujKorisnika();
-        sok.setUnetiParametri(k);
-        sok.templateExecute();
-        AbstractObject ulogovan = sok.getUlogovanKorisnik();
-//        listaAktivnihKorisnika.add(ulogovan);
-        return ulogovan;
+    public AbstractObject ulogujKorisnika(Korisnik k) {
+        try {
+            SOUlogujKorisnika sok = new SOUlogujKorisnika();
+            sok.setUnetiParametri(k);
+            sok.templateExecute(k);
+            AbstractObject ulogovan = sok.getUlogovanKorisnik();
+            return ulogovan;
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public List<AbstractObject> getListaAktivnihKorisnika() {
+    public List<Korisnik> getListaAktivnihKorisnika() {
         return listaAktivnihKorisnika;
     }
 
@@ -64,13 +68,17 @@ public class Kontroler {
         return null;
     }
 
-    public void izlogujKorisnika(AbstractObject korisnik) throws Exception {
-        SOIzlogujKorisnika soik = new SOIzlogujKorisnika();
-        soik.setKorisnik(korisnik);
-        soik.templateExecute();
+    public void izlogujKorisnika(AbstractObject korisnik) {
+        try {
+            SOIzlogujKorisnika soik = new SOIzlogujKorisnika();
+            soik.setKorisnik(korisnik);
+            soik.templateExecute(korisnik);
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public List<AbstractObject> pretraziPakete(String string){
+    public List<AbstractObject> pretraziPakete(String string) {
         try {
             SOPretraziPakete soplj = new SOPretraziPakete();
             soplj.setPretraga(string);
@@ -94,7 +102,7 @@ public class Kontroler {
         return null;
     }
 
-    public AbstractObject sacuvajKorisnika(Korisnik k){
+    public AbstractObject sacuvajKorisnika(Korisnik k) {
         try {
             SOZapamtiKorisnika sozk = new SOZapamtiKorisnika(k);
             sozk.templateExecute(k);
@@ -105,14 +113,18 @@ public class Kontroler {
         return null;
     }
 
-    public void obrisiKorisnika(Korisnik k) throws Exception {
-        SOObrisiKorisnika sook = new SOObrisiKorisnika();
-        sook.templateExecute(k);
-        listaAktivnihKorisnika.remove(k);
+    public void obrisiKorisnika(Korisnik k) {
+        try {
+            SOObrisiKorisnika sook = new SOObrisiKorisnika();
+            sook.templateExecute(k);
+            listaAktivnihKorisnika.remove(k);
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
-    public void azurirajKorisnike() throws Exception {
-        List<AbstractObject> izBaze = vratiListuKorisnika();
+    public void azurirajKorisnike() {
+        List<Korisnik> izBaze = vratiListuKorisnika();
         for (AbstractObject AbstractObject : izBaze) {
             Korisnik k = (Korisnik) AbstractObject;
 
@@ -154,7 +166,7 @@ public class Kontroler {
             Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        
+
     }
 
     public List<Paket> ucitajPakete() {
@@ -179,15 +191,24 @@ public class Kontroler {
         return null;
     }
 
-    public AbstractObject izmeniClana(List<Object> lista) throws Exception {
-        SOIzmeniClana soic = new SOIzmeniClana(lista);
-        soic.templateExecute();
-        return soic.getClan();
+    public AbstractObject izmeniClana(List<Object> lista) {
+        try {
+            SOIzmeniClana soic = new SOIzmeniClana(lista);
+            soic.templateExecute(new Clan());
+            return soic.getClan();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public void obrisiClana(Clan zaBrisanje) throws Exception {
-        SOObrisiClana som = new SOObrisiClana();
-        som.templateExecute(zaBrisanje);
+    public void obrisiClana(Clan zaBrisanje) {
+        try {
+            SOObrisiClana som = new SOObrisiClana();
+            som.templateExecute(zaBrisanje);
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public AbstractObject zapamtiPaket(Paket p) {
@@ -201,13 +222,18 @@ public class Kontroler {
         return null;
     }
 
-    public AbstractObject azurirajPaket(Paket p) throws Exception {
-        SOIzmeniPaket soip = new SOIzmeniPaket(p);
-        soip.templateExecute();
-        return soip.getPaket();
+    public AbstractObject azurirajPaket(Paket p) {
+        try {
+            SOIzmeniPaket soip = new SOIzmeniPaket(p);
+            soip.templateExecute(p);
+            return soip.getPaket();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public List<Pretplata> vratiSvePretplate(){
+    public List<Pretplata> vratiSvePretplate() {
         try {
             SOUcitajPretplate soup = new SOUcitajPretplate();
             soup.templateExecute(new Pretplata());
@@ -262,14 +288,23 @@ public class Kontroler {
         return null;
     }
 
-    public Trener izmeniTrenera(Trener tr) throws Exception {
-        SOIzmeniTrenera soit = new SOIzmeniTrenera(tr);
-        soit.templateExecute();
-        return (Trener) soit.getTrener();
+    public Trener izmeniTrenera(Trener tr) {
+        try {
+            SOIzmeniTrenera soit = new SOIzmeniTrenera(tr);
+            soit.templateExecute(tr);
+            return (Trener) soit.getTrener();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public void obrisiTrenera(Trener brisiTrenera) throws Exception {
-        SOObrisiTrenera soot = new SOObrisiTrenera();
-        soot.templateExecute(brisiTrenera);
+    public void obrisiTrenera(Trener brisiTrenera) {
+        try {
+            SOObrisiTrenera soot = new SOObrisiTrenera();
+            soot.templateExecute(brisiTrenera);
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

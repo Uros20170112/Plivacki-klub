@@ -43,7 +43,7 @@ public class ModelTabeleKorisnici extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Korisnik kor = korisnici.get(rowIndex);
-        List<AbstractObject> aktivni = new ArrayList<>();
+        List<Korisnik> aktivni = new ArrayList<>();
         aktivni = Kontroler.getInstance().getListaAktivnihKorisnika();
         switch (columnIndex) {
             case 0:

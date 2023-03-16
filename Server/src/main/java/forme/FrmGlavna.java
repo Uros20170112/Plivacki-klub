@@ -7,7 +7,6 @@ package forme;
 
 import domen.AbstractObject;
 import domen.Korisnik;
-import exception.ServerskiException;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -213,9 +212,6 @@ public class FrmGlavna extends javax.swing.JFrame {
                     Kontroler.getInstance().obrisiKorisnika(k);
                     JOptionPane.showMessageDialog(rootPane, "Obrisan je korisnik " + k.getIme());
                     mtk.obrisiKorisnika(k);
-                } catch (ServerskiException ex) {
-                    JOptionPane.showMessageDialog(rootPane, "Došlo je do greške kod brisanja korisnika " + k.getIme() + ". Korisnik nije obrisan.", "Greška", JOptionPane.ERROR_MESSAGE);
-                    Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (Exception ex) {
                     Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -311,9 +307,8 @@ public class FrmGlavna extends javax.swing.JFrame {
             mtk = new ModelTabeleKorisnici(new ArrayList<Korisnik>());
             List<Korisnik> korisniciBaza = new ArrayList<>();
             korisniciBaza = Kontroler.getInstance().vratiListuKorisnika();
-            for (AbstractObject AbstractObject : korisniciBaza) {
-                Korisnik k = (Korisnik) AbstractObject;
-                mtk.dodajKorisnika(k);
+            for (Korisnik korisnik : korisniciBaza) {
+                mtk.dodajKorisnika(korisnik);
             }
             tblKorisnici.setModel(mtk);
         } catch (Exception ex) {
@@ -332,8 +327,6 @@ public class FrmGlavna extends javax.swing.JFrame {
             Kontroler.getInstance().azurirajKorisnike();
             srediTabelu();
             System.out.println("Osvezio korisnike");
-        } catch (ServerskiException ex) {
-            Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
         }

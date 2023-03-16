@@ -22,7 +22,7 @@ public abstract class AbstractSO {
     synchronized public void templateExecute(AbstractObject ao) throws Exception {
         try {
             connect();
-            validate(ao);
+//            validate(ao);
             execute(ao);
             commit();
             disconnect();

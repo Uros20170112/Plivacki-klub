@@ -23,7 +23,7 @@ public class SOIzmeniPaket extends AbstractSO {
     }
 
     @Override
-    protected void execute() throws ServerskiException {
+    protected void execute(AbstractObject ao) throws ServerskiException {
         Paket p = (Paket) paket;
         dbb.update(p);
         for (Termin termin : p.getTermini()) {
@@ -44,6 +44,11 @@ public class SOIzmeniPaket extends AbstractSO {
     }
     public AbstractObject getPaket() {
         return paket;
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     

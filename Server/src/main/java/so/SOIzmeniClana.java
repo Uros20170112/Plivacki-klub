@@ -32,7 +32,7 @@ public class SOIzmeniClana extends AbstractSO {
     }
 
     @Override
-    protected void execute() throws ServerskiException {
+    protected void execute(AbstractObject ao) throws ServerskiException {
         
         dbb.update(clan);
         izBaze = dbb.select(new PromenaPaketa());
@@ -83,6 +83,11 @@ public class SOIzmeniClana extends AbstractSO {
 
     private void dodaj() throws ServerskiException {
         dbb.insert(istorijatPaketa);
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
