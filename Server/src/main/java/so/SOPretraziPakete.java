@@ -22,7 +22,7 @@ public class SOPretraziPakete extends AbstractSO {
     private List<AbstractObject> listaNadjenih = new ArrayList<>();
 
     @Override
-    protected void execute() throws ServerskiException {
+    protected void execute(AbstractObject ao) throws ServerskiException {
         List<AbstractObject> sviPaketi = dbb.select(new Paket());
         for (AbstractObject abs : sviPaketi) {
             Paket pak = (Paket) abs;
@@ -63,6 +63,11 @@ public class SOPretraziPakete extends AbstractSO {
             }
             p.setTermini(terminiPaketa);
         }
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

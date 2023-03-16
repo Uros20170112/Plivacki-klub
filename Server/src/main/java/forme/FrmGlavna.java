@@ -316,9 +316,6 @@ public class FrmGlavna extends javax.swing.JFrame {
                 mtk.dodajKorisnika(k);
             }
             tblKorisnici.setModel(mtk);
-        } catch (ServerskiException ex) {
-            JOptionPane.showMessageDialog(this, "Došlo je do greške kod učitavanja podataka o korisnicima!", "Greška", JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(FrmGlavna.class.getName()).log(Level.SEVERE, null, ex);
         }

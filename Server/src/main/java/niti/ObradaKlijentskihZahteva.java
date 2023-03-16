@@ -99,8 +99,6 @@ public class ObradaKlijentskihZahteva extends Thread {
                             break;
                         case Operacije.OBRISI_CLANA:
                             Clan zaBrisanje = (Clan) kz.getParametar();
-                            AbstractObject obrisan = Kontroler.getInstance().obrisiClana(zaBrisanje);
-                            so.setPodaci(obrisan);
                             break;
                         case Operacije.ZAPAMTI_PAKET:
                             Paket p = (Paket) kz.getParametar();
@@ -146,8 +144,6 @@ public class ObradaKlijentskihZahteva extends Thread {
                             so.setPodaci(tr1);
                         case Operacije.OBRISI_TRENERA:
                             Trener brisiTrenera = (Trener) kz.getParametar();
-                            AbstractObject obrisanTrener = Kontroler.getInstance().obrisiTrenera(brisiTrenera);
-                            so.setPodaci(obrisanTrener);
                             break;
                         default:
                             break;

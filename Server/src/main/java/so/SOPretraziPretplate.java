@@ -28,7 +28,7 @@ public class SOPretraziPretplate extends AbstractSO {
     }
 
     @Override
-    protected void execute() throws ServerskiException {
+    protected void execute(AbstractObject ao) throws ServerskiException {
         List<AbstractObject> svePretplate = dbb.select(new Pretplata());
         for (AbstractObject AbstractObject : svePretplate) {
             Pretplata p = (Pretplata) AbstractObject;
@@ -42,6 +42,11 @@ public class SOPretraziPretplate extends AbstractSO {
 
     public List<AbstractObject> getPretplate() {
         return pretplate;
+    }
+
+    @Override
+    protected void validate(AbstractObject ao) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

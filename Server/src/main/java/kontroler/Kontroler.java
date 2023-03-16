@@ -70,18 +70,28 @@ public class Kontroler {
         soik.templateExecute();
     }
 
-    public List<AbstractObject> pretraziPakete(String string) throws Exception {
-        SOPretraziPakete soplj = new SOPretraziPakete();
-        soplj.setPretraga(string);
-        soplj.templateExecute();
-        return soplj.getListaNadjenih();
+    public List<AbstractObject> pretraziPakete(String string){
+        try {
+            SOPretraziPakete soplj = new SOPretraziPakete();
+            soplj.setPretraga(string);
+            soplj.templateExecute(new Paket());
+            return soplj.getListaNadjenih();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public List<AbstractObject> pretraziClanove(String pretr) throws Exception {
-        SOPretraziClanove soppp = new SOPretraziClanove();
-        soppp.setPretraga(pretr);
-        soppp.templateExecute();
-        return soppp.getListaNadjenih();
+    public List<AbstractObject> pretraziClanove(String pretr) {
+        try {
+            SOPretraziClanove soppp = new SOPretraziClanove();
+            soppp.setPretraga(pretr);
+            soppp.templateExecute(new Clan());
+            return soppp.getListaNadjenih();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public AbstractObject sacuvajKorisnika(Korisnik k) throws Exception {
@@ -199,10 +209,15 @@ public class Kontroler {
         return sozp.getPretplata();
     }
 
-    public List<AbstractObject> pretraziPretplate(Paket pak) throws Exception {
-        SOPretraziPretplate sopp = new SOPretraziPretplate(pak);
-        sopp.templateExecute();
-        return sopp.getPretplate();
+    public List<AbstractObject> pretraziPretplate(Paket pak) {
+        try {
+            SOPretraziPretplate sopp = new SOPretraziPretplate(pak);
+            sopp.templateExecute(new Pretplata());
+            return sopp.getPretplate();
+        } catch (Exception ex) {
+            Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public List<Trener> vratiTrenere() {
