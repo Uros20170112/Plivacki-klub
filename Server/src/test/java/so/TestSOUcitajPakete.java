@@ -62,7 +62,7 @@ public class TestSOUcitajPakete {
     }
 
     /**
-     * Test of execute method, of class SOUcitajPretplate. Tabela korisnika je
+     * Test of execute method, of class SOUcitajPaket. Tabela paketa je
      * ispraznjena za ovaj test.
      *
      * @throws java.lang.Exception
