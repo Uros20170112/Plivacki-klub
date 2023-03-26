@@ -22,7 +22,6 @@ public class SOIzmeniClana extends AbstractSO {
     private AbstractObject istorijatPaketa;
     PromenaPaketa istorijatP;
     List<AbstractObject> izBaze;
-    
 
     public SOIzmeniClana(List<Object> parametri) {
         super();
@@ -33,36 +32,35 @@ public class SOIzmeniClana extends AbstractSO {
 
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
-        
+
         dbb.update(clan);
         izBaze = dbb.select(new PromenaPaketa());
         ucatijClanovePakete();
-        
-        if(daLiMenjam()){
+
+        if (daLiMenjam()) {
             deaktiviraj();
             dodaj();
         }
     }
 
-   
     public AbstractObject getClan() {
         return clan;
     }
 
     private void ucatijClanovePakete() throws ServerskiException {
-         for (AbstractObject abs : izBaze) {
-                PromenaPaketa ip = (PromenaPaketa) abs;
-                ip.setClan((Clan) dbb.selectWithPK(new Clan(), ip.getClan().getClanId()));
-                ip.setPaket((Paket) dbb.selectWithPK(new Paket(), ip.getPaket().getPaketId()));
+        for (AbstractObject abs : izBaze) {
+            PromenaPaketa ip = (PromenaPaketa) abs;
+            ip.setClan((Clan) dbb.selectWithPK(new Clan(), ip.getClan().getClanId()));
+            ip.setPaket((Paket) dbb.selectWithPK(new Paket(), ip.getPaket().getPaketId()));
         }
     }
 
     private boolean daLiMenjam() {
         for (AbstractObject abs : izBaze) {
             PromenaPaketa ip = (PromenaPaketa) abs;
-            if(ip.getClan().equals(istorijatP.getClan())
+            if (ip.getClan().equals(istorijatP.getClan())
                     && !ip.getPaket().equals(istorijatP.getPaket())
-                    && ip.isAktivan() == true){
+                    && ip.isAktivan() == true) {
                 return true;
             }
         }
@@ -72,11 +70,11 @@ public class SOIzmeniClana extends AbstractSO {
     private void deaktiviraj() throws ServerskiException {
         for (AbstractObject abs : izBaze) {
             PromenaPaketa ip = (PromenaPaketa) abs;
-            if(ip.getClan().equals(istorijatP.getClan())
+            if (ip.getClan().equals(istorijatP.getClan())
                     && !ip.getPaket().equals(istorijatP.getPaket())
-                    && ip.isAktivan() == true){
-                  ip.setAktivan(false);
-                  dbb.update(ip);
+                    && ip.isAktivan() == true) {
+                ip.setAktivan(false);
+                dbb.update(ip);
             }
         }
     }
@@ -85,9 +83,4 @@ public class SOIzmeniClana extends AbstractSO {
         dbb.insert(istorijatPaketa);
     }
 
-    @Override
-    protected void validate(AbstractObject ao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

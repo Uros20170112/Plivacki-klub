@@ -12,7 +12,7 @@ import exception.ServerskiException;
  *
  * @author kompic
  */
-public class SOZapamtiTrenera extends AbstractSO{
+public class SOZapamtiTrenera extends AbstractSO {
 
     private AbstractObject trener;
 
@@ -27,10 +27,5 @@ public class SOZapamtiTrenera extends AbstractSO{
 
     public AbstractObject getTrener() {
         return trener;
-    }
-
-    @Override
-    protected void validate(AbstractObject ao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -9,6 +9,7 @@ import domen.AbstractObject;
 import domen.Paket;
 import domen.Termin;
 import exception.ServerskiException;
+
 /**
  *
  * @author kompic
@@ -16,7 +17,6 @@ import exception.ServerskiException;
 public class SOIzmeniPaket extends AbstractSO {
 
     private AbstractObject paket;
-    
 
     public SOIzmeniPaket(AbstractObject paket) {
         this.paket = paket;
@@ -38,19 +38,13 @@ public class SOIzmeniPaket extends AbstractSO {
                     dbb.delete(termin);
                     break;
                 default:
-                    
+
             }
         }
     }
+
     public AbstractObject getPaket() {
         return paket;
     }
-
-    @Override
-    protected void validate(AbstractObject ao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
 
 }

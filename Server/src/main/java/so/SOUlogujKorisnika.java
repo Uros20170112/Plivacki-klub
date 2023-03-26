@@ -57,9 +57,4 @@ public class SOUlogujKorisnika extends AbstractSO {
         this.ulogovanKorisnik = ulogovanKorisnik;
     }
 
-    @Override
-    protected void validate(AbstractObject ao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

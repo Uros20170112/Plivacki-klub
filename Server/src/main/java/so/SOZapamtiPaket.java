@@ -9,6 +9,7 @@ import domen.AbstractObject;
 import domen.Paket;
 import domen.Termin;
 import exception.ServerskiException;
+
 /**
  *
  * @author kompic
@@ -36,11 +37,6 @@ public class SOZapamtiPaket extends AbstractSO {
 
     private void zapamtiTermin(Termin t) throws ServerskiException {
         dbb.insert(t);
-    }
-
-    @Override
-    protected void validate(AbstractObject ao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

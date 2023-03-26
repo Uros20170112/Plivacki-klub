@@ -22,7 +22,6 @@ public abstract class AbstractSO {
     synchronized public void templateExecute(AbstractObject ao) throws Exception {
         try {
             connect();
-//            validate(ao);
             execute(ao);
             commit();
             disconnect();
@@ -32,7 +31,6 @@ public abstract class AbstractSO {
         }
     }
     
-    protected abstract void validate(AbstractObject ao) throws Exception;
 
     public void commit() throws SQLException {
         DBBroker.getInstance().getConnection().commit();

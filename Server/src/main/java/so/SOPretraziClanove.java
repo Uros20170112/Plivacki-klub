@@ -21,7 +21,7 @@ public class SOPretraziClanove extends AbstractSO {
     private String pretraga;
     private List<AbstractObject> sviClanovi;
     private List<AbstractObject> listaNadjenih = new ArrayList<>();
-    
+
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
         sviClanovi = dbb.select(new Clan());
@@ -59,13 +59,8 @@ public class SOPretraziClanove extends AbstractSO {
     private void ucitajMesta() throws ServerskiException {
         for (AbstractObject abs : sviClanovi) {
             Clan cl = (Clan) abs;
-            cl.setMesto((Mesto) dbb.selectWithPK(new Mesto(),cl.getMesto().getMestoId()));
+            cl.setMesto((Mesto) dbb.selectWithPK(new Mesto(), cl.getMesto().getMestoId()));
         }
-    }
-
-    @Override
-    protected void validate(AbstractObject ao) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
