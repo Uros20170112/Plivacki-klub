@@ -8,12 +8,15 @@ import db.DBBroker;
 import domen.AbstractObject;
 import domen.Clan;
 import domen.Mesto;
+import domen.Paket;
+import domen.Pretplata;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +29,7 @@ import org.junit.gen5.api.Test;
  *
  * @author kompic
  */
-public class TestSOUcitajClanove {
+public class TestSOUcitajPretplate {
 
     @Before
     void setUp() throws Exception {
@@ -65,35 +68,40 @@ public class TestSOUcitajClanove {
     }
 
     /**
-     * Test of execute method, of class SOUcitajClanove.tabela clanova je
-     * ispraznjena za ovaj test. U bazi je vec mesto sa ovim vrednostima
+     * Test of execute method, of class SOUcitajPretplate. Tabela pretplata je
+     * ispraznjena za ovaj test.
      *
      * @throws java.lang.Exception
      */
     @Test
     public void testExecute() throws Exception {
         isprazniTabelu();
-        isprazniMesta();
-        Mesto m = new Mesto("1", "Beograd", "11000");
+        isprazniClanove();
+        isprazniPakete();
 
+        Mesto m = new Mesto("1", "Beograd", "11000");
         dodajMesto(m);
 
-        ArrayList<Clan> listaClanova = new ArrayList<>();
-        listaClanova.add(new Clan(null, "imeime", "prezime", "sad@asd", "adresa123", "01243456789", m));
-        listaClanova.add(new Clan(null, "imeime", "prezime", "saad@asd", "adresa123", "01253456789", m));
-        listaClanova.add(new Clan(null, "imeime", "prezime", "sabd@asd", "adresa123", "01234356789", m));
-        listaClanova.add(new Clan(null, "imeime", "prezime", "sadq@asd", "adresa123", "01223456789", m));
+        Clan clan = new Clan("1", "ime", "prezime", "email@email.com", "adresa", "0001112222", m);
+        Paket paket = new Paket("1", "paket1", "1000");
+        dodajPaket(paket);
+        dodajCana(clan);
 
-        for (Clan clan : listaClanova) {
-            (new SOZapamtiClana()).execute(clan);
+        ArrayList<Pretplata> listaPretplata = new ArrayList<>();
+        listaPretplata.add(new Pretplata("1", new Date(), clan, paket, new Date()));
+        listaPretplata.add(new Pretplata("2", new Date(), clan, paket, new Date()));
+        listaPretplata.add(new Pretplata("3", new Date(), clan, paket, new Date()));
+
+        for (Pretplata pretplata : listaPretplata) {
+            (new SOZapamtiPretplatu(pretplata)).execute(pretplata);
         }
 
-        ArrayList<AbstractObject> clanovi = (ArrayList<AbstractObject>) DBBroker.getInstance().select(new Clan());
-        ArrayList<Clan> listaPom = (ArrayList<Clan>) (ArrayList<?>) clanovi;
+        ArrayList<AbstractObject> pretplate = (ArrayList<AbstractObject>) DBBroker.getInstance().select(new Pretplata());
+        ArrayList<Pretplata> listaPom = (ArrayList<Pretplata>) (ArrayList<?>) pretplate;
 
         boolean b = true;
         for (int i = 0; i < listaPom.size(); i++) {
-            if (!listaClanova.get(i).getEmail().equals(listaPom.get(i).getEmail())) {
+            if (!listaPretplata.get(i).getPretplataId().equals(listaPom.get(i).getPretplataId())) {
                 b = false;
             }
         }
@@ -102,6 +110,46 @@ public class TestSOUcitajClanove {
     }
 
     private void isprazniTabelu() {
+        isprazniPakete();
+        isprazniClanove();
+        isprazniMesta();
+        try {
+            String upit = "DELETE FROM Pretplata";
+            System.out.println(upit);
+            Statement s = DBBroker.getInstance().getConnection().createStatement();
+            s.executeUpdate(upit);
+        } catch (SQLException ex) {
+            Logger.getLogger(SOUcitajPretplate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void isprazniPakete() {
+        try {
+            String upit = "DELETE FROM paket";
+            System.out.println(upit);
+            Statement s = DBBroker.getInstance().getConnection().createStatement();
+            s.executeUpdate(upit);
+        } catch (SQLException ex) {
+            Logger.getLogger(SOUcitajPakete.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void dodajPaket(Paket p) {
+        try {
+            String upit = "INSERT INTO mesto values(?,?,?)";
+            System.out.println(upit);
+            PreparedStatement ps = DBBroker.getInstance().getConnection().prepareStatement(upit, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, p.getPaketId());
+            ps.setString(2, p.getNaziv());
+            ps.setString(3, p.getCena());
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SOIzmeniPaket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void isprazniClanove() {
         isprazniMesta();
         try {
             String upit = "DELETE FROM clan";
@@ -109,7 +157,7 @@ public class TestSOUcitajClanove {
             Statement s = DBBroker.getInstance().getConnection().createStatement();
             s.executeUpdate(upit);
         } catch (SQLException ex) {
-            Logger.getLogger(SOUcitajClanove.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SOUcitajPakete.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -139,4 +187,23 @@ public class TestSOUcitajClanove {
         }
     }
 
+    private void dodajCana(Clan clan) {
+        try {
+            String upit = "INSERT INTO mesto values(?,?,?,?,?,?,?)";
+            System.out.println(upit);
+            PreparedStatement ps = DBBroker.getInstance().getConnection().prepareStatement(upit, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, clan.getClanId());
+            ps.setString(2, clan.getIme());
+            ps.setString(3, clan.getPrezime());
+            ps.setString(4, clan.getEmail());
+            ps.setString(5, clan.getAdresa());
+            ps.setString(6, clan.getTelefon());
+            ps.setString(7, clan.getMesto().getMestoId());
+
+            ps.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SOIzmeniClana.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
