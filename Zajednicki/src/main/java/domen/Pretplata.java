@@ -52,7 +52,8 @@ public class Pretplata extends AbstractObject {
     /**
      * Postavlja vrednost za id pretplate
      *
-     * @param pretplata
+     * @param pretplataId
+     * pretplataId je String, ne sme biti null, prazan string ili 0 i negativan broj.
      */
     public void setPretplataId(String pretplataId) {
         if (pretplataId == null) {
@@ -80,6 +81,7 @@ public class Pretplata extends AbstractObject {
      * Postavlja vrednost za datum pretplate
      *
      * @param datum
+     * datum ne sme biti null i opre danasnjeg datuma
      */
     public void setDatum(Date datum) {
         if (datum == null) {
@@ -104,6 +106,7 @@ public class Pretplata extends AbstractObject {
      * Postavlja vrednost za clana
      *
      * @param clan
+     * clan ne sme biti null
      */
     public void setClan(Clan clan) {
         if (clan == null) {
@@ -125,6 +128,7 @@ public class Pretplata extends AbstractObject {
      * Postavlja vrednost za datum vezenja paketa
      *
      * @param vaziDo
+     * vazi do ne sme biti null i pre danasnjeg datuma
      */
     public void setVaziDo(Date vaziDo) {
         if (vaziDo == null) {
@@ -152,6 +156,7 @@ public class Pretplata extends AbstractObject {
      * Postavlja vrednost paketa za pretplatu
      *
      * @param paket
+     * paket ne sme biti null
      */
     public void setPaket(Paket paket) {
         if (paket == null) {
@@ -214,8 +219,8 @@ public class Pretplata extends AbstractObject {
      * je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata Pretplata
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -255,6 +260,7 @@ public class Pretplata extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primanri kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {

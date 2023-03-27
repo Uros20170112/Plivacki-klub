@@ -57,6 +57,7 @@ public class Clan extends AbstractObject {
      * Postavlja vrednost clanId
      *
      * @param clanId
+     * clanId je string, ne sme biti null, prazan string ili 0 i negativan broj
      */
     public void setClanId(String clanId) {
         if(clanId == null){
@@ -84,6 +85,7 @@ public class Clan extends AbstractObject {
      * Postavlja vrednost ime clana
      *
      * @param ime
+     * ime je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setIme(String ime) {
         if(ime == null){
@@ -108,6 +110,7 @@ public class Clan extends AbstractObject {
      * Postavlja vrednost prezime clana
      *
      * @param prezime
+     * prezime je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setPrezime(String prezime) {
         if(prezime == null){
@@ -132,6 +135,7 @@ public class Clan extends AbstractObject {
      * Postavlja vrednost email clana
      *
      * @param email
+     * email je String i ne sme da bude null ili da ne sadrzi @.
      */
     public void setEmail(String email) {
         if(email == null){
@@ -155,13 +159,14 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja adresu clana
      *
-     * @param adresa
+     * @param adresa 
+     * adresa je String ii ne sme da bude null ili krace od 2 karaktera.
      */
     public void setAdresa(String adresa) {
         if(adresa == null){
             throw new NullPointerException("adresa clana ne sme biti null");
         }
-        if(adresa.length() < 10){
+        if(adresa.length() < 2){
             throw new RuntimeException("adresa clana ne sme biti krace od 2 karaktera");
         }
         this.adresa = adresa;
@@ -180,6 +185,7 @@ public class Clan extends AbstractObject {
      * Postavlja vrednost broja telefona clana
      *
      * @param telefon
+     * telefon je String i ne sme da bude null, kraci od 10 karaktera i  da sadrzi slova
      */
     public void setTelefon(String telefon) {
         if(telefon == null){
@@ -207,6 +213,7 @@ public class Clan extends AbstractObject {
      * Postavlja vrednost mesta clana
      *
      * @param mesto
+     * mesto je Mesto i ne sme da bude null
      */
     public void setMesto(Mesto mesto) {
         if(mesto == null){
@@ -266,8 +273,8 @@ public class Clan extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Clan i vraca je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata Clan
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -304,6 +311,7 @@ public class Clan extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -314,6 +322,7 @@ public class Clan extends AbstractObject {
      * Poredi dva objekta Clan i utvrdjuje da li su isti
      *
      * @param obj
+     * obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Clan i imaju isti clanID

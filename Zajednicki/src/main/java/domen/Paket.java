@@ -56,6 +56,7 @@ public class Paket extends AbstractObject {
      * Postavlja vrednost id paketa
      *
      * @param paketId
+     * paketId je string, ne sme biti null, prazan string ili 0 i negativan broj
      */
     public void setPaketId(String paketId) {
         if (paketId == null) {
@@ -83,6 +84,7 @@ public class Paket extends AbstractObject {
      * Postavlja vrednost za naziv paketa
      *
      * @param naziv
+     * naziv je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setNaziv(String naziv) {
         if (naziv == null) {
@@ -107,6 +109,7 @@ public class Paket extends AbstractObject {
      * Postavlja vrednost za cenu paketa
      *
      * @param cena
+     * cena je String,  en sme biti null i mora sadrzati samo cifre
      */
     public void setCena(String cena) {
         if (cena == null) {
@@ -175,8 +178,8 @@ public class Paket extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Paket i vraca je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata Paket
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -210,6 +213,7 @@ public class Paket extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -220,6 +224,7 @@ public class Paket extends AbstractObject {
      * Poredi dva objekta Paket i utvrdjuje da li su isti
      *
      * @param obj
+     * obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Paket i imaju isti paketId
@@ -247,7 +252,7 @@ public class Paket extends AbstractObject {
     /**
      * Vraca listu termina koji se nalaze u paketu
      *
-     * @return List<Termin> termini
+     * @return termini
      */
     public List<Termin> getTermini() {
         return termini;
@@ -257,6 +262,7 @@ public class Paket extends AbstractObject {
      * Postavlja vrednost za listu termini
      *
      * @param termini
+     * termini su Termin
      */
     public void setTermini(List<Termin> termini) {
         this.termini = termini;

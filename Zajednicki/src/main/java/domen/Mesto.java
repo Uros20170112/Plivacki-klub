@@ -36,6 +36,7 @@ public class Mesto extends AbstractObject {
      * Poredi dva objekta Mesto i utvrdjuje da li su isti
      *
      * @param obj
+     * obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Mesto i imaju isti mestoId
@@ -86,6 +87,7 @@ public class Mesto extends AbstractObject {
      * Postavlja vednost za id mesta
      *
      * @param mestoId
+     * MestoId je String, ne sme biti null, prazan string ili 0 i negativan broj
      */
     public void setMestoId(String mestoId) {
         if(mestoId == null){
@@ -113,6 +115,7 @@ public class Mesto extends AbstractObject {
      * Postavlja vrednost za naziv mesta
      *
      * @param naziv
+     * naziv je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setNaziv(String naziv) {
         if(naziv == null){
@@ -137,6 +140,7 @@ public class Mesto extends AbstractObject {
      * Postavlja vrednost za ptt mesta
      *
      * @param ptt
+     * ptt je String i ne sme da bude null, krace od 2 karaktera ili da sadzribilo sta sta nisu cifre.
      */
     public void setPtt(String ptt) {
         if(ptt == null){
@@ -204,8 +208,8 @@ public class Mesto extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Mesto i vraca je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata Mesto
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -238,6 +242,7 @@ public class Mesto extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {

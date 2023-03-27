@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -47,6 +45,7 @@ public class Trener extends AbstractObject {
      * Postavlja vrednost za id trenera
      *
      * @param trenerId
+     * trenerId je string, ne sme biti null, prazan string ili 0 i negativan broj.
      */
     public void setTrenerId(String trenerId) {
         if(trenerId == null){
@@ -74,6 +73,7 @@ public class Trener extends AbstractObject {
      * Postavlja vrednost za ime trenera
      *
      * @param ime
+     * ime je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setIme(String ime) {
         if(ime == null){
@@ -98,6 +98,7 @@ public class Trener extends AbstractObject {
      * Postavlja vrednost za prezime trenera
      *
      * @param prezime
+     * prezime je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setPrezime(String prezime) {
         if(prezime == null){
@@ -122,6 +123,7 @@ public class Trener extends AbstractObject {
      * Postavlja vrednost za tip trenera
      *
      * @param tipTrenera
+     * tipTrenera je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setTipTrenera(String tipTrenera) {
         if(tipTrenera == null){
@@ -184,8 +186,8 @@ public class Trener extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Trener i vraca je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata Trener
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -219,6 +221,7 @@ public class Trener extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -245,6 +248,7 @@ public class Trener extends AbstractObject {
      * Poredi dva objekta Mesto i utvrdjuje da li su isti
      *
      * @param obj
+     * obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Trener i imaju isti mestoId

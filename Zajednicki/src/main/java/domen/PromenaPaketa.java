@@ -53,6 +53,7 @@ public class PromenaPaketa extends AbstractObject {
      * Postavlja vrednost za parametar aktivan
      *
      * @param aktivan
+     * aktivan je boolean
      */
     public void setAktivan(boolean aktivan) {
         this.aktivan = aktivan;
@@ -71,6 +72,7 @@ public class PromenaPaketa extends AbstractObject {
      * Postavlja vrednost za datum
      *
      * @param datumOdabira
+     * datumOdabira ne sme biti null
      */
     public void setDatumOdabira(Date datumOdabira) {
         if (datumOdabira == null) {
@@ -92,6 +94,7 @@ public class PromenaPaketa extends AbstractObject {
      * Postavlja vrednost za clana
      *
      * @param clan
+     * clan ne sme biti null
      */
     public void setClan(Clan clan) {
         if (clan == null) {
@@ -113,6 +116,7 @@ public class PromenaPaketa extends AbstractObject {
      * Postavlja vrednost za paket
      *
      * @param paket
+     * paket ne sme biti null
      */
     public void setPaket(Paket paket) {
         if (paket == null) {
@@ -179,8 +183,8 @@ public class PromenaPaketa extends AbstractObject {
      * vraca je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata PromenaPaketa
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -227,6 +231,7 @@ public class PromenaPaketa extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {

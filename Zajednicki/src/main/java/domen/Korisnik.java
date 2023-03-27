@@ -41,6 +41,7 @@ public class Korisnik extends AbstractObject {
      * Poredi dva objekta Korisnik i utvrdjuje da li su isti
      *
      * @param obj
+     * obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Korisnik i imaju isti username i
@@ -131,8 +132,8 @@ public class Korisnik extends AbstractObject {
      * je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata Korisnik
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -159,6 +160,7 @@ public class Korisnik extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -191,6 +193,7 @@ public class Korisnik extends AbstractObject {
      * Postavlja vrednost ime korisnik
      *
      * @param ime
+     * ime je String i ne sme da bude null ili krace od 2 karaktera.
      */
     public void setIme(String ime) {
         if(ime == null){
@@ -215,6 +218,7 @@ public class Korisnik extends AbstractObject {
      * Postavlja vrednost email korisnika
      *
      * @param email
+     * email je String i ne sme da bude null i mora da ima @.
      */
     public void setEmail(String email) {
         if(email == null){
@@ -239,6 +243,7 @@ public class Korisnik extends AbstractObject {
      * Postavlja vrednost sifra korisnika
      *
      * @param password
+     * password je String, ne sme da bude null i mora da ima vise od 7 karaktera i da sadrzi barem 1 broj
      */
     public void setPassword(String password) {
         if(password == null){
@@ -271,6 +276,7 @@ public class Korisnik extends AbstractObject {
      * Postavlja vrednost korisnickog imena
      *
      * @param username
+     * username je String i ne sme da bude null ili krace od 5 karaktera.
      */
     public void setUsername(String username) {
         if(username == null){
@@ -295,6 +301,7 @@ public class Korisnik extends AbstractObject {
      * Postavlja status korisnika
      *
      * @param statusKorisnika
+     * statusKorisnika je String i ne sme da bude null ili da bude razlicito od online i offline.
      */
     public void setStatusKorisnika(String statusKorisnika) {
         if(statusKorisnika == null){

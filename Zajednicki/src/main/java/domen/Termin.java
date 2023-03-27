@@ -54,6 +54,7 @@ public class Termin extends AbstractObject {
      * Postavlja vrednost stanja
      *
      * @param stanje
+     * stanje je string
      */
     public void setStanje(String stanje) {
         this.stanje = stanje;
@@ -72,6 +73,7 @@ public class Termin extends AbstractObject {
      * Postavlja vrednost za smenu termina
      *
      * @param smena
+     * smena ne sme biti null i mora da sledi strikan sablon
      */
     public void setSmena(String smena) {
         if (smena == null) {
@@ -96,6 +98,7 @@ public class Termin extends AbstractObject {
      * Postavlja vrednost za vrednost dan
      *
      * @param dan
+     * dan je String i mora da bude jedan od dana u nedelji
      */
     public void setDan(String dan) {
         if (dan == null) {
@@ -121,6 +124,7 @@ public class Termin extends AbstractObject {
      * Postavlja vrednost za paket
      *
      * @param paket
+     * paket ne sme da bude null
      */
     public void setPaket(Paket paket) {
         if (paket == null) {
@@ -132,7 +136,7 @@ public class Termin extends AbstractObject {
     /**
      * Vraca id za termin
      *
-     * @return
+     * @return id
      */
     public String getId() {
         return id;
@@ -142,6 +146,7 @@ public class Termin extends AbstractObject {
      * Postavlja vrednost za id za termin
      *
      * @param id
+     * id je string, ne sme biti null, prazan string ili 0 i negativan broj.
      */
     public void setId(String id) {
         if (id == null) {
@@ -169,6 +174,7 @@ public class Termin extends AbstractObject {
      * Postavlja vrednost za trenera
      *
      * @param trener
+     * trener ne sme da bdue null
      */
     public void setTrener(Trener trener) {
         if (trener == null) {
@@ -228,8 +234,8 @@ public class Termin extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Termin i vraca je
      *
      * @param rs
+     * rs je resultset
      * @return lista objekata Termin
-     * @throws SQLException ako dodje do greske prilikom izvrsavanja upita
      */
     @Override
     public List<AbstractObject> RSuTabelu(ResultSet rs) {
@@ -265,6 +271,7 @@ public class Termin extends AbstractObject {
      * Postavlja vrednost primarnog kljuca
      *
      * @param pk
+     * pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
