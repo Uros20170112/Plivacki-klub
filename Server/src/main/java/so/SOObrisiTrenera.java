@@ -9,11 +9,19 @@ import domen.AbstractObject;
 import exception.ServerskiException;
 
 /**
+ * Klasa koja brise trenutno izabranog trenera. Nasledjuje AbstractSO i
+ * implementira metodu execute.
  *
  * @author kompic
  */
 public class SOObrisiTrenera extends AbstractSO {
 
+    /**
+     * Pokrece metodu delete iz DBBroker-a.
+     *
+     * @param ao prosledjeni trener.
+     * @throws ServerskiException
+     */
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
         dbb.delete(ao);

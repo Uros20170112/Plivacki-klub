@@ -9,11 +9,19 @@ import domen.AbstractObject;
 import exception.ServerskiException;
 
 /**
+ * Klasa koja Brise trenutno izabranog korisnika. Nasledjuje AbstractSO i
+ * implementira metodu execute.
  *
  * @author kompic
  */
 public class SOObrisiKorisnika extends AbstractSO {
 
+    /**
+     * Pokrece metodu delete iz DBBroker-a.
+     *
+     * @param ao trenutno izabrani korisnik.
+     * @throws ServerskiException
+     */
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
         dbb.delete(ao);
