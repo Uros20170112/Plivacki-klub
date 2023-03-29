@@ -38,6 +38,9 @@ public class TerminTest {
     public TerminTest() {
     }
 
+    /**
+     * Test of setTerminId method, of class Termin
+     */
     @Test
     public void testSetTerminId() {
         t.setId("1");
@@ -45,24 +48,36 @@ public class TerminTest {
         assertEquals("1", t.getId());
     }
 
+    /**
+     * Test of setTerminId method, of class Termin
+     */
     @Test
     public void testSetTerminIdNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> t.setId(null));
     }
 
+    /**
+     * Test of setTerminId method, of class Termin
+     */
     @Test
     public void testSetTerminIdPrazanString() {
         assertThrows(java.lang.IllegalArgumentException.class,
                 () -> t.setId(""));
     }
 
+    /**
+     * Test of setTerminId method, of class Termin
+     */
     @Test
     public void testSetTerminIdNulaIliManje() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> t.setId("0"));
     }
 
+    /**
+     * Test of setPaket method, of class Termin
+     */
     @Test
     public void testSetPaket() {
         Paket p1 = new Paket();
@@ -74,11 +89,17 @@ public class TerminTest {
         assertEquals(p1, t.getPaket());
     }
 
+    /**
+     * Test of setPaket method, of class Termin
+     */
     @Test
     public void testSetPaketNull() {
         assertThrows(java.lang.NullPointerException.class, () -> t.setPaket(null));
     }
 
+    /**
+     * Test of setTrener method, of class Termin
+     */
     @Test
     public void testSetTrener() {
         Trener tr1 = new Trener();
@@ -90,11 +111,17 @@ public class TerminTest {
         assertEquals(tr1, t.getTrener());
     }
 
+    /**
+     * Test of setTrener method, of class Termin
+     */
     @Test
     public void testSetTrenerNull() {
         assertThrows(java.lang.NullPointerException.class, () -> t.setTrener(null));
     }
 
+    /**
+     * Test of setSmena method, of class Termin
+     */
     @Test
     public void testSetSmena() {
         t.setSmena("12:00-13:00");
@@ -102,16 +129,25 @@ public class TerminTest {
         assertEquals("12:00-13:00", t.getSmena());
     }
 
+    /**
+     * Test of setSmena method, of class Termin
+     */
     @Test
     public void testSetSmenaNull() {
         assertThrows(java.lang.NullPointerException.class, () -> t.setSmena(null));
     }
 
+    /**
+     * Test of setSmena method, of class Termin
+     */
     @Test
     public void testSetSmenaPogresno() {
         assertThrows(java.lang.IllegalArgumentException.class, () -> t.setSmena("1"));
     }
 
+    /**
+     * Test of setDan method, of class Termin
+     */
     @Test
     public void testSetDan() {
         t.setDan("Ponedeljak");
@@ -119,11 +155,17 @@ public class TerminTest {
         assertEquals("Ponedeljak", t.getDan());
     }
 
+    /**
+     * Test of setDan method, of class Termin
+     */
     @Test
     public void testSetDanNull() {
         assertThrows(java.lang.NullPointerException.class, () -> t.setDan(null));
     }
 
+    /**
+     * Test of setDan method, of class Termin
+     */
     @Test
     public void testSetDanPogresno() {
         assertThrows(java.lang.IllegalArgumentException.class, () -> t.setDan("1"));
