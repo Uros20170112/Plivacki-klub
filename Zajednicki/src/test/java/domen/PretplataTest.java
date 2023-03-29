@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.junit.gen5.api.Assertions.assertThrows;
 
 /**
+ * Test of class Pretplata
  *
  * @author kompic
  */

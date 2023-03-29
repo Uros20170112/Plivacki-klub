@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 import static org.junit.gen5.api.Assertions.assertThrows;
 
 /**
+ * Test of class Clan
  *
  * @author kompic
  */

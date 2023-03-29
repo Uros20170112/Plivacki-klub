@@ -11,6 +11,7 @@ import org.junit.Test;
 import static org.junit.gen5.api.Assertions.assertThrows;
 
 /**
+ * Test of class Korisnik
  *
  * @author kompic
  */
@@ -165,7 +166,7 @@ public class KorisnikTest {
         k.setIme("Petar");
         assertEquals("Petar", k.toString());
     }
-    
+
     @Test
     public void testEquals() {
         k.setUsername("username");
@@ -173,7 +174,7 @@ public class KorisnikTest {
         Korisnik korisnik = new Korisnik();
         korisnik.setUsername("username");
         korisnik.setPassword("password");
-        
+
         assertEquals(korisnik, k);
     }
 }

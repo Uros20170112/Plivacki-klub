@@ -13,6 +13,7 @@ import static org.junit.gen5.api.Assertions.assertThrows;
 import org.junit.gen5.api.BeforeAll;
 
 /**
+ * Test of class Mesto
  *
  * @author kompic
  */
