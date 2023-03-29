@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Klasa koja predstavlja pretplatu u plivackom klubu i koja nasledjuje
+ * apstraktnu klasu AbstractObject i implementira njene metode.
  *
  * @author kompic
  */

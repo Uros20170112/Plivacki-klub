@@ -14,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Klasa koja predstavlja mesto i koja nasledjuje apstraktnu klasu
+ * AbstractObject i implementira njene metode.
  *
  * @author kompic
  */
@@ -35,8 +37,7 @@ public class Mesto extends AbstractObject {
     /**
      * Poredi dva objekta Mesto i utvrdjuje da li su isti
      *
-     * @param obj
-     * obj je objekat
+     * @param obj obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Mesto i imaju isti mestoId
@@ -87,20 +88,20 @@ public class Mesto extends AbstractObject {
     /**
      * Postavlja vednost za id mesta
      *
-     * @param mestoId
-     * MestoId je String, ne sme biti null, prazan string ili 0 i negativan broj.
+     * @param mestoId MestoId je String, ne sme biti null, prazan string ili 0 i
+     * negativan broj.
      * @throws NullPointerException ako je mestoId null.
      * @throws IllegalArgumentException ako je mestoId prazan String.
      * @throws RuntimeException ako je mestoId 0 ili negativan broj.
      */
     public void setMestoId(String mestoId) {
-        if(mestoId == null){
+        if (mestoId == null) {
             throw new NullPointerException("id mesta ne sme biti null");
         }
-        if(mestoId.equals("")){
+        if (mestoId.equals("")) {
             throw new IllegalArgumentException("id mesta ne sme biti prazan string");
         }
-        if( mestoId.equals("0") || mestoId.contains("-")){
+        if (mestoId.equals("0") || mestoId.contains("-")) {
             throw new RuntimeException("id mesta ne sme biti nula, niti negativan broj");
         }
         this.mestoId = mestoId;
@@ -118,16 +119,16 @@ public class Mesto extends AbstractObject {
     /**
      * Postavlja vrednost za naziv mesta
      *
-     * @param naziv
-     * naziv je String i ne sme da bude null ili krace od 2 karaktera.
+     * @param naziv naziv je String i ne sme da bude null ili krace od 2
+     * karaktera.
      * @throws NullPointerException ako je naziv null.
      * @throws RuntimeException ako je naziv krace od 2 karaktera.
      */
     public void setNaziv(String naziv) {
-        if(naziv == null){
+        if (naziv == null) {
             throw new NullPointerException("naziv mesta ne sme biti null");
         }
-        if(naziv.length() < 2){
+        if (naziv.length() < 2) {
             throw new RuntimeException("naziv mesta ne sme biti krace od 2 karaktera");
         }
         this.naziv = naziv;
@@ -145,22 +146,23 @@ public class Mesto extends AbstractObject {
     /**
      * Postavlja vrednost za ptt mesta
      *
-     * @param ptt
-     * ptt je String i ne sme da bude null, krace od 2 karaktera ili da sadzribilo sta sta nisu cifre.
+     * @param ptt ptt je String i ne sme da bude null, krace od 2 karaktera ili
+     * da sadzribilo sta sta nisu cifre.
      * @throws NullPointerException ako je ptt null.
      * @throws IllegalArgumentException ako karakteri u ptt nisu samo cifre.
      * @throws RuntimeException ako je ptt krace od 2 karaktera.
      */
     public void setPtt(String ptt) {
-        if(ptt == null){
+        if (ptt == null) {
             throw new NullPointerException("ptt mesta ne sme biti null");
         }
         char[] digit = ptt.toCharArray();
         for (char c : digit) {
-            if(!Character.isDigit(c))
+            if (!Character.isDigit(c)) {
                 throw new IllegalArgumentException("ptt mora da sadrzi samo brojeve");
+            }
         }
-        if(ptt.length() < 2){
+        if (ptt.length() < 2) {
             throw new RuntimeException("ptt ne sme biti krace od 2 karaktera");
         }
         this.ptt = ptt;
@@ -216,8 +218,7 @@ public class Mesto extends AbstractObject {
     /**
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Mesto i vraca je
      *
-     * @param rs
-     * rs je resultset
+     * @param rs rs je resultset
      * @return lista objekata Mesto
      */
     @Override
@@ -250,8 +251,7 @@ public class Mesto extends AbstractObject {
     /**
      * Postavlja vrednost primarnog kljuca
      *
-     * @param pk
-     * pk je primarni kljuc
+     * @param pk pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {

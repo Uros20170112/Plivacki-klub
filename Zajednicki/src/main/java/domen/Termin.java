@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
+ * Klasa koja predstavlja termin u plivackom klubu i koja nasledjuje apstraktnu
+ * klasu AbstractObject i implementira njene metode.
  *
  * @author kompic
  */

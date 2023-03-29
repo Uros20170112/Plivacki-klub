@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * Klasa koja predstavlja trenera plivackog kluba i koja nasledjuje apstraktnu
+ * klasu AbstractObject i implementira njene metode.
  *
  * @author kompic
  */

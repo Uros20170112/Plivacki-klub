@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * Klasa koja predstavlja paket plivackog kluba i koja nasledjuje apstraktnu
+ * klasu AbstractObject i implementira njene metode.
  *
  * @author kompic
  */
@@ -55,8 +57,8 @@ public class Paket extends AbstractObject {
     /**
      * Postavlja vrednost id paketa
      *
-     * @param paketId
-     * paketId je string, ne sme biti null, prazan string ili 0 i negativan broj.
+     * @param paketId paketId je string, ne sme biti null, prazan string ili 0 i
+     * negativan broj.
      * @throws NullPointerException ako je paketId null.
      * @throws IllegalArgumentException ako je paketId prazan String.
      * @throws RuntimeException ako je paketId 0 ili negativan broj.
@@ -86,8 +88,8 @@ public class Paket extends AbstractObject {
     /**
      * Postavlja vrednost za naziv paketa
      *
-     * @param naziv
-     * naziv je String i ne sme da bude null ili krace od 2 karaktera.
+     * @param naziv naziv je String i ne sme da bude null ili krace od 2
+     * karaktera.
      * @throws NullPointerException ako je naziv null.
      * @throws RuntimeException ako je naziv 0 ili negativan broj.
      */
@@ -113,8 +115,7 @@ public class Paket extends AbstractObject {
     /**
      * Postavlja vrednost za cenu paketa
      *
-     * @param cena
-     * cena je String,  en sme biti null i mora sadrzati samo cifre.
+     * @param cena cena je String, en sme biti null i mora sadrzati samo cifre.
      * @throws NullPointerException ako je cena null.
      * @throws IllegalArgumentException ako u ceni nisu samo cifre.
      * @throws RuntimeException ako je cena negativan broj.
@@ -185,8 +186,7 @@ public class Paket extends AbstractObject {
     /**
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Paket i vraca je
      *
-     * @param rs
-     * rs je resultset
+     * @param rs rs je resultset
      * @return lista objekata Paket
      */
     @Override
@@ -220,8 +220,7 @@ public class Paket extends AbstractObject {
     /**
      * Postavlja vrednost primarnog kljuca
      *
-     * @param pk
-     * pk je primarni kljuc
+     * @param pk pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -231,8 +230,7 @@ public class Paket extends AbstractObject {
     /**
      * Poredi dva objekta Paket i utvrdjuje da li su isti
      *
-     * @param obj
-     * obj je objekat
+     * @param obj obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Paket i imaju isti paketId
@@ -269,8 +267,7 @@ public class Paket extends AbstractObject {
     /**
      * Postavlja vrednost za listu termini
      *
-     * @param termini
-     * termini su Termin
+     * @param termini termini su Termin
      */
     public void setTermini(List<Termin> termini) {
         this.termini = termini;
