@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Klasa koja pretrazuje sve clanove. Nasledjuje AbstractSO i implementira
+ * metodu execute.
  *
  * @author kompic
  */
@@ -22,6 +24,12 @@ public class SOPretraziClanove extends AbstractSO {
     private List<AbstractObject> sviClanovi;
     private List<AbstractObject> listaNadjenih = new ArrayList<>();
 
+    /**
+     * Pokrece metodu select iz DBBroker-a.
+     *
+     * @param ao
+     * @throws ServerskiException
+     */
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
         sviClanovi = dbb.select(new Clan());
@@ -40,22 +48,49 @@ public class SOPretraziClanove extends AbstractSO {
         }
     }
 
+    /**
+     * Vraca pretragu.
+     *
+     * @return String
+     */
     public String getPretraga() {
         return pretraga;
     }
 
+    /**
+     * Postavlja vrednost za pretragu.
+     *
+     * @param pretraga String koji oznacava pretragu.
+     */
     public void setPretraga(String pretraga) {
         this.pretraga = pretraga;
     }
 
+    /**
+     * Vraca listu nadjenih Clanova
+     *
+     * @return List<AbstractObject>
+     */
     public List<AbstractObject> getListaNadjenih() {
         return listaNadjenih;
     }
 
+    /**
+     * Posatavlja vrednosti za listu.
+     *
+     * @param listaNadjenih lista nadjenih clanova.
+     */
     public void setListaNadjenih(List<AbstractObject> listaNadjenih) {
         this.listaNadjenih = listaNadjenih;
     }
 
+    /**
+     * Poziva metodu select kako bi nasla sva mesta koristeci primarni kljuc za
+     * mesta koji se nalaze u clanovima, pravi objekat Mesto i postavlja ga u
+     * Clan.
+     *
+     * @throws ServerskiException
+     */
     private void ucitajMesta() throws ServerskiException {
         for (AbstractObject abs : sviClanovi) {
             Clan cl = (Clan) abs;

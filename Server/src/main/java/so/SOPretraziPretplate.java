@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Klasa koja pretrazuje sve pakete. Nasledjuje AbstractSO i implementira metodu
+ * execute.
  *
  * @author kompic
  */
@@ -22,11 +24,22 @@ public class SOPretraziPretplate extends AbstractSO {
     AbstractObject paket;
     List<AbstractObject> pretplate;
 
+    /**
+     * Parametrizovani konstruktor.
+     *
+     * @param paket
+     */
     public SOPretraziPretplate(AbstractObject paket) {
         this.paket = paket;
         this.pretplate = new ArrayList<>();
     }
 
+    /**
+     * Pokrece metodu select iz DBBroker-a.
+     *
+     * @param ao
+     * @throws ServerskiException
+     */
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
         List<AbstractObject> svePretplate = dbb.select(new Pretplata());
@@ -40,6 +53,11 @@ public class SOPretraziPretplate extends AbstractSO {
         }
     }
 
+    /**
+     * Vraca listu pretplata.
+     *
+     * @return List<AbstractObject>
+     */
     public List<AbstractObject> getPretplate() {
         return pretplate;
     }
