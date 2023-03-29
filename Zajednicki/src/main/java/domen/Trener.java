@@ -243,6 +243,9 @@ public class Trener extends AbstractObject {
      */
     @Override
     public String toString() {
+        if(ime == null || prezime == null) {
+            throw new NullPointerException();
+        }
         return ime + " " + prezime;
     }
 
