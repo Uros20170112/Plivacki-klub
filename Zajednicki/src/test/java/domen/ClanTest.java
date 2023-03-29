@@ -35,6 +35,9 @@ public class ClanTest {
         m = null;
     }
 
+    /**
+     * Test of setClanId method, of class Clan.
+     */
     @Test
     public void testSetClanId() {
         c.setClanId("1");
@@ -42,24 +45,36 @@ public class ClanTest {
         assertEquals("1", c.getClanId());
     }
 
+    /**
+     * Test of setClanId method, of class Clan.
+     */
     @Test
     public void testSetClanIdNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> c.setClanId(null));
     }
 
+    /**
+     * Test of setClanId method, of class Clan.
+     */
     @Test
     public void testSetClanIdPrazanString() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> c.setClanId(""));
     }
 
+    /**
+     * Test of setClanId method, of class Clan.
+     */
     @Test
     public void testSetClanIdNulaIliManje() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> c.setClanId("0"));
     }
 
+    /**
+     * Test of setIme method, of class Clan.
+     */
     @Test
     public void testSetIme() {
         c.setIme("Pera");
@@ -67,18 +82,27 @@ public class ClanTest {
         assertEquals("Pera", c.getIme());
     }
 
+    /**
+     * Test of setIme method, of class Clan.
+     */
     @Test
     public void testSetImeNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> c.setIme(null));
     }
 
+    /**
+     * Test of setIme method, of class Clan.
+     */
     @Test
     public void testSetImeManjeOdDva() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> c.setIme("P"));
     }
 
+    /**
+     * Test of setPrezime method, of class Clan.
+     */
     @Test
     public void testSetPrezime() {
         c.setPrezime("Peric");
@@ -86,18 +110,27 @@ public class ClanTest {
         assertEquals("Peric", c.getPrezime());
     }
 
+    /**
+     * Test of setPrezime method, of class Clan.
+     */
     @Test
     public void testSetPrezimeNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> c.setPrezime(null));
     }
 
+    /**
+     * Test of setPrezime method, of class Clan.
+     */
     @Test
     public void testSetPrezimeManjeOdDva() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> c.setPrezime("P"));
     }
 
+    /**
+     * Test of setEmail method, of class Clan.
+     */
     @Test
     public void testSetEmail() {
         c.setEmail("pera@gmail.com");
@@ -105,17 +138,26 @@ public class ClanTest {
         assertEquals("pera@gmail.com", c.getEmail());
     }
 
+    /**
+     * Test of setEmail method, of class Clan.
+     */
     @Test
     public void testSetEmailNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> c.setEmail(null));
     }
 
+    /**
+     * Test of setEmail method, of class Clan.
+     */
     public void testSetEmailNemaLudoA() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> c.setEmail("peragmail.com"));
     }
 
+    /**
+     * Test of setAdresa method, of class Clan.
+     */
     @Test
     public void testSetAdresa() {
         c.setAdresa("Vojvode Stepe");
@@ -123,12 +165,18 @@ public class ClanTest {
         assertEquals("Vojvode Stepe", c.getAdresa());
     }
 
+    /**
+     * Test of setAdresa method, of class Clan.
+     */
     @Test
     public void testSetAdresaNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> c.setAdresa(null));
     }
 
+    /**
+     * Test of setAdresa method, of class Clan.
+     */
     @Test
     public void testSetAdresaManjeOdDva() {
         assertThrows(java.lang.RuntimeException.class,
@@ -188,4 +236,32 @@ public class ClanTest {
         assertThrows(java.lang.NullPointerException.class, () -> c.setMesto(null));
     }
 
+    /**
+     * Test of toString method, of class Clan.
+     */
+    @Test
+    public void testToStringSveNull() {
+        assertThrows(java.lang.NullPointerException.class, () -> c.toString());
+    }
+
+    /**
+     * Test of toString method, of class Clan.
+     */
+    @Test
+    public void testToString() {
+        c.setIme("Petar");
+        c.setPrezime("Peric");
+        assertEquals("Petar Peric", c.toString());
+    }
+
+    /**
+     * Test of equals method, of class Clan.
+     */
+    @Test
+    public void testEquals() {
+        c.setClanId("1");
+        Clan clan = new Clan();
+        clan.setClanId("1");
+        assertEquals(c, clan);
+    }
 }
