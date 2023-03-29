@@ -34,6 +34,9 @@ public class PretplataTest {
         p = null;
     }
 
+    /**
+     * Test of setPretplataId method, of class Pretplata
+     */
     @Test
     public void testSetPretplataId() {
         p.setPretplataId("1");
@@ -41,34 +44,52 @@ public class PretplataTest {
         assertEquals("1", p.getPretplataId());
     }
 
+    /**
+     * Test of setPretplataId method, of class Pretplata
+     */
     @Test
     public void testSetPretplataIdNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> p.setPretplataId(null));
     }
 
+    /**
+     * Test of setPretplataId method, of class Pretplata
+     */
     @Test
     public void testSetPretplataIdPrazanString() {
         assertThrows(java.lang.IllegalArgumentException.class,
                 () -> p.setPretplataId(""));
     }
 
+    /**
+     * Test of setPretplataId method, of class Pretplata
+     */
     @Test
     public void testSetPretplataIdNulaIliManje() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> p.setPretplataId("0"));
     }
 
+    /**
+     * Test of setDatum method, of class Pretplata
+     */
     @Test
     public void testSetDatum() {
         assertEquals(new Date(), p.getDatum());
     }
 
+    /**
+     * Test of setDatum method, of class Pretplata
+     */
     @Test
     public void testSetDatumNull() {
         assertThrows(java.lang.NullPointerException.class, () -> p.setDatum(null));
     }
 
+    /**
+     * Test of setDatum method, of class Pretplata
+     */
     @Test
     public void testSetDatumPreDanas() {
         long prevDay = System.currentTimeMillis() - 1000 * 60 * 60 * 24;
@@ -76,11 +97,17 @@ public class PretplataTest {
         assertThrows(java.lang.RuntimeException.class, () -> p.setDatum(prev));
     }
 
+    /**
+     * Test of setVaziDo method, of class Pretplata
+     */
     @Test
     public void testSetVaziDoNull() {
         assertThrows(java.lang.NullPointerException.class, () -> p.setVaziDo(null));
     }
 
+    /**
+     * Test of setVaziDo method, of class Pretplata
+     */
     @Test
     public void testSetVaziDoPreDanas() {
         long prevDay = System.currentTimeMillis() - 1000 * 60 * 60 * 24;
@@ -88,6 +115,9 @@ public class PretplataTest {
         assertThrows(java.lang.RuntimeException.class, () -> p.setVaziDo(prev));
     }
 
+    /**
+     * Test of setVaziDo method, of class Pretplata
+     */
     public void testSetVaziDoPreDatum() {
         long prevDay = System.currentTimeMillis() - 1000 * 60 * 60 * 24;
         Date prev = new Date(prevDay);
