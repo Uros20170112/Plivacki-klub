@@ -10,8 +10,9 @@ import exception.ServerskiException;
 import java.util.List;
 
 /**
+ * Klasa koja cuva clana. Nasledjuje AbstractSO i implementira metodu execute
  *
- * @author vujke
+ * @author kompic
  */
 public class SOZapamtiClana extends AbstractSO {
 
@@ -21,17 +22,33 @@ public class SOZapamtiClana extends AbstractSO {
     public SOZapamtiClana() {
     }
 
+    /**
+     * Parametrizovani konstruktor
+     *
+     * @param parametri
+     */
     public SOZapamtiClana(List<Object> parametri) {
         this.clan = (AbstractObject) parametri.get(0);
         this.istorijatPaketa = (AbstractObject) parametri.get(1);
     }
 
+    /**
+     * Poziva insert metodu iz DBBroker-a za clana i istoriju paketa,
+     *
+     * @param ao
+     * @throws ServerskiException
+     */
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
         dbb.insert(clan);
         dbb.insert(istorijatPaketa);
     }
 
+    /**
+     * Vraca clana
+     *
+     * @return AbstractObject
+     */
     public AbstractObject getClan() {
         return clan;
     }
