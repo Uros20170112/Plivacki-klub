@@ -313,11 +313,13 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Menja izabrani paket.
- * @param p uneti paket
- * @return paket
- */
+
+    /**
+     * Menja izabrani paket.
+     *
+     * @param p uneti paket
+     * @return paket
+     */
     public AbstractObject azurirajPaket(Paket p) {
         try {
             SOIzmeniPaket soip = new SOIzmeniPaket(p);
@@ -328,11 +330,12 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Vraca listu svih pretplata.
- * 
- * @return List<Pretplata>
- */
+
+    /**
+     * Vraca listu svih pretplata.
+     *
+     * @return List<Pretplata>
+     */
     public List<Pretplata> vratiSvePretplate() {
         try {
             SOUcitajPretplate soup = new SOUcitajPretplate();
@@ -343,11 +346,13 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Unosi u bazu unetu pretplatu.
- * @param pretplata uneta pretplata.
- * @return Pretplata
- */
+
+    /**
+     * Unosi u bazu unetu pretplatu.
+     *
+     * @param pretplata uneta pretplata.
+     * @return Pretplata
+     */
     public AbstractObject zapamtiPretplatu(AbstractObject pretplata) {
         try {
             SOZapamtiPretplatu sozp = new SOZapamtiPretplatu(pretplata);
@@ -358,11 +363,13 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Pretrazuje sve pretplate po paketu
- * @param pak uneti paket
- * @return List<Pretplata>
- */
+
+    /**
+     * Pretrazuje sve pretplate po paketu
+     *
+     * @param pak uneti paket
+     * @return List<Pretplata>
+     */
     public List<AbstractObject> pretraziPretplate(Paket pak) {
         try {
             SOPretraziPretplate sopp = new SOPretraziPretplate(pak);
@@ -373,11 +380,12 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Vraca listu svih trenera.
- * 
- * @return List<Trener>
- */
+
+    /**
+     * Vraca listu svih trenera.
+     *
+     * @return List<Trener>
+     */
     public List<Trener> vratiTrenere() {
         try {
             SOUcitajTrenere sout = new SOUcitajTrenere();
@@ -388,11 +396,13 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Unosi u bazu unetog trenera.
- * @param t uneti trener.
- * @return Trener
- */
+
+    /**
+     * Unosi u bazu unetog trenera.
+     *
+     * @param t uneti trener.
+     * @return Trener
+     */
     public Trener zapamtiTrenera(Trener t) {
         try {
             SOZapamtiTrenera sozt = new SOZapamtiTrenera(t);
@@ -403,12 +413,13 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Menja trenera iz baze.
- * 
- * @param tr uneti trener
- * @return Trener
- */
+
+    /**
+     * Menja trenera iz baze.
+     *
+     * @param tr uneti trener
+     * @return Trener
+     */
     public Trener izmeniTrenera(Trener tr) {
         try {
             SOIzmeniTrenera soit = new SOIzmeniTrenera(tr);
@@ -419,11 +430,12 @@ public class Kontroler {
         }
         return null;
     }
-/**
- * Brise izabranog trenera.
- * 
- * @param brisiTrenera izabrani trener za brisanje.
- */
+
+    /**
+     * Brise izabranog trenera.
+     *
+     * @param brisiTrenera izabrani trener za brisanje.
+     */
     public void obrisiTrenera(Trener brisiTrenera) {
         try {
             SOObrisiTrenera soot = new SOObrisiTrenera();
