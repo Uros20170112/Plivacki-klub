@@ -65,6 +65,7 @@ public class Mesto extends AbstractObject {
      * Vraca String sa bitnim informacijama o mestu
      *
      * @return ptt i naziv mesta
+     * @throws NullPointerException ako je naziv ili ptt null.
      */
     @Override
     public String toString() {
@@ -87,7 +88,10 @@ public class Mesto extends AbstractObject {
      * Postavlja vednost za id mesta
      *
      * @param mestoId
-     * MestoId je String, ne sme biti null, prazan string ili 0 i negativan broj
+     * MestoId je String, ne sme biti null, prazan string ili 0 i negativan broj.
+     * @throws NullPointerException ako je mestoId null.
+     * @throws IllegalArgumentException ako je mestoId prazan String.
+     * @throws RuntimeException ako je mestoId 0 ili negativan broj.
      */
     public void setMestoId(String mestoId) {
         if(mestoId == null){
@@ -116,6 +120,8 @@ public class Mesto extends AbstractObject {
      *
      * @param naziv
      * naziv je String i ne sme da bude null ili krace od 2 karaktera.
+     * @throws NullPointerException ako je naziv null.
+     * @throws RuntimeException ako je naziv krace od 2 karaktera.
      */
     public void setNaziv(String naziv) {
         if(naziv == null){
@@ -141,6 +147,9 @@ public class Mesto extends AbstractObject {
      *
      * @param ptt
      * ptt je String i ne sme da bude null, krace od 2 karaktera ili da sadzribilo sta sta nisu cifre.
+     * @throws NullPointerException ako je ptt null.
+     * @throws IllegalArgumentException ako karakteri u ptt nisu samo cifre.
+     * @throws RuntimeException ako je ptt krace od 2 karaktera.
      */
     public void setPtt(String ptt) {
         if(ptt == null){

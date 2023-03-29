@@ -56,17 +56,19 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja vrednost clanId
      *
-     * @param clanId
-     * clanId je string, ne sme biti null, prazan string ili 0 i negativan broj
+     * @param clanId clanId je string, ne sme biti null, prazan string ili 0 i
+     * negativan broj.
+     * @throws NullPointerException ako je id null ili prazan String.
+     * @throws RuntimeException ako je 0 ili negativan broj.
      */
     public void setClanId(String clanId) {
-        if(clanId == null){
+        if (clanId == null) {
             throw new NullPointerException("id clana ne sme biti null");
         }
-        if(clanId.equals("")) {
+        if (clanId.equals("")) {
             throw new NullPointerException("id ne sme biti przan String");
         }
-        if( clanId.equals("0") || clanId.contains("-")){
+        if (clanId.equals("0") || clanId.contains("-")) {
             throw new RuntimeException("id clana ne sme biti nula, niti negativan broj");
         }
         this.clanId = clanId;
@@ -84,14 +86,15 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja vrednost ime clana
      *
-     * @param ime
-     * ime je String i ne sme da bude null ili krace od 2 karaktera.
+     * @param ime ime je String i ne sme da bude null ili krace od 2 karaktera.
+     * @throws NullPointerException ako je ime null.
+     * @throws RuntimeException ako je ime krace od 2 karaktera.
      */
     public void setIme(String ime) {
-        if(ime == null){
+        if (ime == null) {
             throw new NullPointerException("ime clana ne sme biti null");
         }
-        if(ime.length() < 2){
+        if (ime.length() < 2) {
             throw new RuntimeException("ime clana ne sme biti krace od 2 karaktera");
         }
         this.ime = ime;
@@ -109,14 +112,16 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja vrednost prezime clana
      *
-     * @param prezime
-     * prezime je String i ne sme da bude null ili krace od 2 karaktera.
+     * @param prezime prezime je String i ne sme da bude null ili krace od 2
+     * karaktera.
+     * @throws NullPointerException ako je prezime null.
+     * @throws RuntimeException ako je prezime krace od 2 karaktera.
      */
     public void setPrezime(String prezime) {
-        if(prezime == null){
+        if (prezime == null) {
             throw new NullPointerException("prezime clana ne sme biti null");
         }
-        if(prezime.length() < 2){
+        if (prezime.length() < 2) {
             throw new RuntimeException("prezime clana ne sme biti krace od 2 karaktera");
         }
         this.prezime = prezime;
@@ -134,14 +139,15 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja vrednost email clana
      *
-     * @param email
-     * email je String i ne sme da bude null ili da ne sadrzi @.
+     * @param email email je String i ne sme da bude null ili da ne sadrzi @.
+     * @throws NullPointerException ako je email null.
+     * @throws RuntimeException ako email ne sadrzi @.
      */
     public void setEmail(String email) {
-        if(email == null){
+        if (email == null) {
             throw new NullPointerException("email ne sme biti null");
         }
-        if(!email.contains("@")){
+        if (!email.contains("@")) {
             throw new RuntimeException("email mora sadrzati karakter '@'");
         }
         this.email = email;
@@ -159,14 +165,14 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja adresu clana
      *
-     * @param adresa 
-     * adresa je String ii ne sme da bude null ili krace od 2 karaktera.
+     * @param adresa adresa je String ii ne sme da bude null ili krace od 2
+     * karaktera.
      */
     public void setAdresa(String adresa) {
-        if(adresa == null){
+        if (adresa == null) {
             throw new NullPointerException("adresa clana ne sme biti null");
         }
-        if(adresa.length() < 2){
+        if (adresa.length() < 2) {
             throw new RuntimeException("adresa clana ne sme biti krace od 2 karaktera");
         }
         this.adresa = adresa;
@@ -184,17 +190,19 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja vrednost broja telefona clana
      *
-     * @param telefon
-     * telefon je String i ne sme da bude null, kraci od 10 karaktera i  da sadrzi slova
+     * @param telefon telefon je String i ne sme da bude null, kraci od 10
+     * karaktera i da sadrzi slova.
+     * @throws NullPointerException ako je broj telefona null.
+     * @throws RuntimeException ako je broj kraci od 10 karaktera i ne sadrzi +.
      */
     public void setTelefon(String telefon) {
-        if(telefon == null){
+        if (telefon == null) {
             throw new NullPointerException("Telefon ne sme biti null");
         }
-        if(Pattern.matches("[a-zA-Z+]+", telefon)){
+        if (Pattern.matches("[a-zA-Z+]+", telefon)) {
             throw new RuntimeException("Telefon moze sadrzati samo brojeve i znak '+'");
         }
-        if(telefon.length() < 10){
+        if (telefon.length() < 10) {
             throw new RuntimeException("telefon mora imati duzinu od bar 10 karaktera");
         }
         this.telefon = telefon;
@@ -212,11 +220,11 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja vrednost mesta clana
      *
-     * @param mesto
-     * mesto je Mesto i ne sme da bude null
+     * @param mesto mesto je Mesto i ne sme da bude null
+     * @throws NullPointerException ako je mesto null
      */
     public void setMesto(Mesto mesto) {
-        if(mesto == null){
+        if (mesto == null) {
             throw new NullPointerException("mesto ne sme biti null");
         }
         this.mesto = mesto;
@@ -272,8 +280,7 @@ public class Clan extends AbstractObject {
     /**
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Clan i vraca je
      *
-     * @param rs
-     * rs je resultset
+     * @param rs rs je resultset
      * @return lista objekata Clan
      */
     @Override
@@ -310,8 +317,7 @@ public class Clan extends AbstractObject {
     /**
      * Postavlja vrednost primarnog kljuca
      *
-     * @param pk
-     * pk je primarni kljuc
+     * @param pk pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -321,8 +327,7 @@ public class Clan extends AbstractObject {
     /**
      * Poredi dva objekta Clan i utvrdjuje da li su isti
      *
-     * @param obj
-     * obj je objekat
+     * @param obj obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Clan i imaju isti clanID
@@ -351,6 +356,7 @@ public class Clan extends AbstractObject {
      * Vraca String sa bitnim informacijama o clanu
      *
      * @return ime i prezime clana
+     * @throws NullPointerException ako je ime ili prezime null.
      */
     @Override
     public String toString() {

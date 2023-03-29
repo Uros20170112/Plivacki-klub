@@ -44,17 +44,20 @@ public class Trener extends AbstractObject {
     /**
      * Postavlja vrednost za id trenera
      *
-     * @param trenerId
-     * trenerId je string, ne sme biti null, prazan string ili 0 i negativan broj.
+     * @param trenerId trenerId je string, ne sme biti null, prazan string ili 0
+     * i negativan broj.
+     * @throws NullPointerException ako je trenerId null.
+     * @throws IllegalArgumentException ako je trenerId prazan String.
+     * @throws RuntimeException ako je trenerId 0 ili negativan broj.
      */
     public void setTrenerId(String trenerId) {
-        if(trenerId == null){
+        if (trenerId == null) {
             throw new NullPointerException("trener Id ne sme biti null");
         }
         if (trenerId.equals("")) {
             throw new IllegalArgumentException();
         }
-        if( trenerId.equals("0") || trenerId.contains("-")){
+        if (trenerId.equals("0") || trenerId.contains("-")) {
             throw new RuntimeException("trener Id ne sme biti nula, niti negativan broj");
         }
         this.trenerId = trenerId;
@@ -72,14 +75,15 @@ public class Trener extends AbstractObject {
     /**
      * Postavlja vrednost za ime trenera
      *
-     * @param ime
-     * ime je String i ne sme da bude null ili krace od 2 karaktera.
+     * @param ime ime je String i ne sme da bude null ili krace od 2 karaktera.
+     * @throws NullPointerException ako je ime null.
+     * @throws RuntimeException ako je ime krace od 2 karaktera.
      */
     public void setIme(String ime) {
-        if(ime == null){
+        if (ime == null) {
             throw new NullPointerException("ime trenera ne sme biti null");
         }
-        if(ime.length() < 2){
+        if (ime.length() < 2) {
             throw new RuntimeException("ime trenera ne sme biti krace od 2 karaktera");
         }
         this.ime = ime;
@@ -97,14 +101,16 @@ public class Trener extends AbstractObject {
     /**
      * Postavlja vrednost za prezime trenera
      *
-     * @param prezime
-     * prezime je String i ne sme da bude null ili krace od 2 karaktera.
+     * @param prezime prezime je String i ne sme da bude null ili krace od 2
+     * karaktera.
+     * @throws NullPointerException ako je prezime null.
+     * @throws RuntimeException ako je prezime krace od 2 karaktera.
      */
     public void setPrezime(String prezime) {
-        if(prezime == null){
+        if (prezime == null) {
             throw new NullPointerException("prezime trenera ne sme biti null");
         }
-        if(prezime.length() < 2){
+        if (prezime.length() < 2) {
             throw new RuntimeException("prezime trenera ne sme biti krace od 2 karaktera");
         }
         this.prezime = prezime;
@@ -122,14 +128,16 @@ public class Trener extends AbstractObject {
     /**
      * Postavlja vrednost za tip trenera
      *
-     * @param tipTrenera
-     * tipTrenera je String i ne sme da bude null ili krace od 2 karaktera.
+     * @param tipTrenera tipTrenera je String i ne sme da bude null ili krace od
+     * 2 karaktera.
+     * @throws NullPointerException ako je tipTrenera null.
+     * @throws RuntimeException ako je tipTrenera krace od 2 karaktera.
      */
     public void setTipTrenera(String tipTrenera) {
-        if(tipTrenera == null){
+        if (tipTrenera == null) {
             throw new NullPointerException("tip trenera ne sme biti null");
         }
-        if(tipTrenera.length() < 2){
+        if (tipTrenera.length() < 2) {
             throw new RuntimeException("tip trenera ne sme biti krace od 2 karaktera");
         }
         this.tipTrenera = tipTrenera;
@@ -185,8 +193,7 @@ public class Trener extends AbstractObject {
     /**
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Trener i vraca je
      *
-     * @param rs
-     * rs je resultset
+     * @param rs rs je resultset
      * @return lista objekata Trener
      */
     @Override
@@ -220,8 +227,7 @@ public class Trener extends AbstractObject {
     /**
      * Postavlja vrednost primarnog kljuca
      *
-     * @param pk
-     * pk je primarni kljuc
+     * @param pk pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -247,8 +253,7 @@ public class Trener extends AbstractObject {
     /**
      * Poredi dva objekta Mesto i utvrdjuje da li su isti
      *
-     * @param obj
-     * obj je objekat
+     * @param obj obj je objekat
      * @return
      * <ul>
      * <li>true ako su oba objekta klase Trener i imaju isti mestoId

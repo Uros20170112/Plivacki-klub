@@ -56,7 +56,10 @@ public class Paket extends AbstractObject {
      * Postavlja vrednost id paketa
      *
      * @param paketId
-     * paketId je string, ne sme biti null, prazan string ili 0 i negativan broj
+     * paketId je string, ne sme biti null, prazan string ili 0 i negativan broj.
+     * @throws NullPointerException ako je paketId null.
+     * @throws IllegalArgumentException ako je paketId prazan String.
+     * @throws RuntimeException ako je paketId 0 ili negativan broj.
      */
     public void setPaketId(String paketId) {
         if (paketId == null) {
@@ -85,6 +88,8 @@ public class Paket extends AbstractObject {
      *
      * @param naziv
      * naziv je String i ne sme da bude null ili krace od 2 karaktera.
+     * @throws NullPointerException ako je naziv null.
+     * @throws RuntimeException ako je naziv 0 ili negativan broj.
      */
     public void setNaziv(String naziv) {
         if (naziv == null) {
@@ -109,7 +114,10 @@ public class Paket extends AbstractObject {
      * Postavlja vrednost za cenu paketa
      *
      * @param cena
-     * cena je String,  en sme biti null i mora sadrzati samo cifre
+     * cena je String,  en sme biti null i mora sadrzati samo cifre.
+     * @throws NullPointerException ako je cena null.
+     * @throws IllegalArgumentException ako u ceni nisu samo cifre.
+     * @throws RuntimeException ako je cena negativan broj.
      */
     public void setCena(String cena) {
         if (cena == null) {

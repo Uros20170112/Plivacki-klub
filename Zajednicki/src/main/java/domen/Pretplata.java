@@ -52,8 +52,11 @@ public class Pretplata extends AbstractObject {
     /**
      * Postavlja vrednost za id pretplate
      *
-     * @param pretplataId
-     * pretplataId je String, ne sme biti null, prazan string ili 0 i negativan broj.
+     * @param pretplataId pretplataId je String, ne sme biti null, prazan string
+     * ili 0 i negativan broj.
+     * @throws NullPointerException ako je pretplataId null.
+     * @throws IllegalArgumentException ako je pretplataId prazan String.
+     * @throws RuntimeException ako je pretplataId 0 ili negativan broj.
      */
     public void setPretplataId(String pretplataId) {
         if (pretplataId == null) {
@@ -80,8 +83,9 @@ public class Pretplata extends AbstractObject {
     /**
      * Postavlja vrednost za datum pretplate
      *
-     * @param datum
-     * datum ne sme biti null i opre danasnjeg datuma
+     * @param datum datum ne sme biti null i opre danasnjeg datuma.
+     * @throws NullPointerException ako je datum null.
+     * @throws RuntimeException ako je datum pre danasnjeg datuma.
      */
     public void setDatum(Date datum) {
         if (datum == null) {
@@ -105,8 +109,8 @@ public class Pretplata extends AbstractObject {
     /**
      * Postavlja vrednost za clana
      *
-     * @param clan
-     * clan ne sme biti null
+     * @param clan clan ne sme biti null
+     * @throws NullPointerException ako je clan null.
      */
     public void setClan(Clan clan) {
         if (clan == null) {
@@ -127,8 +131,9 @@ public class Pretplata extends AbstractObject {
     /**
      * Postavlja vrednost za datum vezenja paketa
      *
-     * @param vaziDo
-     * vazi do ne sme biti null i pre danasnjeg datuma
+     * @param vaziDo vazi do ne sme biti null i pre danasnjeg datuma
+     * @throws NullPointerException ako je vaziDo null.
+     * @throws RuntimeException ako je vaziDo pre datuma ili danasnjeg datuma.
      */
     public void setVaziDo(Date vaziDo) {
         if (vaziDo == null) {
@@ -155,8 +160,8 @@ public class Pretplata extends AbstractObject {
     /**
      * Postavlja vrednost paketa za pretplatu
      *
-     * @param paket
-     * paket ne sme biti null
+     * @param paket paket ne sme biti null.
+     * @throws NullPointerException ako je paket null.
      */
     public void setPaket(Paket paket) {
         if (paket == null) {
@@ -218,8 +223,7 @@ public class Pretplata extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Pretplata i vraca
      * je
      *
-     * @param rs
-     * rs je resultset
+     * @param rs rs je resultset
      * @return lista objekata Pretplata
      */
     @Override
@@ -259,8 +263,7 @@ public class Pretplata extends AbstractObject {
     /**
      * Postavlja vrednost primarnog kljuca
      *
-     * @param pk
-     * pk je primanri kljuc
+     * @param pk pk je primanri kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {

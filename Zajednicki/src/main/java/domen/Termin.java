@@ -53,8 +53,7 @@ public class Termin extends AbstractObject {
     /**
      * Postavlja vrednost stanja
      *
-     * @param stanje
-     * stanje je string
+     * @param stanje stanje je string
      */
     public void setStanje(String stanje) {
         this.stanje = stanje;
@@ -72,8 +71,10 @@ public class Termin extends AbstractObject {
     /**
      * Postavlja vrednost za smenu termina
      *
-     * @param smena
-     * smena ne sme biti null i mora da sledi strikan sablon
+     * @param smena smena ne sme biti null i mora da sledi strikan sablon.
+     * @throws NullPointerException ako je smena null.
+     * @throws IllegalArgumentException ako smena ne odgovara odgovarajucem
+     * sablonu.
      */
     public void setSmena(String smena) {
         if (smena == null) {
@@ -97,8 +98,9 @@ public class Termin extends AbstractObject {
     /**
      * Postavlja vrednost za vrednost dan
      *
-     * @param dan
-     * dan je String i mora da bude jedan od dana u nedelji
+     * @param dan dan je String i mora da bude jedan od dana u nedelji
+     * @throws NullPointerException ako je dan null.
+     * @throws IllegalArgumentException ako dan nije jedan od dana u nedelji.
      */
     public void setDan(String dan) {
         if (dan == null) {
@@ -123,8 +125,8 @@ public class Termin extends AbstractObject {
     /**
      * Postavlja vrednost za paket
      *
-     * @param paket
-     * paket ne sme da bude null
+     * @param paket paket ne sme da bude null.
+     * @throws NullPointerException ako je paket null.
      */
     public void setPaket(Paket paket) {
         if (paket == null) {
@@ -145,8 +147,11 @@ public class Termin extends AbstractObject {
     /**
      * Postavlja vrednost za id za termin
      *
-     * @param id
-     * id je string, ne sme biti null, prazan string ili 0 i negativan broj.
+     * @param id id je string, ne sme biti null, prazan string ili 0 i negativan
+     * broj.
+     * @throws NullPointerException ako je id null.
+     * @throws IllegalArgumentException ako je id prazan String.
+     * @throws RuntimeException ako je id 0 ili negativan broj.
      */
     public void setId(String id) {
         if (id == null) {
@@ -173,8 +178,8 @@ public class Termin extends AbstractObject {
     /**
      * Postavlja vrednost za trenera
      *
-     * @param trener
-     * trener ne sme da bdue null
+     * @param trener trener ne sme da bude null.
+     * @throws NullPointerException ako je trener null.
      */
     public void setTrener(Trener trener) {
         if (trener == null) {
@@ -233,8 +238,7 @@ public class Termin extends AbstractObject {
     /**
      * Prima ResultSet(tabelu) i pretvara je u listu objekata Termin i vraca je
      *
-     * @param rs
-     * rs je resultset
+     * @param rs rs je resultset
      * @return lista objekata Termin
      */
     @Override
@@ -270,8 +274,7 @@ public class Termin extends AbstractObject {
     /**
      * Postavlja vrednost primarnog kljuca
      *
-     * @param pk
-     * pk je primarni kljuc
+     * @param pk pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {

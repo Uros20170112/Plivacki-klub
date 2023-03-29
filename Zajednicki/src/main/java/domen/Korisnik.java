@@ -152,8 +152,7 @@ public class Korisnik extends AbstractObject {
         } catch (SQLException ex) {
             Logger.getLogger(Korisnik.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return korisnici;//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        return korisnici;
     }
 
     /**
@@ -171,6 +170,7 @@ public class Korisnik extends AbstractObject {
      * Vraca String sa bitnim informacijama o korisniku
      *
      * @return ime korinsika
+     * @throws NullPointerException ako je ime null.
      */
     @Override
     public String toString() {
@@ -194,6 +194,8 @@ public class Korisnik extends AbstractObject {
      *
      * @param ime
      * ime je String i ne sme da bude null ili krace od 2 karaktera.
+     * @throws NullPointerException ako je ime null.
+     * @throws RuntimeException ako je ime krace od 2 karaktera.
      */
     public void setIme(String ime) {
         if(ime == null){
@@ -219,6 +221,8 @@ public class Korisnik extends AbstractObject {
      *
      * @param email
      * email je String i ne sme da bude null i mora da ima @.
+     * @throws NullPointerException ako je email null.
+     * @throws RuntimeException ako email ne sadrzi @.
      */
     public void setEmail(String email) {
         if(email == null){
@@ -244,6 +248,8 @@ public class Korisnik extends AbstractObject {
      *
      * @param password
      * password je String, ne sme da bude null i mora da ima vise od 7 karaktera i da sadrzi barem 1 broj
+     * @throws NullPointerException ako je password null.
+     * @throws RuntimeException ako je password krace od 7 karaktera i ne sadrzi barem 1 broj.
      */
     public void setPassword(String password) {
         if(password == null){
@@ -277,6 +283,8 @@ public class Korisnik extends AbstractObject {
      *
      * @param username
      * username je String i ne sme da bude null ili krace od 5 karaktera.
+     * @throws NullPointerException ako je username null.
+     * @throws RuntimeException ako je username krace od 5 karaktera.
      */
     public void setUsername(String username) {
         if(username == null){
@@ -302,6 +310,8 @@ public class Korisnik extends AbstractObject {
      *
      * @param statusKorisnika
      * statusKorisnika je String i ne sme da bude null ili da bude razlicito od online i offline.
+     * @throws NullPointerException ako je statusKorisnika null.
+     * @throws RuntimeException ako je statusKorisnika drugaciji od online ili offline.
      */
     public void setStatusKorisnika(String statusKorisnika) {
         if(statusKorisnika == null){

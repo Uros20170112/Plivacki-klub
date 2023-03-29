@@ -52,8 +52,7 @@ public class PromenaPaketa extends AbstractObject {
     /**
      * Postavlja vrednost za parametar aktivan
      *
-     * @param aktivan
-     * aktivan je boolean
+     * @param aktivan aktivan je boolean
      */
     public void setAktivan(boolean aktivan) {
         this.aktivan = aktivan;
@@ -71,8 +70,8 @@ public class PromenaPaketa extends AbstractObject {
     /**
      * Postavlja vrednost za datum
      *
-     * @param datumOdabira
-     * datumOdabira ne sme biti null
+     * @param datumOdabira datumOdabira ne sme biti null.
+     * @throws NullPointerException ako je datumOdabira null.
      */
     public void setDatumOdabira(Date datumOdabira) {
         if (datumOdabira == null) {
@@ -93,8 +92,8 @@ public class PromenaPaketa extends AbstractObject {
     /**
      * Postavlja vrednost za clana
      *
-     * @param clan
-     * clan ne sme biti null
+     * @param clan clan ne sme biti null.
+     * @throws NullPointerException ako je clan null.
      */
     public void setClan(Clan clan) {
         if (clan == null) {
@@ -115,8 +114,8 @@ public class PromenaPaketa extends AbstractObject {
     /**
      * Postavlja vrednost za paket
      *
-     * @param paket
-     * paket ne sme biti null
+     * @param paket paket ne sme biti null.
+     * @throws NullPointerException ako je paket null.
      */
     public void setPaket(Paket paket) {
         if (paket == null) {
@@ -182,8 +181,7 @@ public class PromenaPaketa extends AbstractObject {
      * Prima ResultSet(tabelu) i pretvara je u listu objekata PromenaPaketa i
      * vraca je
      *
-     * @param rs
-     * rs je resultset
+     * @param rs rs je resultset
      * @return lista objekata PromenaPaketa
      */
     @Override
@@ -230,8 +228,7 @@ public class PromenaPaketa extends AbstractObject {
     /**
      * Postavlja vrednost primarnog kljuca
      *
-     * @param pk
-     * pk je primarni kljuc
+     * @param pk pk je primarni kljuc
      */
     @Override
     public void postaviVrednostPK(String pk) {
@@ -242,6 +239,15 @@ public class PromenaPaketa extends AbstractObject {
         return id;
     }
 
+    /**
+     * Postavlja vrednost za id promene paketa
+     *
+     * @param id id je String, ne sme biti null, prazan string ili 0 i negativan
+     * broj.
+     * @throws NullPointerException ako je id null.
+     * @throws IllegalArgumentException ako je id prazan String.
+     * @throws RuntimeException ako je id 0 ili negativan broj.
+     */
     public void setId(String id) {
         if (id == null) {
             throw new NullPointerException("id ne sme biti null");
