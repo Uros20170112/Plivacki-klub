@@ -11,6 +11,8 @@ import exception.ServerskiException;
 import java.util.List;
 
 /**
+ * Klasa koja ucitava sve korisnike. Nasledjuje AbstractSO i implementira metodu
+ * execute
  *
  * @author kompic
  */
@@ -18,11 +20,22 @@ public class SOUcitajKorisnike extends AbstractSO {
 
     private List<Korisnik> lista;
 
+    /**
+     * Poziva metodu select iz DBBroker-a.
+     *
+     * @param ao
+     * @throws ServerskiException
+     */
     @Override
     protected void execute(AbstractObject ao) throws ServerskiException {
         lista = (List<Korisnik>) (Korisnik) dbb.select(new Korisnik());
     }
 
+    /**
+     * Vraca list svih korisnika.
+     *
+     * @return List<Korisnik>
+     */
     public List<Korisnik> getLista() {
         return lista;
     }
