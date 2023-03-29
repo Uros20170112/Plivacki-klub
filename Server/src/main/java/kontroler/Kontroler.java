@@ -20,6 +20,9 @@ import java.util.logging.Logger;
 import so.*;
 
 /**
+ * Kalsa koja sluzi kao kontroler u programu 'Server'. Prihvata zahteve od
+ * klijenta i prosledjuje ih DBBroker-u, a od njega prihvata serverski odgovor i
+ * vraca klijentu. Implementirana je kao singleton.
  *
  * @author kompic
  */
@@ -40,6 +43,12 @@ public class Kontroler {
         return instance;
     }
 
+    /**
+     * Vraca ulogovanog korisnika.
+     *
+     * @param k k je korisnik.
+     * @return ulogovan
+     */
     public AbstractObject ulogujKorisnika(Korisnik k) {
         try {
             SOUlogujKorisnika sok = new SOUlogujKorisnika();
@@ -53,10 +62,20 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Vraca listu aktivnih korisnika.
+     *
+     * @return listaAktivnihKorisnika
+     */
     public List<Korisnik> getListaAktivnihKorisnika() {
         return listaAktivnihKorisnika;
     }
 
+    /**
+     * Vraca listu svih korisnika.
+     *
+     * @return List<Korisnik>
+     */
     public List<Korisnik> vratiListuKorisnika() {
         try {
             SOUcitajKorisnike soul = new SOUcitajKorisnike();
@@ -68,6 +87,11 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Izloguje trenutno ulogovanog korisnika.
+     *
+     * @param korisnik trenutno aktivni korisnik.
+     */
     public void izlogujKorisnika(AbstractObject korisnik) {
         try {
             SOIzlogujKorisnika soik = new SOIzlogujKorisnika();
@@ -78,6 +102,12 @@ public class Kontroler {
         }
     }
 
+    /**
+     * Pretrazuje pakete po unesenim parametrima.
+     *
+     * @param string uneseni parametar.
+     * @return List<Paket>
+     */
     public List<AbstractObject> pretraziPakete(String string) {
         try {
             SOPretraziPakete soplj = new SOPretraziPakete();
@@ -90,6 +120,12 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Petrazuje clanove po unesenim parametrima.
+     *
+     * @param pretr uneseni parameta.
+     * @return Clan
+     */
     public List<AbstractObject> pretraziClanove(String pretr) {
         try {
             SOPretraziClanove soppp = new SOPretraziClanove();
@@ -102,6 +138,12 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Cuva unesenog korisnika.
+     *
+     * @param k unesni korisnik.
+     * @return Korisnik
+     */
     public AbstractObject sacuvajKorisnika(Korisnik k) {
         try {
             SOZapamtiKorisnika sozk = new SOZapamtiKorisnika(k);
@@ -113,6 +155,11 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Brise izabreanog korisnika.
+     *
+     * @param k izabrani korisnik.
+     */
     public void obrisiKorisnika(Korisnik k) {
         try {
             SOObrisiKorisnika sook = new SOObrisiKorisnika();
@@ -123,6 +170,9 @@ public class Kontroler {
         }
     }
 
+    /**
+     * Menja korisnika iz baze.
+     */
     public void azurirajKorisnike() {
         List<Korisnik> izBaze = vratiListuKorisnika();
         for (AbstractObject AbstractObject : izBaze) {
@@ -135,6 +185,11 @@ public class Kontroler {
         listaAktivnihKorisnika = izBaze;
     }
 
+    /**
+     * Ucitava sva mesta koja se nalaze u bazi.
+     *
+     * @return List<Mesto>
+     */
     public List<Mesto> ucitajMesta() {
         try {
             SOUcitajMesta sovm = new SOUcitajMesta();
@@ -146,6 +201,11 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Ucitava sve clanove koji se nalaze u bazi.
+     *
+     * @return List<Clan>
+     */
     public List<Clan> ucitajClanove() {
         try {
             SOUcitajClanove sovlc = new SOUcitajClanove();
@@ -157,6 +217,11 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Ucitava sve promenePaketa iz baze
+     *
+     * @return List<PromenaPaketa>
+     */
     public List<PromenaPaketa> ucitajPromenePaketa() {
         try {
             SOUcitajPromenePaketa sovlc = new SOUcitajPromenePaketa();
@@ -166,9 +231,13 @@ public class Kontroler {
             Logger.getLogger(Kontroler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-
     }
 
+    /**
+     * Ucitava sve pakete iz Promene paketa
+     *
+     * @return List<Paket>
+     */
     public List<Paket> ucitajPakete() {
         try {
             SOUcitajPakete sovlc = new SOUcitajPakete();
@@ -180,6 +249,12 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Ubacuje u bazu unetog clana.
+     *
+     * @param parametri parametri unetog clana.
+     * @return Clan
+     */
     public AbstractObject zapamtiClana(List<Object> parametri) {
         try {
             SOZapamtiClana som = new SOZapamtiClana(parametri);
@@ -191,6 +266,12 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Menja izabrenaog clana.
+     *
+     * @param lista lista clanova
+     * @return Clan
+     */
     public AbstractObject izmeniClana(List<Object> lista) {
         try {
             SOIzmeniClana soic = new SOIzmeniClana(lista);
@@ -202,6 +283,11 @@ public class Kontroler {
         return null;
     }
 
+    /**
+     * Brise izabrenog clana.
+     *
+     * @param zaBrisanje izabrani clan za brisanje.
+     */
     public void obrisiClana(Clan zaBrisanje) {
         try {
             SOObrisiClana som = new SOObrisiClana();
@@ -211,6 +297,12 @@ public class Kontroler {
         }
     }
 
+    /**
+     * Cuva uneti paket u bazi.
+     *
+     * @param p uneti paket.
+     * @return Paket
+     */
     public AbstractObject zapamtiPaket(Paket p) {
         try {
             SOZapamtiPaket som = new SOZapamtiPaket(p);
@@ -221,7 +313,11 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Menja izabrani paket.
+ * @param p uneti paket
+ * @return paket
+ */
     public AbstractObject azurirajPaket(Paket p) {
         try {
             SOIzmeniPaket soip = new SOIzmeniPaket(p);
@@ -232,7 +328,11 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Vraca listu svih pretplata.
+ * 
+ * @return List<Pretplata>
+ */
     public List<Pretplata> vratiSvePretplate() {
         try {
             SOUcitajPretplate soup = new SOUcitajPretplate();
@@ -243,7 +343,11 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Unosi u bazu unetu pretplatu.
+ * @param pretplata uneta pretplata.
+ * @return Pretplata
+ */
     public AbstractObject zapamtiPretplatu(AbstractObject pretplata) {
         try {
             SOZapamtiPretplatu sozp = new SOZapamtiPretplatu(pretplata);
@@ -254,7 +358,11 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Pretrazuje sve pretplate po paketu
+ * @param pak uneti paket
+ * @return List<Pretplata>
+ */
     public List<AbstractObject> pretraziPretplate(Paket pak) {
         try {
             SOPretraziPretplate sopp = new SOPretraziPretplate(pak);
@@ -265,7 +373,11 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Vraca listu svih trenera.
+ * 
+ * @return List<Trener>
+ */
     public List<Trener> vratiTrenere() {
         try {
             SOUcitajTrenere sout = new SOUcitajTrenere();
@@ -276,7 +388,11 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Unosi u bazu unetog trenera.
+ * @param t uneti trener.
+ * @return Trener
+ */
     public Trener zapamtiTrenera(Trener t) {
         try {
             SOZapamtiTrenera sozt = new SOZapamtiTrenera(t);
@@ -287,7 +403,12 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Menja trenera iz baze.
+ * 
+ * @param tr uneti trener
+ * @return Trener
+ */
     public Trener izmeniTrenera(Trener tr) {
         try {
             SOIzmeniTrenera soit = new SOIzmeniTrenera(tr);
@@ -298,7 +419,11 @@ public class Kontroler {
         }
         return null;
     }
-
+/**
+ * Brise izabranog trenera.
+ * 
+ * @param brisiTrenera izabrani trener za brisanje.
+ */
     public void obrisiTrenera(Trener brisiTrenera) {
         try {
             SOObrisiTrenera soot = new SOObrisiTrenera();
