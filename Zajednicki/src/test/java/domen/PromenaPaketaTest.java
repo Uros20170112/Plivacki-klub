@@ -35,31 +35,46 @@ public class PromenaPaketaTest {
         p = null;
     }
 
+    /**
+     * Test of setId method, of class PromenaPaketa
+     */
     @Test
-    public void testSetPretplataId() {
+    public void testSetId() {
         pp.setId("1");
 
         assertEquals("1", pp.getId());
     }
 
+    /**
+     * Test of setId method, of class PromenaPaketa
+     */
     @Test
     public void testSetIdNull() {
         assertThrows(java.lang.NullPointerException.class,
                 () -> pp.setId(null));
     }
 
+    /**
+     * Test of setId method, of class PromenaPaketa
+     */
     @Test
     public void testSetIdPrazanString() {
         assertThrows(java.lang.IllegalArgumentException.class,
                 () -> pp.setId(""));
     }
 
+    /**
+     * Test of setId method, of class PromenaPaketa
+     */
     @Test
     public void testSetIdNulaIliManje() {
         assertThrows(java.lang.RuntimeException.class,
                 () -> pp.setId("0"));
     }
 
+    /**
+     * Test of setClan method, of class PromenaPaketa
+     */
     @Test
     public void testSetClan() {
         Clan c1 = new Clan();
@@ -71,11 +86,17 @@ public class PromenaPaketaTest {
         assertEquals(c1, pp.getClan());
     }
 
+    /**
+     * Test of setClan method, of class PromenaPaketa
+     */
     @Test
     public void testSetClanNull() {
         assertThrows(java.lang.NullPointerException.class, () -> pp.setClan(null));
     }
 
+    /**
+     * Test of setPaket method, of class PromenaPaketa
+     */
     @Test
     public void testSetPaket() {
         Paket p1 = new Paket();
@@ -87,18 +108,27 @@ public class PromenaPaketaTest {
         assertEquals(p1, pp.getPaket());
     }
 
+    /**
+     * Test of setPaket method, of class PromenaPaketa
+     */
     @Test
     public void testSetPaketNull() {
         assertThrows(java.lang.NullPointerException.class, () -> pp.setPaket(null));
     }
 
+    /**
+     * Test of setDatum method, of class PromenaPaketa
+     */
     @Test
     public void testSetDatum() {
         pp.setDatumOdabira(new Date());
-        
+
         assertEquals(new Date(), pp.getDatumOdabira());
     }
 
+    /**
+     * Test of setDatum method, of class PromenaPaketa
+     */
     @Test
     public void testSetDatumNull() {
         assertThrows(java.lang.NullPointerException.class, () -> pp.setDatumOdabira(null));
