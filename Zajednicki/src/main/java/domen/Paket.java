@@ -42,6 +42,9 @@ public class Paket extends AbstractObject {
      */
     @Override
     public String toString() {
+        if(naziv == null || cena == null) {
+            throw new NullPointerException();
+        }
         return naziv + " - " + cena + " RSD";
     }
 
